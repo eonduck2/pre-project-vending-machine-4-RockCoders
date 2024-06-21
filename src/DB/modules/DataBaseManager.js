@@ -46,7 +46,7 @@ export default class DataBaseManager {
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 테이블로, 데이터 삽입
-   * @param tableName 생성시킬 테이블 이름
+   * @param tableName 삽입시킬 테이블 이름
    * @param record
    * 객체 형태 ( 예시 - {name:'lee', test: "test"})
    */
@@ -66,7 +66,24 @@ export default class DataBaseManager {
     });
   }
 
-  readRecord() {}
+  /**
+   * @eonduck2 24.06.21
+   * * 테이블과 컬럼명, 해당 컬럼 내의 값으로 데이터를 조회
+   * @param tableName 조회할 테이블
+   * @param column 조회할 테이블의 컬럼
+   * @param value 조회할 테이블의 컬럼의 값
+   */
+  readRecord(tableName, column, value) {
+    const sql = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
+    this.db.all(sql, [value], (err, rows) => {
+      if (err) {
+        throw new Error(`쿼리문 조회 에러`, err);
+      } else {
+        console.log(`Records where ${column} = ${value}:`, rows);
+      }
+    });
+  }
+
   updateRecord() {}
   deleteRecord() {}
   close() {}
