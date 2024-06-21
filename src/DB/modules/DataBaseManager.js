@@ -75,16 +75,40 @@ export default class DataBaseManager {
    */
   readRecord(tableName, column, value) {
     const sql = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
-    this.db.all(sql, [value], (err, rows) => {
-      if (err) {
-        throw new Error(`쿼리문 조회 에러`, err);
-      } else {
-        console.log(`Records where ${column} = ${value}:`, rows);
-      }
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, [value], (err, rows) => {
+        if (err) {
+          throw new Error(`쿼리문 조회 에러`, err);
+        } else {
+          console.log(`Records where ${column} = ${value}:`, rows);
+          resolve(rows);
+        }
+      });
     });
   }
 
   updateRecord() {}
   deleteRecord() {}
+
+  /**
+   * @eonduck2 24.06.21
+   * * 테이블 이름으로 해당 테이블 내의 모든 데이터 조회
+   * @param tableName 전체 데이터를 조회할 테이블
+   */
+  getAllRecords(tableName) {
+    const sql = `SELECT * FROM ${tableName}`;
+
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, (err, rows) => {
+        if (err) {
+          throw new Error(`${tableName} 테이블 조회 실패`, err);
+        } else {
+          console.log(rows);
+          resolve(rows);
+        }
+      });
+    });
+  }
+
   close() {}
 }
