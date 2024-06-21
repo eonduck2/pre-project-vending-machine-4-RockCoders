@@ -12,5 +12,6 @@
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
     "tailwindcss": "^3.4.4"
-  }
+  },
+  "type": "module"
 }
