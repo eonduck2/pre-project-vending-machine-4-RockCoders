@@ -43,7 +43,29 @@ export default class DataBaseManager {
     });
   }
 
-  createRecord() {}
+  /**
+   * @eonduck2 24.06.21
+   * * 인자로 받은 테이블로, 데이터 삽입
+   * @param tableName 생성시킬 테이블 이름
+   * @param record
+   * 객체 형태 ( 예시 - {name:'lee', test: "test"})
+   */
+  createRecord(tableName, record) {
+    const columns = Object.keys(record).join(", ");
+    const placeholders = Object.keys(record)
+      .map(() => "?")
+      .join(", ");
+    const values = Object.values(record);
+    const sql = `INSERT INTO ${tableName} (${columns}) VALUES (${placeholders})`;
+
+    this.db.run(sql, values, (err) => {
+      if (err) {
+        throw new Error(`데이터 삽입(insert) 에러`, err);
+      } else {
+      }
+    });
+  }
+
   readRecord() {}
   updateRecord() {}
   deleteRecord() {}
