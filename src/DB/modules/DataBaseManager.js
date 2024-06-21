@@ -5,6 +5,11 @@ const sqlite3VM = sqlite3.verbose();
 
 export default class DataBaseManager {
   db;
+  /**
+   * @eonduck2 24.06.21
+   * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)
+   * @param {String} path 문자열 타입의 경로(eg: src/test.db)
+   */
   constructor(path) {
     this.db = new sqlite3.Database(path, (err) => {
       if (err) {
