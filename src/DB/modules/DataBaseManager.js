@@ -20,6 +20,13 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.21
+   * * 인자로 받은 테이블 이름과 컬럼들로 테이블 구성
+   * @param tableName 생성시킬 테이블 이름
+   * @param columns
+   * 배열 내부 객체 형태 ( 예시 - [{"name":"id", "type":"INTEGER PRIMARY KEY AUTOINCREMENT"}])
+   */
   tableCreator(tableName, columns) {
     this.db.serialize(() => {
       const columnsDefinition = columns
