@@ -22,14 +22,16 @@ const newUser = {
 
 // test.tableCreator(`test_tbl`, columns);
 // test.createRecord(`test_tbl`, newUser);
-// const test4 = test.readRecord(`test_tbl`, "name", `test`);
+// const test4 = test.readRecord(`test_tbl`, "name", `test`, true);
 
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
-const testF = async () => {
-  console.log(test2);
-  console.log(await test4);
-};
+// const testF = async () => {
+//   test2.then((data) => {
+//     console.log(data);
+//   });
+//   console.log(await test4);
+// };
 
-testF();
+// testF();
