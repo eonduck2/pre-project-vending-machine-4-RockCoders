@@ -51,4 +51,4 @@ function renderProducts(products) {
   });
 }
 
-fetchProductsList();
+module.exports=fetchProductsList;
