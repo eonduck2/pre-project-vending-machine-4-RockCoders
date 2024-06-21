@@ -1,4 +1,3 @@
-
 ```
 pre-project-vending-machine-4-RockCoders
 ├─ README.md
@@ -15,6 +14,7 @@ pre-project-vending-machine-4-RockCoders
    └─ tailwind.config.js
 
 ```
+
 ```
 pre-project-vending-machine-4-RockCoders
 ├─ README.md
