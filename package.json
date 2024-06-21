@@ -7,8 +7,5 @@
   },
   "author": "",
   "license": "MIT",
-  "description": "",
-  "dependencies": {
-    "express": "^4.19.2"
-  }
+  "description": ""
 }
