@@ -15,8 +15,8 @@ app.set(`PORT`, process.env.PORT ?? 8080);
 const PORT = app.get(`PORT`);
 
 // * 미들웨어 등록
-app.use("/public", express.static(publicPath));
-app.use("/src", express.static(srcPath));
+app.use(express.static(publicPath));
+app.use(express.static(srcPath));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
