@@ -51,4 +51,4 @@ function renderProducts(products) {
   });
 }
 
-module.exports=fetchProductsList;
+module.exports=fetchProductsList;''

@@ -6,26 +6,24 @@
   <title>Dream Vending Machine</title>
   <!-- taliwind사용을 위한 style 경로 -->
   <link rel="stylesheet" href="./style.css">
+  <!-- <link rel="stylesheet" href="test.css"> -->
 </head>
-<body>
-  <div id="root">
-    <div id="top">
-      <div id="title">
-        <h1>Dream Vending Machine</h1>
-        <h2>Rock Codes</h2>
+<body class="w-full bg-gray-200 flex justify-center items-center">
+  <div id="root" class="w-full h-5/6 bg-white flex flex-col justify-center items-center">
+    <div id="top" class="w-4/5 flex justify-center">
+      <div id="title" class="flex flex-col justify-center items-center border-2 border-black w-full mb-2">
+        <h1 class="text-4xl font-bold my-4">Dream Vending Machine</h1>
+        <h2 class="text-lg text-gray-600 font-semibold mb-4">Rock Codes</h2>
       </div>
       <div id="change"></div>
     </div>
-    <div id="main">
-      <ul id="1000list"></ul>
-      <ul id="5000list"></ul>
-      <ul id="10000list"></ul>
+    <div id="main" class="w-4/5 h-3/5 border-2 border-black flex flex-col justify-center items-center gap-8">
+      <ul id="1000list" class="w-4/5 flex flex-row justify-center gap-8"></ul>
+      <ul id="5000list" class="w-4/5 flex flex-row justify-center gap-8"></ul>
+      <ul id="10000list" class="w-4/5 flex flex-row justify-center gap-8"></ul>
     </div>
-    <div id="buttons">
-    </div>
-  </div>
-  <div>
-    <button id="purchaseBtn">구매하기</button>
+    <div id="buttons"></div>
+    <button id="purchaseBtn" class="bg-white border-2 border-black p-4 m-4">구매하기</button>
   </div>
   <script src="script.js"></script>
 </body>
