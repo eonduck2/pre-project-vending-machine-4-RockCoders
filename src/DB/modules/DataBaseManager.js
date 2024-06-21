@@ -13,14 +13,28 @@ export default class DataBaseManager {
   constructor(path) {
     this.db = new sqlite3.Database(path, (err) => {
       if (err) {
-        console.error("DB 연결 실패: ", err);
+        throw new Error("DB 연결 실패: ", err);
       } else {
         console.log("DB 연결 성공");
       }
     });
   }
 
-  static tableCreator() {}
+  tableCreator(tableName, columns) {
+    this.db.serialize(() => {
+      const columnsDefinition = columns
+        .map((column) => `${column.name} ${column.type}`)
+        .join(", ");
+      const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columnsDefinition})`;
+      this.db.run(sql, (err) => {
+        if (err) {
+          throw new Error(`테이블 생성 에러 (${tableName})`, err);
+        } else {
+          console.log(`${tableName} 테이블 생성 완료`);
+        }
+      });
+    });
+  }
 
   createRecord() {}
   readRecord() {}
