@@ -15,17 +15,22 @@ const columns = [
 ];
 
 const newUser = {
-  name: "test",
+  name: "김씨",
   email: "alice@example.com",
   age: 28,
 };
 
 // test.tableCreator(`test_tbl`, columns);
-// test.createRecord(`test_tbl`, newUser);
+test.createRecord(`test_tbl`, newUser);
 // const test4 = test.readRecord(`test_tbl`, "name", `test`, true);
 
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
+
+const updateData = { age: 30, city: "New York" };
+test.updateRecord(`test_tbl`, `name`, `Alice`, updateData);
+
+test.readRecordsAll(`test_tbl`, true);
 
 // const testF = async () => {
 //   test2.then((data) => {

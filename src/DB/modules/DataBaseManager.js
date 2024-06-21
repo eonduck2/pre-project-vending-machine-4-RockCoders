@@ -48,7 +48,7 @@ export default class DataBaseManager {
    * * 인자로 받은 테이블로, 데이터 삽입
    * @param { string } tableName 삽입시킬 테이블 이름
    * @param { object } record
-   * 객체 형태 ( 예시 - {name:'lee', test: "test"})
+   * 객체 형태 ( 예시 - {name:'lee', age: 30})
    */
   createRecord(tableName, record) {
     const columns = Object.keys(record).join(", ");
@@ -91,7 +91,20 @@ export default class DataBaseManager {
     });
   }
 
-  updateRecord() {}
+  updateRecord(tableName, whereColumn, whereValue, updateData) {
+    const setClause = Object.keys(updateData)
+      .map((key) => `${key} = ?`)
+      .join(", ");
+    const values = [...Object.values(updateData), whereValue];
+    const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
+
+    this.db.run(sql, values, (err) => {
+      if (err) {
+        throw new Error(`데이터 업데이트 에러`, err);
+      } else {
+      }
+    });
+  }
   deleteRecord() {}
 
   /**
@@ -101,7 +114,7 @@ export default class DataBaseManager {
    * @param { boolean } log true 값으로 보낼 시, console에 logging.
    * @returns 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  getAllRecords(tableName, log) {
+  readRecordsAll(tableName, log) {
     const sql = `SELECT * FROM ${tableName}`;
 
     return new Promise((resolve, reject) => {
