@@ -1,2 +1,24 @@
 import express from "express";
 import path from "node:path";
+
+const app = express();
+
+const __dirname = path.resolve();
+
+const publicPath = path.join(__dirname, "public");
+const srcPath = path.join(__dirname, "src");
+
+// * 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
+app.set(`PORT`, process.env.PORT ?? 8080);
+const PORT = app.get(`PORT`);
+
+app.use("/public", express.static(publicPath));
+app.use("/src", express.static(srcPath));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
+
+app.listen(app.get(`PORT`), () => {
+  console.log(`Server is running on http://localhost:${app.get(`PORT`)}`);
+});
