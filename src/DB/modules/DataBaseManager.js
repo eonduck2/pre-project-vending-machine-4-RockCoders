@@ -423,7 +423,21 @@ export default class DataBaseManager {
     });
   }
 
-  deleteIndex() {}
+  /**
+   * @eonduck2 24.06.23
+   * * 특정 인덱스를 삭제
+   * @param { string } indexName 삭제할 인덱스의 이름
+   */
+  dropIndex(indexName) {
+    const sql = `DROP INDEX IF EXISTS ${indexName}`;
+    this.db.run(sql, (err) => {
+      if (err) {
+        throw new Error(`인덱스 삭제 에러`);
+      } else {
+        console.log(`"${indexName}" 인덱스 삭제 완료`);
+      }
+    });
+  }
 
   /**
    * @eonduck2 24.06.23
