@@ -373,7 +373,7 @@ export default class DataBaseManager {
    * @eonduck2 24.06.22
    * * 특정 DB 파일의 크기를 KB 단위로 나타내는 기능
    */
-  getDatabaseSize() {
+  getDBSize() {
     const sql = `PRAGMA page_count`;
     this.db.get(sql, (err, result) => {
       if (err) {
@@ -393,7 +393,7 @@ export default class DataBaseManager {
    * * DB 파일이 계속 사용 되면서 파일 크기가 지속적으로 늘어나는 상황 방지 가능
    * * 특정 테이블에서 데이터 조작(삽입, 삭제, 갱신 ...) 후, 사용 권장
    */
-  optimizeDatabase() {
+  optimizeDB() {
     this.db.run("VACUUM", (err) => {
       if (err) {
         throw new Error("DB 최적화 실패");
@@ -402,9 +402,23 @@ export default class DataBaseManager {
       }
     });
   }
+
+  createIndex(indexName, tableName, column) {
+    const sql = `CREATE INDEX IF NOT EXISTS ${indexName} ON ${tableName} (${column})`;
+    this.db.run(sql, (err) => {
+      if (err) {
+        throw new Error(`컬럼 인덱스 생성 오류`);
+      } else {
+        console.log(
+          `"${tableName}" 테이블의 "${column}" 컬럼에 "${indexName}" 인덱스 생성 완료`
+        );
+      }
+    });
+  }
+
   /**
    * @eonduck2 24.06.22
-   * * 특정 DB와의 연결 해제
+   * * DB와의 연결 해제
    */
   close() {
     this.db.close((err) => {

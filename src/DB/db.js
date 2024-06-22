@@ -19,6 +19,12 @@ const newUser = {
   name: "김씨",
   email: "alice@example.com",
 };
+
+test.createIndex("idx_users_name", "test_tbl", "name");
+test.getTableInfo(`test_tbl`, true);
+// test.getDBSize();
+// test.
+
 // const whereColumn = "name";
 // const whereValue = "Bob";
 
@@ -33,20 +39,20 @@ const newUser = {
 // test.tableCreator(`test_tbl4`, columns);
 // test.createRecord(`test_tbl`, newUser);
 // console.log(test.serialize);
-test.db.serialize(() => {});
+// test.db.serialize(() => {});
 
-test.db.serialize(() => {
-  test.optimizeDatabase();
-  test.getDatabaseSize();
+// test.db.serialize(() => {
+//   test.optimizeDatabase();
+//   test.getDatabaseSize();
 
-  test.optimizeDatabase();
-  test.close();
+//   test.optimizeDatabase();
+//   test.close();
 
-  test.getDatabaseSize();
-  test.getDatabaseSize();
-  // test.close();
-  // test.getDatabaseSize();
-});
+//   test.getDatabaseSize();
+//   test.getDatabaseSize();
+//   // test.close();
+//   // test.getDatabaseSize();
+// });
 // test.serialize(() => {
 //   test.readRecord(`test_tbl`, `name`, `김씨`, true);
 //   test.createRecord(`test_tbl`, newUser);
