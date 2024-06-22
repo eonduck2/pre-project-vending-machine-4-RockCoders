@@ -26,7 +26,7 @@ const whereValue = "Bob";
 const newColumnName = "test";
 const newColumnType = "TEXT";
 
-test.addColumn(`test_tbl`, newColumnName, newColumnType);
+// test.addColumn(`test_tbl`, newColumnName, newColumnType);
 // test.tableCreator(`test_tbl2`, columns);
 // test.createRecord(`test_tbl`, newUser);
 // const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
@@ -34,6 +34,7 @@ test.addColumn(`test_tbl`, newColumnName, newColumnType);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
+test.dropColumn(`test_tbl`, `age`);
 // test.deleteRecordsAll(`test_tbl`);
 test.close();
 // test.deleteRecord(`test_tbl`, `id`, `4`);
