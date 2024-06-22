@@ -75,7 +75,7 @@ export default class DataBaseManager {
    * @param { string } column 조회할 테이블의 컬럼
    * @param { string } value 조회할 테이블의 컬럼의 값
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
-   * @returns { promise }특정 컬럼의 데이터가 포함된 Promise
+   * @returns { promise } 특정 컬럼의 데이터가 포함된 Promise
    */
   readRecord(tableName, column, value, log = false) {
     const sql = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
@@ -512,20 +512,26 @@ export default class DataBaseManager {
 
   /**
    * @eonduck2 24.06.23
-   * * 특정 인덱스를 사용하여 레코드 조회
-   * @param {string} tableName 테이블 이름
-   * @param {string} indexName 인덱스 이름
-   * @param {string} columnName 조회할 컬럼 이름
-   * @param {string|number} value 조회할 값
+   * * 특정 인덱스를 사용하여 데이터 전체 조회
+   * @param { string } tableName 테이블 이름
+   * @param { string } indexName 인덱스 이름
+   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
+   * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  queryRecordsByIndex(tableName, indexName, columnName, value) {
-    const sql = `SELECT * FROM ${tableName} INDEXED BY ${indexName} WHERE ${columnName} = ?`;
-    this.db.all(sql, [value], (err, rows) => {
-      if (err) {
-        throw new Error(`인덱스를 이용한 데이터 조회 오류`);
-      } else {
-        console.log(rows);
-      }
+  readRecordsAllByIndex(tableName, indexName, log = false) {
+    const sql = `SELECT * FROM ${tableName} INDEXED BY ${indexName}`;
+
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, (err, rows) => {
+        if (err) {
+          throw new Error(`인덱스를 이용한 데이터 조회 오류`);
+        } else if (log) {
+          console.log(rows);
+          resolve(rows);
+        } else {
+          resolve(rows);
+        }
+      });
     });
   }
 

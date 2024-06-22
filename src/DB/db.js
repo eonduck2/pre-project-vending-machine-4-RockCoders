@@ -27,7 +27,10 @@ const newUser = {
 
 // test.getSomeIndexes("test_tbl", "email");
 // test.getAllIndexes(`test_tbl`);
-test.queryRecordsByIndex(`test_tbl`, `idx_users_email3`, `name`, `김씨`);
+const test444 = test.readRecordsAllByIndex(`test_tbl`, `idx_users_email3`);
+test444.then((data) => {
+  console.log(data);
+});
 // test.getDBSize();
 // test.
 
