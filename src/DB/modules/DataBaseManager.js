@@ -223,6 +223,33 @@ export default class DataBaseManager {
   }
 
   /**
+   * @eonduck2
+   * * 트랜잭션 시작
+   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   */
+  beginTransaction() {
+    this.db.run("BEGIN TRANSACTION");
+  }
+
+  /**
+   * @eonduck2
+   * * 트랜잭션 커밋
+   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   */
+  commit() {
+    this.db.run("COMMIT");
+  }
+
+  /**
+   * @eonduck2
+   * * 트랜잭션 롤백
+   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   */
+  rollback() {
+    this.db.run("ROLLBACK");
+  }
+
+  /**
    * @eonduck2 24.06.22
    * * 특정 DB와의 연결 해제
    */
