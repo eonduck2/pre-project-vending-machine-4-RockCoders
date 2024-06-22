@@ -423,6 +423,8 @@ export default class DataBaseManager {
     });
   }
 
+  deleteIndex() {}
+
   /**
    * @eonduck2 24.06.23
    * * 특정 테이블 내 특정 컬럼의 인덱스를 조회
