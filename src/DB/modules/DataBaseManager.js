@@ -273,6 +273,16 @@ export default class DataBaseManager {
     });
   }
 
+  backupDatabase(backupFilePath) {
+    this.db.backup(backupFilePath, (err) => {
+      if (err) {
+        throw new Error(`DB 백업 실행 오류`);
+      } else {
+        console.log(`"${backupFilePath}" DB 백업 성공`);
+      }
+    });
+  }
+
   /**
    * @eonduck2 24.06.22
    * * 특정 DB와의 연결 해제
