@@ -164,5 +164,17 @@ export default class DataBaseManager {
     });
   }
 
+  deleteRecordsAll(tableName) {
+    const sql = `DELETE FROM ${tableName}`;
+
+    this.db.run(sql, (err) => {
+      if (err) {
+        throw new Error(`모든 데이터 삭제 중 오류 발생`);
+      } else {
+        console.log(`"${tableName}" 테이블 내, 모든 데이터 삭제 완료`);
+      }
+    });
+  }
+
   close() {}
 }

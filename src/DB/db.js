@@ -30,6 +30,8 @@ const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
+test.deleteRecordsAll(`test_tbl`);
+
 // test.deleteRecord(`test_tbl`, `id`, `4`);
 // const updateData = { age: 444, email: "teorr" };
 // test.updateRecord(`test_tbl`, `id`, `1`, updateData);
