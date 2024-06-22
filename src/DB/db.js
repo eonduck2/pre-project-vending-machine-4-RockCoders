@@ -20,12 +20,12 @@ const newUser = {
   email: "alice@example.com",
 };
 
-// test.createIndex("idx_users_email2", "test_tbl", "email");
+test.createIndex("idx_users_email3", "test_tbl", "email");
 // test.getTableInfo(`test_tbl`, true)
 
-test.dropIndex(`idx_users_name3`);
+// test.dropIndex(`idx_users_name3`);
 
-test.getSomeIndexes("test_tbl", "email");
+// test.getSomeIndexes("test_tbl", "email");
 test.getAllIndexes(`test_tbl`);
 // test.getDBSize();
 // test.
