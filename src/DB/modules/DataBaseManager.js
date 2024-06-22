@@ -246,7 +246,13 @@ export default class DataBaseManager {
    * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
   commit() {
-    this.db.run("COMMIT");
+    this.db.run("COMMIT", (err) => {
+      if (err) {
+        throw new Error(`트랜잭션 커밋 에러`);
+      } else {
+        console.log("트랜잭션 커밋 완료");
+      }
+    });
   }
 
   /**
@@ -256,7 +262,13 @@ export default class DataBaseManager {
    * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
   rollback() {
-    this.db.run("ROLLBACK");
+    this.db.run("ROLLBACK", (err) => {
+      if (err) {
+        throw new Error(`트랜잭션 롤백 에러`);
+      } else {
+        console.log("트랜잭션 롤백 완료");
+      }
+    });
   }
 
   /**
