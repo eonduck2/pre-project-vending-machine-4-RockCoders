@@ -370,6 +370,24 @@ export default class DataBaseManager {
 
   /**
    * @eonduck2 24.06.22
+   * * 특정 DB 파일의 크기를 KB 단위로 나타내는 기능
+   */
+  getDatabaseSize() {
+    const sql = `PRAGMA page_count`;
+    this.db.get(sql, (err, result) => {
+      if (err) {
+        throw new Error("DB 파일 크기 조회 에러");
+      } else {
+        const pageSize = 4096;
+        const sizeInBytes = result.page_count * pageSize;
+        const sizeInKB = sizeInBytes / 1024;
+        console.log(`${sizeInKB}KB`);
+      }
+    });
+  }
+
+  /**
+   * @eonduck2 24.06.22
    * * 특정 DB와의 연결 해제
    */
   close() {

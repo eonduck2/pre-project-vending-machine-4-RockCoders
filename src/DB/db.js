@@ -15,10 +15,11 @@ const columns = [
   { name: "city", type: "INTEGER" },
 ];
 
-// const newUser = {
-//   name: "김씨",
-//   email: "alice@example.com",
-// };
+test.getDatabaseSize();
+const newUser = {
+  name: "김씨",
+  email: "alice@example.com",
+};
 // const whereColumn = "name";
 // const whereValue = "Bob";
 
@@ -31,7 +32,7 @@ const columns = [
 // test.restoreDataFromBackup("123456.db", `test_tbl`);
 // test.
 // test.tableCreator(`test_tbl4`, columns);
-// test.createRecord(`test_tbl`, newUser);
+test.createRecord(`test_tbl`, newUser);
 // const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
