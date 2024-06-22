@@ -27,10 +27,17 @@ const newUser = {
 
 // test.getSomeIndexes("test_tbl", "email");
 // test.getAllIndexes(`test_tbl`);
-const test444 = test.readRecordsAllByIndex(`test_tbl`, `idx_users_email3`);
-test444.then((data) => {
-  console.log(data);
-});
+const newColumnOrder = [
+  { name: "email", type: "TEXT" },
+  { name: "id", type: "INTEGER PRIMARY KEY" },
+  { name: "name", type: "TEXT" },
+];
+
+test.reorderColumns(`test_tbl`, newColumnOrder);
+// const test444 = test.readRecordsAllByIndex(`test_tbl`, `idx_users_email3`);
+// test444.then((data) => {
+//   console.log(data);
+// });
 // test.getDBSize();
 // test.
 

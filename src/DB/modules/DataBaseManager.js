@@ -536,6 +536,64 @@ export default class DataBaseManager {
   }
 
   /**
+   * @eonduck2 24.06.23
+   * * 특정 테이블의 컬럼 순서 변경 및 데이터 복사
+   * @param { string } tableName 변경할 테이블 이름
+   * @param { Array<{name: string, type: string}> } newColumnOrder 새로운 컬럼 순서와 데이터 타입을 정의한 배열
+   */
+  reorderColumns(tableName, newColumnOrder) {
+    // * 1. 새로운 테이블 이름을 생성
+    const newTableName = `${tableName}_temp`;
+
+    // * 2. 새로운 테이블의 컬럼 정의 SQL 생성
+    const columnsDefinition = newColumnOrder
+      .map((col) => `${col.name} ${col.type}`)
+      .join(", ");
+
+    // * 3. 새로운 테이블 생성
+    const createTableSql = `CREATE TABLE ${newTableName} (${columnsDefinition})`;
+    this.db.run(createTableSql, (err) => {
+      if (err) {
+        throw new Error(`새로운 테이블 생성 오류`);
+      } else {
+        // * 4. 데이터 복사 및 순서 맞춤
+        const copyDataSql = `
+          INSERT INTO ${newTableName} (${newColumnOrder
+          .map((col) => col.name)
+          .join(", ")})
+          SELECT ${newColumnOrder
+            .map((col) => col.name)
+            .join(", ")} FROM ${tableName}`;
+        this.db.run(copyDataSql, (err) => {
+          if (err) {
+            throw new Error(`데이터 복사 오류`);
+          } else {
+            // * 5. 기존 테이블 삭제
+            const dropTableSql = `DROP TABLE ${tableName}`;
+            this.db.run(dropTableSql, (err) => {
+              if (err) {
+                throw new Error(`기존 테이블 삭제 오류`);
+              } else {
+                // * 6. 새로운 테이블 이름을 기존 테이블 이름으로 변경
+                const renameTableSql = `ALTER TABLE ${newTableName} RENAME TO ${tableName}`;
+                this.db.run(renameTableSql, (err) => {
+                  if (err) {
+                    throw new Error(`테이블 이름 변경 오류`);
+                  } else {
+                    console.log(
+                      `테이블 "${tableName}"의 컬럼 순서 변경 및 데이터 복사 완료`
+                    );
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+
+  /**
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
    */
