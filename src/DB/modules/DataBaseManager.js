@@ -117,22 +117,17 @@ export default class DataBaseManager {
     });
   }
 
-  updateRecord(tableName, whereColumn, whereValue, updateData, log = false) {
+  updateRecord(tableName, whereColumn, whereValue, updateData) {
     const setClause = Object.keys(updateData)
       .map((key) => `${key} = ?`)
       .join(", ");
     const values = [...Object.values(updateData), whereValue];
     const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
-    const db = this.db;
-    const readRecord = this.readRecord;
-    const path = this.path;
 
     this.db.serialize(() => {
       this.db.run(sql, values, function (err) {
         if (err) {
           throw new Error(`컬럼 업데이트 에러`, err);
-        } else if (log) {
-          db.readRecord(tableName);
         } else {
           console.log(`데이터 업데이트 완료`);
         }
