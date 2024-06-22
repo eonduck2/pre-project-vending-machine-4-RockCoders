@@ -4,7 +4,7 @@ import fs from "node:fs";
 // * sqlite3 객체와 같은 기능을 하지만, 디버깅에 더 유리한 옵션을 포함한 verbose mode로 선언
 const sqlite3VM = sqlite3.verbose();
 
-export default class DataBaseManager {
+class BaseDataBaseManager {
   db;
   fileWithPath;
   /**
@@ -601,5 +601,11 @@ export default class DataBaseManager {
         console.log("DB 연결 해제");
       }
     });
+  }
+}
+
+export default class DataBaseManager extends BaseDataBaseManager {
+  constructor(fileWithPath) {
+    super(fileWithPath);
   }
 }
