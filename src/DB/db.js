@@ -27,11 +27,11 @@ const newUser = {
 
 // test.getSomeIndexes("test_tbl", "email");
 // test.getAllIndexes(`test_tbl`);
-const newColumnOrder = [
-  { name: "email", type: "TEXT" },
-  { name: "id", type: "INTEGER PRIMARY KEY" },
-  { name: "name", type: "TEXT" },
-];
+const newColumnOrder = {
+  id: "INTEGER PRIMARY KEY",
+  email: "TEXT",
+  name: "TEXT",
+};
 
 test.reorderColumns(`test_tbl`, newColumnOrder);
 // const test444 = test.readRecordsAllByIndex(`test_tbl`, `idx_users_email3`);
