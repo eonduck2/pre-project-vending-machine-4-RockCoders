@@ -147,8 +147,8 @@ export default class DataBaseManager {
 
   /**
    * @eonduck2 24.06.22
-   * * 테이블 이름으로 해당 테이블 내의 모든 데이터 조회
-   * @param { string } tableName 전체 데이터를 조회할 테이블
+   * * 테이블 이름과 특정 조건식으로 테이블 내 특정 행 삭제
+   * @param { string } tableName 데이터 삭제가 진행될 테이블
    * @param { string } whereColumn 조건 지정을 위한 열의 이름
    * @param { string } whereValue 조건 지정을 위한 해당 컬럼 내의 값
    */
@@ -164,6 +164,11 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.22
+   * * 특정 테이블의 모든 데이터 삭제
+   * @param { string } tableName 전체 데이터를 조회할 테이블
+   */
   deleteRecordsAll(tableName) {
     const sql = `DELETE FROM ${tableName}`;
 
