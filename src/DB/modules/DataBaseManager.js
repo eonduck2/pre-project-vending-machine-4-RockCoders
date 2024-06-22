@@ -72,8 +72,8 @@ export default class DataBaseManager {
    * @eonduck2 24.06.21
    * * 테이블과 컬럼명, 해당 컬럼 내의 값으로 데이터를 조회
    * @param { string } tableName 조회할 테이블
-   * @param { string } column 조회할 테이블의 컬럼
-   * @param { string } value 조회할 테이블의 컬럼의 값
+   * @param { string | number } column 조회할 테이블의 컬럼
+   * @param { string | number } value 조회할 테이블의 컬럼의 값
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 컬럼의 데이터가 포함된 Promise
    */
@@ -121,8 +121,8 @@ export default class DataBaseManager {
    * @eonduck2 24.06.22
    * * 특정 테이블에 접근하여 데이터 업데이트
    * @param { string } tableName 업데이트 지정 대상이 될 테이블 이름
-   * @param { string } whereColumn 조건 지정을 위한 열의 이름
-   * @param { string } whereValue 조건 지정을 위한 해당 컬럼 내의 값
+   * @param { string | number } whereColumn 조건 지정을 위한 열의 이름
+   * @param { string | number } whereValue 조건 지정을 위한 해당 컬럼 내의 값
    * @param { object } updateData 업데이트 시킬 데이터(컬럼)
    *
    * * 사용 예시 updateRecord(`테이블 이름`, `조건 컬럼`, `조건 값`, { 변경시킬 컬럼: "변경시킬 값" });
@@ -150,8 +150,8 @@ export default class DataBaseManager {
    * @eonduck2 24.06.22
    * * 테이블 이름과 특정 조건식으로 테이블 내 특정 행 삭제
    * @param { string } tableName 데이터 삭제가 진행될 테이블
-   * @param { string } whereColumn 조건 지정을 위한 열의 이름
-   * @param { string } whereValue 조건 지정을 위한 해당 컬럼 내의 값
+   * @param { string | number } whereColumn 조건 지정을 위한 열의 이름
+   * @param { string | number } whereValue 조건 지정을 위한 해당 컬럼 내의 값
    */
   deleteRecord(tableName, whereColumn, whereValue) {
     const sql = `DELETE FROM ${tableName} WHERE ${whereColumn} = ?`;
@@ -186,7 +186,7 @@ export default class DataBaseManager {
    * @eonduck2 24.06.22
    * * 특정 테이블에 특정 컬럼을 추가하는 기능
    * @param { string } tableName 대상으로 지정되는 테이블
-   * @param { string } columnName 추가될 컬럼 이름
+   * @param { string | number } columnName 추가될 컬럼 이름
    * @param { string } columnType 추가될 컬럼 타입 예 - (TEXT, INTEGER)
    */
   addColumn(tableName, columnName, columnType) {
@@ -207,7 +207,7 @@ export default class DataBaseManager {
    * @eonduck2 24.06.22
    * * 특정 테이블에 존재하는 특정 컬럼을 삭제하는 기능
    * @param { string } tableName 대상으로 지정되는 테이블
-   * @param { string } columnName 삭제될 컬럼 이름
+   * @param { string | number } columnName 삭제될 컬럼 이름
    */
   dropColumn(tableName, columnName) {
     const sql = `ALTER TABLE ${tableName} DROP COLUMN ${columnName}`;
