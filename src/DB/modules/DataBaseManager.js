@@ -311,6 +311,56 @@ export default class DataBaseManager {
     });
   }
 
+  restoreDBFromBackup(backupDbFilePath, tableName) {
+    const backupDb = new sqlite3.Database(
+      backupDbFilePath,
+      sqlite3.OPEN_READONLY,
+      (err) => {
+        if (err) {
+          throw new Error(`백업 DB 오픈 실패`, err);
+        } else {
+          console.log(`백업 DB ReadOnly 모드로 오픈 성공 `);
+
+          backupDb.each(
+            `SELECT * FROM ${tableName}`,
+            (err, row) => {
+              if (err) {
+                throw new Error(`백업 DB 데이터 리딩 에러`);
+              } else {
+                const columns = Object.keys(row).join(", ");
+                const placeholders = Object.keys(row)
+                  .map(() => "?")
+                  .join(", ");
+                const values = Object.values(row);
+
+                const sql = `INSERT INTO ${tableName} (${columns}) VALUES (${placeholders})`;
+
+                this.db.run(sql, values, function (insertErr) {
+                  if (insertErr) {
+                    throw new Error(
+                      `백업 DB에서의 데이터를 현재 DB에 삽입 실패`
+                    );
+                  } else {
+                    console.log(`"${tableName}"에 행 삽입 완료`);
+                  }
+                });
+              }
+            },
+            () => {
+              backupDb.close((closeErr) => {
+                if (closeErr) {
+                  throw new Error(`백업 DB 연결 해제 실패`);
+                } else {
+                  console.log("백업 DB 연결 해제");
+                }
+              });
+            }
+          );
+        }
+      }
+    );
+  }
+
   /**
    * @eonduck2 24.06.22
    * * 특정 DB와의 연결 해제

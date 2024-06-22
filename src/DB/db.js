@@ -22,12 +22,13 @@ const columns = [
 // const whereColumn = "name";
 // const whereValue = "Bob";
 
-// const newColumnName = "test";
+// const newColumnName = "email";
 // const newColumnType = "TEXT";
-
+// test.deleteRecordsAll(`test_tbl`);
+// test.dropColumn(`test_tbl`, `email`);
 // test.addColumn(`test_tbl`, newColumnName, newColumnType);
-test.tableCreator(`test_tbl`, columns);
-
+// test.tableCreator(`test_tbl`, columns);
+test.restoreDataFromBackup("123456.db", `test_tbl`);
 // test.
 // test.tableCreator(`test_tbl4`, columns);
 // test.createRecord(`test_tbl`, newUser);
@@ -38,7 +39,7 @@ test.tableCreator(`test_tbl`, columns);
 // const test123 = test.getTableInfo(`test_tbl`);
 
 // test.
-// test.dropColumn(`test_tbl`, `age`);
+// test.dropColumn(`test_tbl`, `name`);
 // test.deleteRecord(`test_tbl`, `test`, `test`);
 // test.deleteRecordsAll(`test_tbl`);
 // test.close();
