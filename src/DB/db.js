@@ -23,15 +23,19 @@ const newUser = {
 const whereColumn = "name";
 const whereValue = "Bob";
 
+const newColumnName = "test";
+const newColumnType = "TEXT";
+
+test.addColumn(`test_tbl`, newColumnName, newColumnType);
 // test.tableCreator(`test_tbl2`, columns);
 // test.createRecord(`test_tbl`, newUser);
-const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
+// const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
-test.deleteRecordsAll(`test_tbl`);
-
+// test.deleteRecordsAll(`test_tbl`);
+test.close();
 // test.deleteRecord(`test_tbl`, `id`, `4`);
 // const updateData = { age: 444, email: "teorr" };
 // test.updateRecord(`test_tbl`, `id`, `1`, updateData);
