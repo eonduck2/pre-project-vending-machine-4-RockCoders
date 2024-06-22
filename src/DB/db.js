@@ -32,12 +32,15 @@ const newUser = {
 // test.restoreDataFromBackup("123456.db", `test_tbl`);
 // test.
 // test.tableCreator(`test_tbl4`, columns);
-test.createRecord(`test_tbl`, newUser);
+// test.createRecord(`test_tbl`, newUser);
+test.optimizeDatabase();
+
 // const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 // const test123 = test.getTableInfo(`test_tbl`);
+// test.readRecordsAll(`test_tbl`, true);
 
 // test.
 // test.dropColumn(`test_tbl`, `name`);
