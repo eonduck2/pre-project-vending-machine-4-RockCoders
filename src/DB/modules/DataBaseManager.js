@@ -7,6 +7,7 @@ const sqlite3VM = sqlite3.verbose();
 export default class DataBaseManager {
   db;
   fileWithPath;
+  serialize;
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)
@@ -21,6 +22,7 @@ export default class DataBaseManager {
         console.log("DB 연결 성공");
       }
     });
+    this.serialize = this.db.serialize;
   }
 
   /**
@@ -392,12 +394,21 @@ export default class DataBaseManager {
    * * DB를 최적화 하는 기능
    * * DB 파일이 계속 사용 되면서 파일 크기가 지속적으로 늘어나는 상황 방지 가능
    * * 특정 테이블에서 데이터 조작(삽입, 삭제, 갱신 ...) 후, 사용 권장
+   * @param { boolean } close true값으로 보낼 시, DB 최적화 후 연갤 해제
    */
-  optimizeDatabase() {
+  optimizeDatabase(close = false) {
     this.db.serialize(() => {
       this.db.run("VACUUM", (err) => {
         if (err) {
           throw new Error("DB 최적화 실패");
+        } else if (close) {
+          this.db.close((err) => {
+            if (err) {
+              throw new Error(`최적화 후, DB 연결 종료 실패`);
+            } else {
+              console.log("DB 최적화 후, 연결 종료");
+            }
+          });
         } else {
           console.log("DB 최적화 성공");
         }
