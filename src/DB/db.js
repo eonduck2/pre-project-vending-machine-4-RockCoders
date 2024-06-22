@@ -33,7 +33,9 @@ const newColumnOrder = {
   name: "TEXT",
 };
 
-test.reorderColumns(`test_tbl`, newColumnOrder);
+test.createTable(`test_tbl23`, newColumnOrder);
+
+// test.reorderColumns(`test_tbl`, newColumnOrder);
 // const test444 = test.readRecordsAllByIndex(`test_tbl`, `idx_users_email3`);
 // test444.then((data) => {
 //   console.log(data);

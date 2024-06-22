@@ -27,19 +27,19 @@ export default class DataBaseManager {
    * @eonduck2 24.06.21
    * * 인자로 받은 테이블 이름과 컬럼들로 테이블 구성
    * @param { string } tableName 생성시킬 테이블 이름
-   * @param { array & object } columns
-   * 배열 내부 객체 형태 ( 예시 - [{"name":"id", "type":"INTEGER PRIMARY KEY AUTOINCREMENT"}])
+   * @param { object } columns 컬럼 이름과 타입을 정의한 객체
    */
-  tableCreator(tableName, columns) {
-    const columnsDefinition = columns
-      .map((column) => `${column.name} ${column.type}`)
+  createTable(tableName, columns) {
+    const columnsDefinition = Object.entries(columns)
+      .map(([name, type]) => `${name} ${type}`)
       .join(", ");
+
     const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columnsDefinition})`;
     this.db.run(sql, (err) => {
       if (err) {
-        throw new Error(`테이블 생성 에러 (${tableName})`, err);
+        throw new Error(`테이블 생성 오류 (${tableName})`);
       } else {
-        console.log(`"${tableName}" 테이블 생성 완료`);
+        console.log(`테이블 "${tableName}" 생성 완료`);
       }
     });
   }
