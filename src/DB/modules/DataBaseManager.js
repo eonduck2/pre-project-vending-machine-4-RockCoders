@@ -511,6 +511,25 @@ export default class DataBaseManager {
   }
 
   /**
+   * @eonduck2 24.06.23
+   * * 특정 인덱스를 사용하여 레코드 조회
+   * @param {string} tableName 테이블 이름
+   * @param {string} indexName 인덱스 이름
+   * @param {string} columnName 조회할 컬럼 이름
+   * @param {string|number} value 조회할 값
+   */
+  queryRecordsByIndex(tableName, indexName, columnName, value) {
+    const sql = `SELECT * FROM ${tableName} INDEXED BY ${indexName} WHERE ${columnName} = ?`;
+    this.db.all(sql, [value], (err, rows) => {
+      if (err) {
+        throw new Error(`인덱스를 이용한 데이터 조회 오류`);
+      } else {
+        console.log(rows);
+      }
+    });
+  }
+
+  /**
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
    */
