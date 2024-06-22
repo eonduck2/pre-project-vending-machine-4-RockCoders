@@ -408,7 +408,7 @@ export default class DataBaseManager {
    * * 특정 테이블의 특정 컬럼에 인덱스를 생성
    * @param { string } indexName 인덱스로 사용될 이름
    * @param { string } tableName 인덱스 생성을 위해 접근하는 테이블 이름
-   * @param { string } column 인덱스를 생성시킬 컬럼 이름
+   * @param { string | number } column 인덱스를 생성시킬 컬럼 이름
    */
   createIndex(indexName, tableName, column) {
     const checkIndexSql = `PRAGMA index_list(${tableName})`;
@@ -455,7 +455,7 @@ export default class DataBaseManager {
    * @eonduck2 24.06.23
    * * 특정 테이블 내 특정 컬럼의 인덱스를 조회
    * @param { string } tableName 인덱스 조회를 위해 지정할 테이블
-   * @param { string } columnName 인덱스 조회 대상이 되는 컬럼
+   * @param { string | number } columnName 인덱스 조회 대상이 되는 컬럼
    */
   getSomeIndexes(tableName, columnName) {
     const sql = `PRAGMA index_list(${tableName})`;
