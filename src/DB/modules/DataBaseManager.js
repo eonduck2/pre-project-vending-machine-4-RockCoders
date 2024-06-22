@@ -423,6 +423,12 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.23
+   * * 특정 테이블의 특정 컬럼에 인덱스를 생성
+   * @param { string } tableName 인덱스 생성을 위해 접근하는 테이블 이름
+   * @param { string } columnName 인덱스를 생성시킬 컬럼 이름
+   */
   getIndexInfosFromColumn(tableName, columnName) {
     const sql = `PRAGMA index_list(${tableName})`;
     this.db.all(sql, (err, indexes) => {
@@ -438,7 +444,7 @@ export default class DataBaseManager {
               indexInfo.forEach((info) => {
                 if (info.name === columnName) {
                   console.log(
-                    `컬럼 이름: ${info.name}, 인덱스 이름: ${index.name}`
+                    `컬럼 이름: ${info.name}, 인덱스 시퀀스: ${index.seq}, 인덱스 이름: ${index.name} `
                   );
                 }
               });
