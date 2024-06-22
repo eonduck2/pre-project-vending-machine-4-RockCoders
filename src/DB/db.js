@@ -26,7 +26,7 @@ const columns = [
 // const newColumnType = "TEXT";
 
 // test.addColumn(`test_tbl`, newColumnName, newColumnType);
-test.tableCreator(`test_tbl4`, columns);
+test.tableCreator(`test_tbl`, columns);
 // test.tableCreator(`test_tbl4`, columns);
 // test.createRecord(`test_tbl`, newUser);
 // const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
