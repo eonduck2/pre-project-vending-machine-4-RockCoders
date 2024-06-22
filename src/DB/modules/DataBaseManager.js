@@ -272,7 +272,7 @@ export default class DataBaseManager {
   }
 
   /**
-   * @eonduck2 24.06.21
+   * @eonduck2 24.06.22
    * * 테이블에 관련된 정보를 조회
    * @param { string } tableName 대상이 될 테이블
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
@@ -296,7 +296,7 @@ export default class DataBaseManager {
   }
 
   /**
-   * @eonduck2 24.06.21
+   * @eonduck2 24.06.22
    * * 테이블에 관련된 정보를 조회
    * @param { string } backupFilePath 현재 데이터 베이스를 백업시킬 경로와 파일명
    * * 예시 - ./src/backUpFiles/backup_mydb.db
@@ -311,6 +311,13 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.22
+   * * 특정 DB로부터 데이터들을 복사하는 기능
+   * * 두 개의 DB간의 스키마가 완벽히 일치해야함
+   * @param { string } backupDbFilePath 복사 대상이 될 DB파일의 경로와 파일명
+   * @param { string } tableName 백업 DB의 복사 대상 테이블
+   */
   restoreDBFromBackup(backupDbFilePath, tableName) {
     const backupDb = new sqlite3.Database(
       backupDbFilePath,
