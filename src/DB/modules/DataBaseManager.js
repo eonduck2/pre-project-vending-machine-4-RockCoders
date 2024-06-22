@@ -403,6 +403,13 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.23
+   * * 특정 테이블의 특정 컬럼에 인덱스를 생성
+   * @param { string } indexName 인덱스로 사용될 이름
+   * @param { string } tableName 인덱스 생성을 위해 접근하는 테이블 이름
+   * @param { string } column 인덱스를 생성시킬 컬럼 이름
+   */
   createIndex(indexName, tableName, column) {
     const sql = `CREATE INDEX IF NOT EXISTS ${indexName} ON ${tableName} (${column})`;
     this.db.run(sql, (err) => {
