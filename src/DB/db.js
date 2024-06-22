@@ -21,15 +21,16 @@ const newUser = {
   age: 28,
 };
 
-// test.tableCreator(`test_tbl2`, columns);
-// test.createRecord(`test_tbl`, newUser);
+test.tableCreator(`test_tbl2`, columns);
+test.createRecord(`test_tbl`, newUser);
 const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
 const updateData = { age: 444, email: "teorr" };
-test.updateRecord(`test_tbl`, `id`, `1`, updateData, true);
+test.updateRecord(`test_tbl`, `id`, `1`, updateData);
+// updateRecord(`test_tbl`, `id`, `1`, { age: 444, email: "teorr" });
 // test.readRecordsAll(`test_tbl`, true);
 
 // test.readRecordsAll(`test_tbl123`, true);

@@ -117,6 +117,16 @@ export default class DataBaseManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.22
+   * * 테이블 이름으로 해당 테이블 내의 모든 데이터 조회
+   * @param { string } tableName 업데이트 지정 대상이 될 테이블 이름
+   * @param { string } whereColumn 조건 지정을 위한 열의 이름
+   * @param { string } whereValue 조건 지정을 위한 해당 컬럼 내의 값
+   * @param { object } updateData 업데이트 시킬 데이터(컬럼)
+   *
+   * * 사용 예시 updateRecord(`테이블 이름`, `조건 컬럼`, `조건 값`, { 변경시킬 컬럼: "변경시킬 값" });
+   */
   updateRecord(tableName, whereColumn, whereValue, updateData) {
     const setClause = Object.keys(updateData)
       .map((key) => `${key} = ?`)
