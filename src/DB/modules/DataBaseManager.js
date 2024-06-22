@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import fs from "node:fs";
 
 // * sqlite3 객체와 같은 기능을 하지만, 디버깅에 더 유리한 옵션을 포함한 verbose mode로 선언
 const sqlite3VM = sqlite3.verbose();
@@ -26,22 +27,20 @@ export default class DataBaseManager {
    * @eonduck2 24.06.21
    * * 인자로 받은 테이블 이름과 컬럼들로 테이블 구성
    * @param { string } tableName 생성시킬 테이블 이름
-   * @param { array } columns
+   * @param { array & object } columns
    * 배열 내부 객체 형태 ( 예시 - [{"name":"id", "type":"INTEGER PRIMARY KEY AUTOINCREMENT"}])
    */
   tableCreator(tableName, columns) {
-    this.db.serialize(() => {
-      const columnsDefinition = columns
-        .map((column) => `${column.name} ${column.type}`)
-        .join(", ");
-      const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columnsDefinition})`;
-      this.db.run(sql, (err) => {
-        if (err) {
-          throw new Error(`테이블 생성 에러 (${tableName})`, err);
-        } else {
-          console.log(`"${tableName}" 테이블 생성 완료`);
-        }
-      });
+    const columnsDefinition = columns
+      .map((column) => `${column.name} ${column.type}`)
+      .join(", ");
+    const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columnsDefinition})`;
+    this.db.run(sql, (err) => {
+      if (err) {
+        throw new Error(`테이블 생성 에러 (${tableName})`, err);
+      } else {
+        console.log(`"${tableName}" 테이블 생성 완료`);
+      }
     });
   }
 
@@ -134,14 +133,15 @@ export default class DataBaseManager {
     const values = [...Object.values(updateData), whereValue];
     const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
 
-    this.db.serialize(() => {
-      this.db.run(sql, values, function (err) {
-        if (err) {
-          throw new Error(`컬럼 업데이트 에러`, err);
-        } else {
-          console.log(`데이터 업데이트 완료`);
-        }
-      });
+    this.db.run(sql, values, function (err) {
+      if (err) {
+        throw new Error(`컬럼 업데이트 에러`, err);
+      }
+      if (this.changes === 0) {
+        throw new Error(`업데이트 조건에 맞는 레코드가 없습니다.`);
+      } else {
+        console.log(`데이터 업데이트 완료`);
+      }
     });
   }
 
@@ -224,17 +224,25 @@ export default class DataBaseManager {
 
   /**
    * @eonduck2 24.06.22
-   * * 트랜잭션 시작
-   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   * @param { function } 트랜잭션 작업이 진행된 함수
+   * * 트랜잭션 시작 기능
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
-  beginTransaction() {
-    this.db.run("BEGIN TRANSACTION");
+  beginTransaction(callback) {
+    this.db.run("BEGIN TRANSACTION", (err) => {
+      if (err) {
+        throw new Error(`트랜잭션 스타팅 에러`);
+      } else {
+        console.log("Transaction started");
+        callback();
+      }
+    });
   }
 
   /**
    * @eonduck2 24.06.22
    * * 트랜잭션 커밋
-   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
   commit() {
     this.db.run("COMMIT");
@@ -243,7 +251,7 @@ export default class DataBaseManager {
   /**
    * @eonduck2 24.06.22
    * * 트랜잭션 롤백
-   * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
   rollback() {
     this.db.run("ROLLBACK");
@@ -273,8 +281,14 @@ export default class DataBaseManager {
     });
   }
 
-  backupDatabase(backupFilePath) {
-    this.db.backup(backupFilePath, (err) => {
+  /**
+   * @eonduck2 24.06.21
+   * * 테이블에 관련된 정보를 조회
+   * @param { string } backupFilePath 현재 데이터 베이스를 백업시킬 경로와 파일명
+   * * 예시 - ./src/backUpFiles/backup_mydb.db
+   */
+  backupDB(backupFilePath) {
+    fs.copyFile(this.fileWithPath, backupFilePath, (err) => {
       if (err) {
         throw new Error(`DB 백업 실행 오류`);
       } else {

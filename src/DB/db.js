@@ -15,34 +15,37 @@ const columns = [
   { name: "city", type: "INTEGER" },
 ];
 
-const newUser = {
-  name: "김씨",
-  email: "alice@example.com",
-};
-const whereColumn = "name";
-const whereValue = "Bob";
+// const newUser = {
+//   name: "김씨",
+//   email: "alice@example.com",
+// };
+// const whereColumn = "name";
+// const whereValue = "Bob";
 
-const newColumnName = "test";
-const newColumnType = "TEXT";
+// const newColumnName = "test";
+// const newColumnType = "TEXT";
 
 // test.addColumn(`test_tbl`, newColumnName, newColumnType);
-// test.tableCreator(`test_tbl2`, columns);
-test.createRecord(`test_tbl`, newUser);
+test.tableCreator(`test_tbl4`, columns);
+// test.tableCreator(`test_tbl4`, columns);
+// test.createRecord(`test_tbl`, newUser);
 // const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
-const test123 = test.getTableInfo(`test_tbl`);
+// const test123 = test.getTableInfo(`test_tbl`);
 
 // test.
 // test.dropColumn(`test_tbl`, `age`);
+// test.deleteRecord(`test_tbl`, `test`, `test`);
 // test.deleteRecordsAll(`test_tbl`);
-test.backupDatabase(`123.db`);
 // test.close();
 // test.deleteRecord(`test_tbl`, `id`, `4`);
 // const updateData = { age: 444, email: "teorr" };
-// test.updateRecord(`test_tbl`, `id`, `1`, updateData);
-// updateRecord(`test_tbl`, `id`, `1`, { age: 444, email: "teorr" });
+// test.updateRecord(`test_tbl`, `id`, `24`, updateData);
+// test.backupDB(`123.db`);
+
+// test.updateRecord(`test_tbl`, `id`, `3`, { name: `444`, email: "teorr" });
 // test.readRecordsAll(`test_tbl`, true);
 
 // test.readRecordsAll(`test_tbl123`, true);
