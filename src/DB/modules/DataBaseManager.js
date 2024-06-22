@@ -455,6 +455,19 @@ export default class DataBaseManager {
     });
   }
 
+  getAllIndexListsFromTable(tableName) {
+    const sql = `PRAGMA index_list(${tableName})`;
+    this.db.all(sql, (err, indexes) => {
+      if (err) {
+        throw new Error(`인덱스 리스트 조회 실패: ${err}`);
+      } else {
+        indexes.forEach((index, indexNum) =>
+          console.log(`테이블 인덱스 ${indexNum}:`, index)
+        );
+      }
+    });
+  }
+
   /**
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
