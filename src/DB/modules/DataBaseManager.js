@@ -431,7 +431,7 @@ export default class DataBaseManager {
    * @param { string } tableName 인덱스 조회를 위해 지정할 테이블
    * @param { string } columnName 인덱스 조회 대상이 되는 컬럼
    */
-  getIndexInfosFromColumn(tableName, columnName) {
+  getSomeIndexes(tableName, columnName) {
     const sql = `PRAGMA index_list(${tableName})`;
     this.db.all(sql, (err, indexes) => {
       if (err) {
@@ -462,7 +462,7 @@ export default class DataBaseManager {
    * * 특정 테이블의 모든 인덱스를 조회
    * @param { string } tableName 인덱스 조회 대상이 되는 테이블
    */
-  getAllIndexListsFromTable(tableName) {
+  getAllIndexes(tableName) {
     const sql = `PRAGMA index_list(${tableName})`;
     this.db.all(sql, (err, indexes) => {
       if (err) {
@@ -475,7 +475,7 @@ export default class DataBaseManager {
               throw new Error(`인덱스 정보 조회 실패: ${err}`);
             } else {
               indexInfo.forEach((info) => {
-                console.log(`컬럼 이름: ${info.name} -`, index);
+                console.log(`컬럼 이름: ${info.name}`, index);
               });
             }
           });
