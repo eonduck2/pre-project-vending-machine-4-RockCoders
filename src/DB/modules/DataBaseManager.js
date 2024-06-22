@@ -167,7 +167,7 @@ export default class DataBaseManager {
   /**
    * @eonduck2 24.06.22
    * * 특정 테이블의 모든 데이터 삭제
-   * @param { string } tableName 전체 데이터를 조회할 테이블
+   * @param { string } tableName 모든 데이터를 삭제하기 위해 지정할 테이블
    */
   deleteRecordsAll(tableName) {
     const sql = `DELETE FROM ${tableName}`;
