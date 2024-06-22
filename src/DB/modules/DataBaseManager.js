@@ -423,6 +423,32 @@ export default class DataBaseManager {
     });
   }
 
+  getIndexInfosFromColumn(tableName, columnName) {
+    const sql = `PRAGMA index_list(${tableName})`;
+    this.db.all(sql, (err, indexes) => {
+      if (err) {
+        throw new Error(`인덱스 리스트 조회 실패: ${err}`);
+      } else {
+        indexes.forEach((index) => {
+          const indexInfoSql = `PRAGMA index_info(${index.name})`;
+          this.db.all(indexInfoSql, (err, indexInfo) => {
+            if (err) {
+              throw new Error(`인덱스 정보 조회 실패: ${err}`);
+            } else {
+              indexInfo.forEach((info) => {
+                if (info.name === columnName) {
+                  console.log(
+                    `컬럼 이름: ${info.name}, 인덱스 이름: ${index.name}`
+                  );
+                }
+              });
+            }
+          });
+        });
+      }
+    });
+  }
+
   /**
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
