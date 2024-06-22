@@ -15,7 +15,7 @@ export default class DataBaseManager {
     this.fileWithPath = fileWithPath;
     this.db = new sqlite3VM.Database(fileWithPath, (err) => {
       if (err) {
-        throw new Error("DB 연결 실패: ", err);
+        throw new Error("DB 연결 실패");
       } else {
         console.log("DB 연결 성공");
       }
@@ -181,5 +181,17 @@ export default class DataBaseManager {
     });
   }
 
-  close() {}
+  /**
+   * @eonduck2 24.06.22
+   * * 특정 DB와의 연결 해제
+   */
+  close() {
+    this.db.close((err) => {
+      if (err) {
+        throw new Error("DB 커넥션 close 오류");
+      } else {
+        console.log("DB 연결 해제");
+      }
+    });
+  }
 }
