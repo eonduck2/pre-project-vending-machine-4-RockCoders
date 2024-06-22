@@ -23,7 +23,7 @@ const newUser = {
 // test.createIndex("idx_users_email2", "test_tbl", "email");
 // test.getTableInfo(`test_tbl`, true)
 
-// test.getIndexInfosFromColumn("test_tbl", "email");
+test.getIndexInfosFromColumn("test_tbl", "email");
 test.getAllIndexListsFromTable(`test_tbl`);
 // test.getDBSize();
 // test.

@@ -468,9 +468,18 @@ export default class DataBaseManager {
       if (err) {
         throw new Error(`인덱스 리스트 조회 실패: ${err}`);
       } else {
-        indexes.forEach((index, indexNum) =>
-          console.log(`테이블 인덱스 ${indexNum}:`, index)
-        );
+        indexes.forEach((index) => {
+          const indexInfoSql = `PRAGMA index_info(${index.name})`;
+          this.db.all(indexInfoSql, (err, indexInfo) => {
+            if (err) {
+              throw new Error(`인덱스 정보 조회 실패: ${err}`);
+            } else {
+              indexInfo.forEach((info) => {
+                console.log(`컬럼 이름: ${info.name} -`, index);
+              });
+            }
+          });
+        });
       }
     });
   }
