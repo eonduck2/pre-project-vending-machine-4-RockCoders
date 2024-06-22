@@ -12,6 +12,7 @@ const columns = [
   { name: "name", type: "TEXT" },
   { name: "email", type: "TEXT" },
   { name: "age", type: "INTEGER" },
+  { name: "city", type: "INTEGER" },
 ];
 
 const newUser = {
@@ -20,17 +21,18 @@ const newUser = {
   age: 28,
 };
 
-// test.tableCreator(`test_tbl`, columns);
-test.createRecord(`test_tbl`, newUser);
-// const test4 = test.readRecord(`test_tbl`, "name", `test`, true);
-
+// test.tableCreator(`test_tbl2`, columns);
+// test.createRecord(`test_tbl`, newUser);
+const test4 = test.readRecord(`test_tbl`, "id", `1`, true);
+// test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
 
-const updateData = { age: 30, city: "New York" };
-test.updateRecord(`test_tbl`, `name`, `Alice`, updateData);
+const updateData = { age: 444, email: "teorr" };
+test.updateRecord(`test_tbl`, `id`, `1`, updateData, true);
+// test.readRecordsAll(`test_tbl`, true);
 
-test.readRecordsAll(`test_tbl`, true);
+// test.readRecordsAll(`test_tbl123`, true);
 
 // const testF = async () => {
 //   test2.then((data) => {

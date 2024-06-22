@@ -5,13 +5,15 @@ const sqlite3VM = sqlite3.verbose();
 
 export default class DataBaseManager {
   db;
+  fileWithPath;
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)
-   * @param { String } path 문자열 타입의 경로(eg: src/test.db)
+   * @param { String } fileWithPath 문자열 타입의 경로(eg: src/test.db)
    */
-  constructor(path) {
-    this.db = new sqlite3.Database(path, (err) => {
+  constructor(fileWithPath) {
+    this.fileWithPath = fileWithPath;
+    this.db = new sqlite3VM.Database(fileWithPath, (err) => {
       if (err) {
         throw new Error("DB 연결 실패: ", err);
       } else {
@@ -37,7 +39,7 @@ export default class DataBaseManager {
         if (err) {
           throw new Error(`테이블 생성 에러 (${tableName})`, err);
         } else {
-          console.log(`${tableName} 테이블 생성 완료`);
+          console.log(`"${tableName}" 테이블 생성 완료`);
         }
       });
     });
@@ -73,15 +75,15 @@ export default class DataBaseManager {
    * @param { string } column 조회할 테이블의 컬럼
    * @param { string } value 조회할 테이블의 컬럼의 값
    * @param { boolean } log true 값으로 보낼 시, console에 logging.
-   * @returns 특정 컬럼의 데이터가 포함된 Promise
+   * @returns { promise }특정 컬럼의 데이터가 포함된 Promise
    */
   readRecord(tableName, column, value, log = false) {
     const sql = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
     return new Promise((resolve, reject) => {
       this.db.all(sql, [value], (err, rows) => {
         if (err) {
-          throw new Error(`쿼리문 조회 에러`, err);
-        } else if (log === true) {
+          throw new Error(`쿼리문 조회 에러`);
+        } else if (log) {
           console.log(rows);
           resolve(rows);
         } else {
@@ -91,28 +93,12 @@ export default class DataBaseManager {
     });
   }
 
-  updateRecord(tableName, whereColumn, whereValue, updateData) {
-    const setClause = Object.keys(updateData)
-      .map((key) => `${key} = ?`)
-      .join(", ");
-    const values = [...Object.values(updateData), whereValue];
-    const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
-
-    this.db.run(sql, values, (err) => {
-      if (err) {
-        throw new Error(`데이터 업데이트 에러`, err);
-      } else {
-      }
-    });
-  }
-  deleteRecord() {}
-
   /**
    * @eonduck2 24.06.21
    * * 테이블 이름으로 해당 테이블 내의 모든 데이터 조회
    * @param { string } tableName 전체 데이터를 조회할 테이블
    * @param { boolean } log true 값으로 보낼 시, console에 logging.
-   * @returns 특정 테이블의 전체 데이터가 포함된 Promise
+   * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
   readRecordsAll(tableName, log) {
     const sql = `SELECT * FROM ${tableName}`;
@@ -120,8 +106,8 @@ export default class DataBaseManager {
     return new Promise((resolve, reject) => {
       this.db.all(sql, (err, rows) => {
         if (err) {
-          throw new Error(`${tableName} 테이블 조회 실패`, err);
-        } else if (log === true) {
+          throw new Error(`"${tableName}" 테이블 조회 실패`);
+        } else if (log) {
           console.log(rows);
           resolve(rows);
         } else {
@@ -130,6 +116,31 @@ export default class DataBaseManager {
       });
     });
   }
+
+  updateRecord(tableName, whereColumn, whereValue, updateData, log = false) {
+    const setClause = Object.keys(updateData)
+      .map((key) => `${key} = ?`)
+      .join(", ");
+    const values = [...Object.values(updateData), whereValue];
+    const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
+    const db = this.db;
+    const readRecord = this.readRecord;
+    const path = this.path;
+
+    this.db.serialize(() => {
+      this.db.run(sql, values, function (err) {
+        if (err) {
+          throw new Error(`컬럼 업데이트 에러`, err);
+        } else if (log) {
+          db.readRecord(tableName);
+        } else {
+          console.log(`데이터 업데이트 완료`);
+        }
+      });
+    });
+  }
+
+  deleteRecord() {}
 
   close() {}
 }
