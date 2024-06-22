@@ -33,8 +33,10 @@ const newColumnType = "TEXT";
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 // console.log(`테스트2: ${test2}`);
 // const test2 = test.getAllRecords(`test_tbl`);
+const test123 = test.getTableInfo(`test_tbl`);
 
-test.dropColumn(`test_tbl`, `age`);
+// test.
+// test.dropColumn(`test_tbl`, `age`);
 // test.deleteRecordsAll(`test_tbl`);
 test.close();
 // test.deleteRecord(`test_tbl`, `id`, `4`);
@@ -46,10 +48,9 @@ test.close();
 // test.readRecordsAll(`test_tbl123`, true);
 
 // const testF = async () => {
-//   test2.then((data) => {
+//   test123.then((data) => {
 //     console.log(data);
 //   });
-//   console.log(await test4);
 // };
 
 // testF();

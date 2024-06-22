@@ -74,7 +74,7 @@ export default class DataBaseManager {
    * @param { string } tableName 조회할 테이블
    * @param { string } column 조회할 테이블의 컬럼
    * @param { string } value 조회할 테이블의 컬럼의 값
-   * @param { boolean } log true 값으로 보낼 시, console에 logging.
+   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise }특정 컬럼의 데이터가 포함된 Promise
    */
   readRecord(tableName, column, value, log = false) {
@@ -97,7 +97,7 @@ export default class DataBaseManager {
    * @eonduck2 24.06.21
    * * 테이블 이름으로 해당 테이블 내의 모든 데이터 조회
    * @param { string } tableName 전체 데이터를 조회할 테이블
-   * @param { boolean } log true 값으로 보낼 시, console에 logging.
+   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
   readRecordsAll(tableName, log) {
@@ -223,7 +223,7 @@ export default class DataBaseManager {
   }
 
   /**
-   * @eonduck2
+   * @eonduck2 24.06.22
    * * 트랜잭션 시작
    * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
@@ -232,7 +232,7 @@ export default class DataBaseManager {
   }
 
   /**
-   * @eonduck2
+   * @eonduck2 24.06.22
    * * 트랜잭션 커밋
    * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
@@ -241,12 +241,36 @@ export default class DataBaseManager {
   }
 
   /**
-   * @eonduck2
+   * @eonduck2 24.06.22
    * * 트랜잭션 롤백
    * * 단위별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
   rollback() {
     this.db.run("ROLLBACK");
+  }
+
+  /**
+   * @eonduck2 24.06.21
+   * * 테이블에 관련된 정보를 조회
+   * @param { string } tableName 대상이 될 테이블
+   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
+   * @returns { promise } 특정 테이블 정보가 포함된 Promise
+   */
+  getTableInfo(tableName, log = false) {
+    const sql = `PRAGMA table_info(${tableName})`;
+
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, (err, rows) => {
+        if (err) {
+          throw new Error(`"${tableName}" 테이블 정보 조회 에러`);
+        } else if (log) {
+          console.log(rows);
+          resolve(rows);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
   }
 
   /**
