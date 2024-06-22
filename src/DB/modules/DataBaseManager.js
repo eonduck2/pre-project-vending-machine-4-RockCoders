@@ -386,6 +386,15 @@ export default class DataBaseManager {
     });
   }
 
+  optimizeDatabase() {
+    this.db.run("VACUUM", (err) => {
+      if (err) {
+        throw new Error("DB 최적화 실패");
+      } else {
+        console.log("DB 최적화 성공");
+      }
+    });
+  }
   /**
    * @eonduck2 24.06.22
    * * 특정 DB와의 연결 해제
