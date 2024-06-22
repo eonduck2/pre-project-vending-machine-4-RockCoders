@@ -15,7 +15,6 @@ const columns = [
   { name: "city", type: "INTEGER" },
 ];
 
-test.getDatabaseSize();
 const newUser = {
   name: "김씨",
   email: "alice@example.com",
@@ -33,14 +32,31 @@ const newUser = {
 // test.
 // test.tableCreator(`test_tbl4`, columns);
 // test.createRecord(`test_tbl`, newUser);
-console.log(test.serialize);
+// console.log(test.serialize);
+test.db.serialize(() => {});
+
+test.db.serialize(() => {
+  test.optimizeDatabase();
+  test.getDatabaseSize();
+
+  test.optimizeDatabase();
+  test.close();
+
+  test.getDatabaseSize();
+  test.getDatabaseSize();
+  // test.close();
+  // test.getDatabaseSize();
+});
 // test.serialize(() => {
 //   test.readRecord(`test_tbl`, `name`, `김씨`, true);
 //   test.createRecord(`test_tbl`, newUser);
 //   test.readRecordsAll(`test_tbl`, true);
 // });
 
-console.log(test.serialize());
+// console.log(
+//   test.serialize(() => {
+//   })
+// );
 // test.optimizeDatabase(true);
 // test.readRecord(`test_tbl`, "name", `Alice`, true);
 
