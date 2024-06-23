@@ -298,7 +298,6 @@ class BaseDataBaseManager {
 
   /**
    * @eonduck2 24.06.22
-   * * 테이블에 관련된 정보를 조회
    * @param { string } backupFilePath 현재 데이터 베이스를 백업시킬 경로와 파일명
    * * 예시 - ./src/backUpFiles/backup_mydb.db
    */
