@@ -225,7 +225,7 @@ class BaseDataBaseManager {
 
   /**
    * @eonduck2 24.06.22
-   * @param { function } 트랜잭션 작업이 진행된 함수
+   * @param { function } callback 트랜잭션 작업이 진행될 콜백 함수
    * * 트랜잭션 시작 기능
    * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
