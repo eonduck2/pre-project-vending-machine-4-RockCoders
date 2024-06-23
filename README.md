@@ -1,42 +1,3 @@
-```
-pre-project-vending-machine-4-RockCoders
-├─ README.md
-├─ package-lock.json
-├─ package.json
-├─ public
-│  └─ index.html
-└─ src
-   ├─ controllers
-   ├─ db.js
-   ├─ input.css
-   ├─ routers
-   ├─ server.js
-   └─ tailwind.config.js
-
-```
-
-```
-pre-project-vending-machine-4-RockCoders
-├─ README.md
-├─ package-lock.json
-├─ package.json
-├─ public
-│  └─ index.html
-└─ src
-   ├─ DB
-   │  ├─ db.js
-   │  └─ localStorage.js
-   ├─ controllers
-   │  └─ rootController.js
-   ├─ input.css
-   ├─ routers
-   │  └─ rootRouter.js
-   ├─ server
-   │  ├─ init.js
-   │  └─ server.js
-   └─ tailwind.config.js
-
-```
 
 ```
 pre-project-vending-machine-4-RockCoders
@@ -59,30 +20,49 @@ pre-project-vending-machine-4-RockCoders
 │  │  ├─ db.js
 │  │  └─ localStorage.js
 │  ├─ client
-│  │  └─ js
-│  │     ├─ admin.js
+│  │  └─ ts
+│  │     ├─ addProduct.ts
+│  │     ├─ admin.ts
+│  │     ├─ deleteProduct.ts
 │  │     ├─ modules
+│  │     │  ├─ addProduct
+│  │     │  │  ├─ addProductEvent.ts
+│  │     │  │  └─ createList.ts
 │  │     │  ├─ amount
-│  │     │  │  └─ priceInput.js
+│  │     │  │  └─ priceInput.ts
+│  │     │  ├─ deleteProduct
+│  │     │  │  ├─ deleteList.ts
+│  │     │  │  └─ deleteProductEvent.ts
 │  │     │  ├─ purchace
-│  │     │  │  ├─ balance.js
-│  │     │  │  ├─ earnings.js
-│  │     │  │  └─ purchaceClick.js
-│  │     │  └─ selectProduct
-│  │     │     ├─ allPrice.js
-│  │     │     ├─ allPriceProduct.js
-│  │     │     └─ selectProductOutput.js
-│  │     ├─ price.js
-│  │     ├─ purchace.js
-│  │     └─ selectProduct.js
+│  │     │  │  ├─ balance.ts
+│  │     │  │  ├─ earnings.ts
+│  │     │  │  └─ purchaceClick.ts
+│  │     │  ├─ reportOutput
+│  │     │  │  └─ reportRead.ts
+│  │     │  ├─ sales
+│  │     │  │  ├─ salesProfit.ts
+│  │     │  │  └─ salesRanking.ts
+│  │     │  ├─ selectProduct
+│  │     │  │  ├─ allPrice.ts
+│  │     │  │  ├─ allPriceProduct.ts
+│  │     │  │  └─ selectProductOutput.ts
+│  │     │  └─ updateProduct
+│  │     │     └─ updateProductEvent.ts
+│  │     ├─ price.ts
+│  │     ├─ purchace.ts
+│  │     ├─ reportOutput.ts
+│  │     ├─ sales.ts
+│  │     ├─ selectProduct.ts
+│  │     └─ updateProduct.ts
 │  ├─ controllers
-│  │  └─ rootController.js
+│  │  └─ rootController.ts
 │  ├─ input.css
 │  ├─ routers
-│  │  └─ rootRouter.js
+│  │  └─ rootRouter.ts
 │  └─ server
-│     ├─ init.js
+│     ├─ init.ts
 │     └─ server.js
-└─ tailwind.config.js
+├─ tailwind.config.js
+└─ tsconfig.json
 
 ```
