@@ -18,6 +18,7 @@
   },
   "type": "module",
   "dependencies": {
+    "node-localstorage": "^3.0.5",
     "sqlite3": "^5.1.7"
   }
 }
