@@ -780,3 +780,7 @@ video {
 .grid-cols-2-1 {
   grid-template-columns: 2fr 1fr;
 }
+
+.writing-mode-vertical-lr {
+  writing-mode: vertical-lr;
+}
