@@ -9,6 +9,7 @@ const __dirname = path.resolve();
 // * 미들웨어로 등록하기 위한 경로 설정
 const publicPath = path.join(__dirname, "public");
 const srcPath = path.join(__dirname, "src");
+const distPath = path.join(__dirname, "dist");
 
 // * 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 app.set(`PORT`, process.env.PORT ?? 8080);
@@ -16,6 +17,7 @@ const PORT = app.get(`PORT`);
 
 // * 미들웨어 등록
 app.use(express.static(publicPath));
+app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
 
 app.get("/", (req, res) => {
