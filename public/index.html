@@ -12,20 +12,20 @@
   <div id="root" class="w-full h-5/6 p-5 bg-white flex flex-col justify-center items-center">
     <div id="adminPrompt">
       <button id="create">제품 추가</button>
-      <form action="" method="" class="hidden" id="create-form" name="create">
-        <input type="text" placeholder="추가할 제품을 입력해 주세요">
-        <input type="text" placeholder="추가할 제품의 가격을 입력해주세요.">
+      <form action="create" method="post" class="hidden" id="create-form">
+        <input type="text" placeholder="추가할 제품을 입력해 주세요" name="name" required>
+        <input type="number" placeholder="추가할 제품의 가격을 입력해주세요." name="price" required>
         <input type="submit" value="추가">
       </form>
       <button id="update">제품 수정</button>
       <form action="" method="" class="hidden" id="update-form" name="update">
-        <input type="text" placeholder="제품명을 수정해 주세요">
-        <input type="text" placeholder="가격을 수정해 주세요">
+        <input type="text" placeholder="제품명을 수정해 주세요" required>
+        <input type="text" placeholder="가격을 수정해 주세요" required>
         <input type="submit" value="수정">
       </form>
       <button id="delete">제품 삭제</button>
       <form action="" method="" class="hidden" id="delete-form" name="delete">
-        <input type="text" placeholder="삭제할 제품의 번호를 입력해주세요.">
+        <input type="text" placeholder="삭제할 제품의 번호를 입력해주세요." required>
         <input type="submit" value="삭제">
       </form>
       <form action="/" method=""></form>

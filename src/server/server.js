@@ -19,10 +19,17 @@ const PORT = app.get(`PORT`);
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
+app.use(express.urlencoded({extended : true}));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
+  return res.sendFile(path.join(publicPath, "index.html"));
 });
+
+app.post("/create", (req, res) => {
+  const body = req.body;
+  console.log(body);
+  return res.redirect("/");
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
