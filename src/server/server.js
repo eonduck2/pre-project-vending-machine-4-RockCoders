@@ -1,10 +1,20 @@
 import express from "express";
 import path from "node:path";
-
-const app = express();
+import DataBaseManager from "../DB/modules/DBMANAGER.js";
 
 // * ESM 방식의 __dirname 재정의
 const __dirname = path.resolve();
+
+/**
+ * @crystal23733 24.06.25
+ */
+// *데이터베이스 경로 설정
+const dbPath = path.join(__dirname, 'src/DB/product.db');
+
+// *데이터베이스 객체 생성
+const db = new DataBaseManager(dbPath);
+
+const app = express();
 
 // * 미들웨어로 등록하기 위한 경로 설정
 const publicPath = path.join(__dirname, "public");
@@ -27,7 +37,7 @@ app.get("/", (req, res) => {
 
 app.post("/create", (req, res) => {
   const body = req.body;
-  console.log(body);
+  
   return res.redirect("/");
 })
 
