@@ -1,15 +1,8 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import DataBaseManager from "../DB/modules/DBMANAGER.js";  // 데이터베이스 모듈 경로는 환경에 맞게 수정 필요
 
 //* ESM 방식의 __dirname 재정의
 const __dirname = path.resolve();
-
-//* 데이터베이스 경로 설정
-const dbPath = path.join(__dirname, 'src/DB/product.db');
-
-//* 데이터베이스 객체 생성
-const db = new DataBaseManager(dbPath);
 
 const app = express();
 
