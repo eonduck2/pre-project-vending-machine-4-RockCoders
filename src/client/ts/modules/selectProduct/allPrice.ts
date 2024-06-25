@@ -1,4 +1,9 @@
-// * 총액 출력하는 함수
+/**
+ * * @jojayeon 24.06.25
+ * * 총액 출력하는 함수
+ * 저장해 놓은 총액 넘버를 가져와서 출력만 함
+ * @param totalPrice - 총액 calculateTotalPrice의 리턴값을 넣어준다.
+ */
 
 export function displayTotalPrice(totalPrice: number) {
   const totalPriceElement = document.getElementById('total-price');
