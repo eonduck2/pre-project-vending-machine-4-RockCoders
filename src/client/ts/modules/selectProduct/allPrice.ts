@@ -5,10 +5,10 @@
  * @param totalPrice - 총액 calculateTotalPrice의 리턴값을 넣어준다. 또는 객체 변수 넣어주면됨  
  */
 
-export function displayTotalPrice(totalPrice: number) {
+export default ((totalPrice: number) => {
   const totalPriceElement = document.getElementById('total-price');
   if (totalPriceElement) {
     //이 부분이 표시되는 부분이다. 실질적으로 보이는 구역 
     totalPriceElement.innerText = `총액: ${totalPrice}원`;
   }
-}
+})
