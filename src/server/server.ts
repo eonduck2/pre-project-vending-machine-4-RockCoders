@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express";
 import path from "path";
-
-//* ESM 방식의 __dirname 재정의
-const __dirname = path.resolve();
+import __dirname from "../modules/__dirname";
 
 const app = express();
 
