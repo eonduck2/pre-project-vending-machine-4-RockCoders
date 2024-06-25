@@ -16,36 +16,63 @@
           Dream Vending Machine</h1>
         <h2 class="text-xl font-normal pb-2">Rock Codes</h2>
       </div>
-      <div id="menu" class="grid grid-cols-2-1 gap-5 mt-5 w-full">
-        <div id="menu-container" class="bg-white border-2 border-black w-full h-full flex justify-center items-center">
-          <div id="menu-content" class="w-11/12 h-11/12 grid grid-cols-3 gap-2 overflow-y-scroll">
-            
+      <div id="menu" class="grid grid-cols-2-1 gap-5 mt-5 w-full overflow-hidden">
+        <div id="menu-container" class="bg-white border-2 border-black w-full h-96 flex justify-center items-center overflow-hidden">
+          <div id="menu-content" class="w-11/12 h-full grid grid-cols-3 gap-2 overflow-y-scroll mt-4">
             <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
-
               <div class="text-base w-4/5 overflow-auto absolute top-1/4">
                 제목</div>
-                <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
-                  금액</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
             </div>
-            <div>더미배경
-              <div>제목</div>
-              <div>금액</div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
             </div>
-            <div>더미배경
-              <div>제목</div>
-              <div>금액</div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
             </div>
-            <div>더미배경
-              <div>제목</div>
-              <div>금액</div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
+            </div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
+            </div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
+            </div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
+            </div>
+            <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
+              <div class="text-base w-4/5 overflow-auto absolute top-1/4">
+                제목</div>
+              <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">
+                금액</div>
             </div>
           </div>
         </div>
         <div id="payment" class="bg-white border-2 border-black flex flex-col items-center relative h-full">
-
           <form class="mt-4 w-11/12 h-1/10 grid grid-cols-2-1 gap-1.5">
-            <input class="bg-gray-300" type="number" placeholder="입금액을 입력해주세요.">
-            <input type="submit" value="입금">
+            <input class="bg-gray-300 text-sm border-2 border-black" type="number" placeholder="입금액을 입력해주세요.">
+            <input class="bg-gray-300" type="submit" value="입금">
           </form>
           <div class="mt-7 w-11/12 flex flex-col">
             <ul id="productList" class="list-none">
@@ -55,17 +82,19 @@
               <li>더미</li>
             </ul>
             <div id="total-price">
-              더미
+              총액
             </div>
           </div>
           <div class="w-11/12 flex flex-col absolute top-3/4 h-1/10">
-            <button class="h-full" type="button">구매</button>
+            <button class="h-full bg-gray-300" type="button">구매</button>
           </div>
         </div>
       </div>
     </div>
     <div id="change" class="absolute top-[15%] left-[95%] flex justify-center">
-      <button class="w-40 h-40 bg-gray-300 rounded-[50px] border-0 writing-mode-vertical-lr text-base pl-2.5" type="button">관리자</button></div>
+      <button class="w-40 h-40 bg-gray-300 rounded-[50px] border-0 writing-mode-vertical-lr text-base pl-2.5"
+        type="button">관리자</button>
+    </div>
   </div>
 </body>
 
