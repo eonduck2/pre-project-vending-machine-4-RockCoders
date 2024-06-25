@@ -1,4 +1,4 @@
-import DBManager from "./DBConnector.js";
+import DBManager from "../../DBConnector.js";
 
 export default class DataManipulator extends DBManager {
   constructor(fileWithPath) {
