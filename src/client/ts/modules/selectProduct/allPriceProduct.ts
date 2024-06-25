@@ -1,7 +1,7 @@
 /** 
  * @jojayeon 24.06.25
  * *제품을 총액 계산 
- * @param selectedProducts -객체 메뉴의 
+ * @param selectedProducts -객체 변수 넣어주면됨  
  * @returns 
  */
 
