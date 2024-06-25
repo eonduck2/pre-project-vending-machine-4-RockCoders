@@ -782,16 +782,3 @@ video {
 .font-normal {
   font-weight: 400;
 }
-
-/* 없는애들 추가 */
-.grid-cols-2-1{
-  grid-template-columns: 2fr 1fr;
-}
-
-.writing-mode-vertical-lr{
-  writing-mode: vertical-lr;
-}
-
-.h-500{
-  height: 500px;
-}
