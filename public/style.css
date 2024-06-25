@@ -604,14 +604,6 @@ video {
   left: 95%;
 }
 
-.top-1\/4 {
-  top: 25%;
-}
-
-.top-2\/3 {
-  top: 66.666667%;
-}
-
 .top-3\/4 {
   top: 75%;
 }
@@ -648,14 +640,6 @@ video {
   height: 24rem;
 }
 
-.h-44 {
-  height: 11rem;
-}
-
-.h-7 {
-  height: 1.75rem;
-}
-
 .h-full {
   height: 100%;
 }
@@ -670,10 +654,6 @@ video {
 
 .w-11\/12 {
   width: 91.666667%;
-}
-
-.w-4\/5 {
-  width: 80%;
 }
 
 .w-40 {
@@ -724,10 +704,6 @@ video {
   gap: 1.25rem;
 }
 
-.overflow-auto {
-  overflow: auto;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -738,10 +714,6 @@ video {
 
 .rounded-\[50px\] {
   border-radius: 50px;
-}
-
-.rounded-full {
-  border-radius: 9999px;
 }
 
 .border-0 {
@@ -809,17 +781,4 @@ video {
 
 .font-normal {
   font-weight: 400;
-}
-
-/* 없는애들 추가 */
-.grid-cols-2-1{
-  grid-template-columns: 2fr 1fr;
-}
-
-.writing-mode-vertical-lr{
-  writing-mode: vertical-lr;
-}
-
-.h-500{
-  height: 500px;
 }
