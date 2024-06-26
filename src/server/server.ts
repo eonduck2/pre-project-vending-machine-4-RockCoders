@@ -5,6 +5,12 @@ import dbManager from "../DB/db.js";
 
 const app = express();
 
+interface reqData {
+  id : string,
+  name : string,
+  price : number
+}
+
 // *테이블 생성
 dbManager.createTable('products', {
   id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
@@ -26,15 +32,13 @@ app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
 // *제품 추가
-app.post("/create", (req: Request, res: Response) => {
-  const body = req.body;
-  const name:string = body.name;
-  const price:number = body.price;
+app.post("/create", (req, res) => {
+  const { name, price } = req.body as reqData;
   dbManager.createRecord('products', {
     name : name,
     price : price
@@ -43,13 +47,18 @@ app.post("/create", (req: Request, res: Response) => {
 });
 
 // *제품 수정
-app.post('/update', (req:Request, res: Response) => {
-  const {id, name, price} = req.body;
+app.post('/update', (req, res) => {
+  const { id, name, price } = req.body as reqData;
   dbManager.updateRecord('products', 'id', id, {
     name:name,
     price:price
   })
   return res.redirect('/');
+})
+
+// *제품 삭제
+app.post('delete', (req, res) => {
+  const { id } = req.body;
 })
 
 app.listen(PORT, () => {
