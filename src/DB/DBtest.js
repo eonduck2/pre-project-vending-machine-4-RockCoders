@@ -9,13 +9,18 @@ import GetTableInfo from "./modules/table/GetTableInfo.js";
 import BackUpNowDB from "./modules/backup/BackUpNowDB.js";
 import RestoreDBFromBackUp from "./modules/backup/RestoreDBFromBackUp.js";
 import DeleteData from "./modules/manipulation/DeleteData.js";
+import GetDBSize from "./modules/utilities/GetDBSize.js";
+
+const check = new GetDBSize(`tset.db`);
+
+// check.getDBSize();
 
 const restorer = new RestoreDBFromBackUp(`test.db`);
 const droperAll = new DeleteData(`test.db`);
 
 // droperAll.deleteRecordsAll(`test_tble`);
 
-restorer.restoreDBFromBackup(`backup_test.db`, `test_tble`);
+// restorer.restoreDBFromBackup(`backup_test.db`, `test_tble`);
 
 // const budb = new BackUpNowDB(`test.db`);
 
