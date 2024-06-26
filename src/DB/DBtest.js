@@ -15,10 +15,16 @@ import CreateIndex from "./modules/index/CreateIndex.js";
 import DropIndex from "./modules/index/DropIndex.js";
 import GetAllIndexes from "./modules/index/GetAllIndexes.js";
 import GetSomeIndexes from "./modules/index/GetSomeIndexes.js";
+import ReorderColumns from "./modules/table/column/ReorderColumns.js";
+
+new ReorderColumns(`test.db`).reorderColumns(`test_tble`, {
+  age: `TEXT`,
+  name: `INTEGER`,
+});
 
 // new CreateIndex(`test.db`).createIndex(`test_index2`, `test_tble`, `name`);
 
-new GetSomeIndexes(`test.db`).getSomeIndexes(`test_tble`, `age`);
+// new GetSomeIndexes(`test.db`).getSomeIndexes(`test_tble`, `age`);
 // new GetAllIndexes(`test.db`).getAllIndexes(`test_tble`);
 
 // new DropIndex(`test.db`).dropIndex(`test_index`);
