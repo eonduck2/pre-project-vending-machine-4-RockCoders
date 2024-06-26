@@ -10,6 +10,9 @@ import BackUpNowDB from "./modules/backup/BackUpNowDB.js";
 import RestoreDBFromBackUp from "./modules/backup/RestoreDBFromBackUp.js";
 import DeleteData from "./modules/manipulation/DeleteData.js";
 import GetDBSize from "./modules/utilities/GetDBSize.js";
+import OptimizeDB from "./modules/utilities/OptimizeDB.js";
+
+new OptimizeDB(`test.db`).optimizeDB();
 
 const check = new GetDBSize(`tset.db`);
 
