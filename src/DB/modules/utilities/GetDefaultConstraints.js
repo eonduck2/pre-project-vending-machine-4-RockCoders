@@ -7,7 +7,7 @@ export default class getDefaultConstants extends DBManager {
    * @returns { object } 기본 제약 조건 속성들이 정의된 객체
    */
 
-  static getDefaultConstants() {
+  static getDefaultConstraints() {
     return {
       type: {
         NULL: false,
