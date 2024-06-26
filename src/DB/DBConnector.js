@@ -11,7 +11,7 @@ export default class DBConnector {
    * @param { String } fileWithPath 문자열 타입의 경로(eg: src/test.db)
    */
   constructor(fileWithPath) {
-    if (new.target === DBManager) {
+    if (new.target === DBConnector) {
       throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
     }
     this.fileWithPath = fileWithPath;
@@ -19,7 +19,6 @@ export default class DBConnector {
       if (err) {
         throw new Error("DB 연결 실패");
       } else {
-        console.log("DB 연결 성공");
       }
     });
   }
