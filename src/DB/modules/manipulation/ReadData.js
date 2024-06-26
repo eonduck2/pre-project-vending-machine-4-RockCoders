@@ -1,6 +1,6 @@
 import DBConnector from "../../DBConnector.js";
 
-class AbstractReadData {
+class AbstractReadData extends DBConnector {
   constructor(fileWithPath) {
     if (new.target === AbstractReadData) {
       throw new Error("AbstractReadData 클래스는 직접 인스턴스화 할 수 없음");

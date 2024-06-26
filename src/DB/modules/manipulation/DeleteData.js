@@ -1,6 +1,6 @@
 import DBConnector from "../../DBConnector.js";
 
-class AbstractDeleteData {
+class AbstractDeleteData extends DBConnector {
   constructor(fileWithPath) {
     if (new.target === AbstractDeleteData) {
       throw new Error("AbstractDeleteData 클래스는 직접 인스턴스화 할 수 없음");
