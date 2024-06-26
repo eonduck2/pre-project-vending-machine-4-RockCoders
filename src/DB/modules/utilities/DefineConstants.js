@@ -1,4 +1,6 @@
-export default class DefineConstants {
+import DBManager from "../../DBManager.js";
+
+export default class getDefaultConstants extends DBManager {
   /**
    * @eonduck2 24.06.25
    * * 테이블 내, 특정 컬럼을 정의할 때, 제약 조건 설정에 도움을 받을 수 있는 유틸리티

@@ -1,4 +1,4 @@
-import DBManager from "../../DBConnector.js";
+import DBManager from "../../DBManager.js";
 
 export default class DataManipulator extends DBManager {
   constructor(fileWithPath) {
@@ -142,12 +142,4 @@ export default class DataManipulator extends DBManager {
       }
     });
   }
-
-  /**
-   * @eonduck2 24.06.22
-   * * 특정 테이블에 특정 컬럼을 추가하는 기능
-   * @param { string } tableName 대상으로 지정되는 테이블
-   * @param { string | number } columnName 추가될 컬럼 이름
-   * @param { string } columnType 추가될 컬럼 타입 예 - (TEXT, INTEGER)
-   */
 }

@@ -1,6 +1,9 @@
-import DBConnector from "../../DBConnector.js";
+import DBConnector from "../../DBManager.js";
 
 export default class TableCreator extends DBConnector {
+  constructor(fileWithPath) {
+    super(fileWithPath);
+  }
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 테이블 이름과 컬럼들로 테이블 구성
