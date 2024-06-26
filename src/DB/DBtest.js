@@ -7,10 +7,19 @@ import DropColumn from "./modules/table/column/DropColumn.js";
 import BeginTransaction from "./modules/transaction/TransactionController.js";
 import GetTableInfo from "./modules/table/GetTableInfo.js";
 import BackUpNowDB from "./modules/backup/BackUpNowDB.js";
+import RestoreDBFromBackUp from "./modules/backup/RestoreDBFromBackUp.js";
+import DeleteData from "./modules/manipulation/DeleteData.js";
 
-const budb = new BackUpNowDB(`test.db`);
+const restorer = new RestoreDBFromBackUp(`test.db`);
+const droperAll = new DeleteData(`test.db`);
 
-budb.backupDB(`backup_test.db`);
+// droperAll.deleteRecordsAll(`test_tble`);
+
+restorer.restoreDBFromBackup(`backup_test.db`, `test_tble`);
+
+// const budb = new BackUpNowDB(`test.db`);
+
+// budb.backupDB(`backup_test.db`);
 
 const tableInfo = new GetTableInfo(`test.db`);
 // console.log(tableInfo);
