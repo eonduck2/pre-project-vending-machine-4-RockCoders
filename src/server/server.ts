@@ -5,6 +5,13 @@ import dbManager from "../DB/db.js";
 
 const app = express();
 
+// *테이블 생성
+dbManager.createTable('products', {
+  id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+  name: 'TEXT',
+  price: 'INTEGER'
+});
+
 //* 미들웨어로 등록하기 위한 경로 설정
 const publicPath = path.join(__dirname, "public");
 const srcPath = path.join(__dirname, "src");
@@ -20,11 +27,6 @@ app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
-  dbManager.createTable('products', {
-    id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
-    name: 'TEXT',
-    price: 'INTEGER'
-  });
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
@@ -33,9 +35,10 @@ app.post("/create", (req: Request, res: Response) => {
   const name = body.name;
   const price = body.price;
   console.log(name, price);
-  // dbManager.createRecord('products', {
-
-  // })
+  dbManager.createRecord('products', {
+    name : name,
+    price : price
+  });
   return res.redirect("/");
 });
 
