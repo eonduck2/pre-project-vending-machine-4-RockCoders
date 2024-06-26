@@ -32,8 +32,8 @@ app.get("/", (req: Request, res: Response) => {
 
 app.post("/create", (req: Request, res: Response) => {
   const body = req.body;
-  const name = body.name;
-  const price = body.price;
+  const name:string = body.name;
+  const price:number = body.price;
   console.log(name, price);
   dbManager.createRecord('products', {
     name : name,
