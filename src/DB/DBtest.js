@@ -11,8 +11,21 @@ import RestoreDBFromBackUp from "./modules/backup/RestoreDBFromBackUp.js";
 import DeleteData from "./modules/manipulation/DeleteData.js";
 import GetDBSize from "./modules/utilities/GetDBSize.js";
 import OptimizeDB from "./modules/utilities/OptimizeDB.js";
+import CreateIndex from "./modules/index/CreateIndex.js";
+import DropIndex from "./modules/index/DropIndex.js";
+import GetAllIndexes from "./modules/index/GetAllIndexes.js";
+import GetSomeIndexes from "./modules/index/GetSomeIndexes.js";
 
-new OptimizeDB(`test.db`).optimizeDB();
+// new CreateIndex(`test.db`).createIndex(`test_index2`, `test_tble`, `name`);
+
+new GetSomeIndexes(`test.db`).getSomeIndexes(`test_tble`, `age`);
+// new GetAllIndexes(`test.db`).getAllIndexes(`test_tble`);
+
+// new DropIndex(`test.db`).dropIndex(`test_index`);
+
+// new GetSomeIndexes(`test.db`).getSomeIndexes(`test_tble`, `name`);
+
+// new OptimizeDB(`test.db`).optimizeDB();
 
 const check = new GetDBSize(`tset.db`);
 

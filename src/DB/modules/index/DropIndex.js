@@ -8,7 +8,7 @@ class AbstractDropIndex extends DBConnector {
     super(fileWithPath);
   }
 
-  DropIndex(indexName, tableName, column) {}
+  dropIndex(indexName) {}
 }
 
 export default class DropIndex extends AbstractDropIndex {
