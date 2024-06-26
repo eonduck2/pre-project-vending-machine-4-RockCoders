@@ -1,0 +1,20 @@
+.h-96 {
+  height: 24rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.grid-cols-2-1{
+  grid-template-columns: 2fr 1fr;
+}
+
+.writing-mode-vertical-lr{
+  writing-mode: vertical-lr;
+}
+
+.h-500{
+  height: 500px;
+}
