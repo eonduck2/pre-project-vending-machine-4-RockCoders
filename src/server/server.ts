@@ -57,8 +57,10 @@ app.post('/update', (req, res) => {
 })
 
 // *제품 삭제
-app.post('delete', (req, res) => {
+app.post('/delete', (req, res) => {
   const { id } = req.body;
+  dbManager.deleteRecord('products', 'id', id);
+  return res.redirect('/');
 })
 
 app.listen(PORT, () => {
