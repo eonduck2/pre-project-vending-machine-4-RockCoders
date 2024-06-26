@@ -4,17 +4,24 @@ import ReadData from "./modules/manipulation/ReadData.js";
 import createData from "./modules/manipulation/CreateData.js";
 import AddColumn from "./modules/table/column/AddColumn.js";
 import DropColumn from "./modules/table/column/DropColumn.js";
-import BeginTransaction from "./modules/transaction/BeginTransaction.js";
-import CommitTransaction from "./modules/transaction/CommitTransaction.js";
-import RollbackTransaction from "./modules/transaction/RollbackTransaction.js";
+import BeginTransaction from "./modules/transaction/TransactionController.js";
+import GetTableInfo from "./modules/table/GetTableInfo.js";
+import BackUpNowDB from "./modules/backup/BackUpNowDB.js";
 
+const budb = new BackUpNowDB(`test.db`);
+
+budb.backupDB(`backup_test.db`);
+
+const tableInfo = new GetTableInfo(`test.db`);
+// console.log(tableInfo);
+// tableInfo.getTableInfo(`test_tble`, true);
 const beginTransaction = new BeginTransaction(`test.db`);
-beginTransaction.beginTransaction(() => {
-  //   adder.addColumn(`test_tble`, `age`, "TEXT");
-  //   beginTransaction.commit();
-  beginTransaction.rollback();
-  //   rollback.rollback();
-});
+// beginTransaction.beginTransaction(() => {
+//   //   adder.addColumn(`test_tble`, `age`, "TEXT");
+//   //   beginTransaction.commit();
+//   beginTransaction.rollback();
+//   //   rollback.rollback();
+// });
 
 const reader = new ReadData(`test.db`);
 const creator = new createData(`test.db`);
