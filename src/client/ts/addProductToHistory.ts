@@ -1,4 +1,4 @@
-import { BaseDataBaseManager } from '../../DB/modules/DBMANAGER';
+import { BaseDataBaseManager } from '../../DB/modules/DBMANAGER.js';
 
 /**
  * @yuxincxoi 24.06.25

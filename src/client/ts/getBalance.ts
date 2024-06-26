@@ -1,4 +1,4 @@
-import LocalStorageModel from '../../localStorage/localStorage';
+import LocalStorageModel from '../../localStorage/localStorage.js';
 
 /**
  * @yuxincxoi 24.06.24

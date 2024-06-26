@@ -21,10 +21,7 @@
   },
   "type": "module",
   "dependencies": {
-<<<<<<< HEAD
     "@types/sqlite3": "^3.1.11",
-=======
->>>>>>> remotes/origin/issue#34/yuxincxoi/develop
     "node-localstorage": "^3.0.5",
     "sqlite3": "^5.1.7"
   }
