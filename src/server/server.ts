@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import __dirname from "../modules/__dirname";
-import dbManager from "../DB/db";
+import __dirname from "../modules/__dirname.js";
+import dbManager from "../DB/db.js";
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
-  dbManager.createTable('/products', {
+  dbManager.createTable('products', {
     id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
     name: 'TEXT',
     price: 'INTEGER'
@@ -30,7 +30,12 @@ app.get("/", (req: Request, res: Response) => {
 
 app.post("/create", (req: Request, res: Response) => {
   const body = req.body;
-  console.log(body); //* 요청된 폼 데이터가 제대로 출력됩니다.
+  const name = body.name;
+  const price = body.price;
+  console.log(name, price);
+  // dbManager.createRecord('products', {
+
+  // })
   return res.redirect("/");
 });
 
