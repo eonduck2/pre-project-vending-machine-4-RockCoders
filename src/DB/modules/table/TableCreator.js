@@ -1,4 +1,4 @@
-import DBConnector from "../../DBManager.js";
+import DBConnector from "../../DBConnector.js";
 
 export default class TableCreator extends DBConnector {
   constructor(fileWithPath) {

@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 
 const sqlite3VM = sqlite3.verbose();
 
-export default class DBManager {
+export default class DBConnector {
   db;
   fileWithPath;
   /**
