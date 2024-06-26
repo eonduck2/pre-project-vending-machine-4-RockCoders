@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import __dirname from "../modules/__dirname";
+import dbManager from "../DB/db";
 
 const app = express();
 
@@ -19,6 +20,11 @@ app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
+  dbManager.createTable('/products', {
+    id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
+    name: 'TEXT',
+    price: 'INTEGER'
+  });
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
