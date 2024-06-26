@@ -22,4 +22,18 @@ export default class DBConnector {
       }
     });
   }
+
+  /**
+   * @eonduck2 24.06.22
+   * * DB와의 연결 해제
+   */
+  close() {
+    this.db.close((err) => {
+      if (err) {
+        throw new Error("DB 커넥션 close 오류");
+      } else {
+        console.log("DB 연결 해제");
+      }
+    });
+  }
 }

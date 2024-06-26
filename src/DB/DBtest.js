@@ -16,10 +16,17 @@ import DropIndex from "./modules/index/DropIndex.js";
 import GetAllIndexes from "./modules/index/GetAllIndexes.js";
 import GetSomeIndexes from "./modules/index/GetSomeIndexes.js";
 import ReorderColumns from "./modules/table/column/ReorderColumns.js";
+import DBCloser from "./DBCloser.js";
 
-new ReorderColumns(`test.db`).reorderColumns(`test_tble`, {
-  age: `TEXT`,
-  name: `INTEGER`,
+// new ReorderColumns(`test.db`).reorderColumns(`test_tble`, {
+//   age: `TEXT`,
+//   name: `INTEGER`,
+// });
+const optimizer = new OptimizeDB(`test.db`);
+optimizer.db.serialize(() => {
+  optimizer.optimizeDB();
+  optimizer.close();
+  optimizer.optimizeDB();
 });
 
 // new CreateIndex(`test.db`).createIndex(`test_index2`, `test_tble`, `name`);
