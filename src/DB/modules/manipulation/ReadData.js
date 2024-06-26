@@ -11,6 +11,8 @@ class AbstractReadData extends DBConnector {
   readRecord(tableName, column, value, log = false) {}
 
   readRecordsAll(tableName, log = false) {}
+
+  readRecordsAllByIndex(tableName, indexName, log = false) {}
 }
 
 export default class ReadData extends AbstractReadData {
@@ -53,6 +55,31 @@ export default class ReadData extends AbstractReadData {
       this.db.all(sql, (err, rows) => {
         if (err) {
           throw new Error(`"${tableName}" 테이블 조회 실패`);
+        } else if (log) {
+          console.log(rows);
+          resolve(rows);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
+  /**
+   * @eonduck2 24.06.23
+   * * 특정 인덱스를 사용하여 데이터 전체 조회
+   * @param { string } tableName 테이블 이름
+   * @param { string } indexName 인덱스 이름
+   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
+   * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
+   */
+  readRecordsAllByIndex(tableName, indexName, log = false) {
+    const sql = `SELECT * FROM ${tableName} INDEXED BY ${indexName}`;
+
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, (err, rows) => {
+        if (err) {
+          throw new Error(`인덱스를 이용한 데이터 조회 오류`);
         } else if (log) {
           console.log(rows);
           resolve(rows);
