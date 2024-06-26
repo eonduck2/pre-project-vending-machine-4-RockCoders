@@ -30,17 +30,27 @@ app.get("/", (req: Request, res: Response) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
+// *제품 추가
 app.post("/create", (req: Request, res: Response) => {
   const body = req.body;
   const name:string = body.name;
   const price:number = body.price;
-  console.log(name, price);
   dbManager.createRecord('products', {
     name : name,
     price : price
   });
   return res.redirect("/");
 });
+
+// *제품 수정
+app.post('/update', (req:Request, res: Response) => {
+  const {id, name, price} = req.body;
+  dbManager.updateRecord('products', 'id', id, {
+    name:name,
+    price:price
+  })
+  return res.redirect('/');
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
