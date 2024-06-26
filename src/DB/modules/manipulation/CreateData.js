@@ -3,7 +3,7 @@ import DBConnector from "../../DBConnector.js";
 class AbstractCreateData {
   constructor(fileWithPath) {
     if (new.target === AbstractCreateData) {
-      throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
+      throw new Error("AbstractCreateData 클래스는 직접 인스턴스화 할 수 없음");
     }
     super(fileWithPath);
   }
