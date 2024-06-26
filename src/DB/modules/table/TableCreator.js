@@ -1,6 +1,6 @@
 import DBConnector from "../../DBConnector.js";
 
-class BaseTableCreator extends DBConnector {
+class AbstractTableCreator extends DBConnector {
   constructor(fileWithPath) {
     super(fileWithPath);
   }
@@ -8,7 +8,7 @@ class BaseTableCreator extends DBConnector {
   createTable(tableName, columns) {}
 }
 
-export default class TableCreator extends BaseTableCreator {
+export default class TableCreator extends AbstractTableCreator {
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 테이블 이름과 컬럼들로 테이블 구성
