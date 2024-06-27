@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import path from "path";
 import __dirname from "../modules/__dirname.js";
 import dbManager from "../DB/db.js";
+import morgan from "morgan";
 
 const app = express();
 
@@ -27,6 +28,7 @@ const distPath = path.join(__dirname, "dist");
 const PORT = process.env.PORT ?? 8080;
 
 //* 미들웨어 등록
+app.use(morgan('dev'));
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
