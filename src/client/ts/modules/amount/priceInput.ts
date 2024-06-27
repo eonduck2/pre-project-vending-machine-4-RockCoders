@@ -26,28 +26,32 @@ export async function priceInput() {
     storageManager.setItem('balance', currentBalance);
     //값 출력
     displayBalance();
-    
-    
+
+    // 서버로부터 제품 정보 가져오기
+    const response = await fetch('/products');
+    const data = await response.json();
+    const products = data.products;
+    const menuContent = document.getElementById('menu-content') as HTMLDivElement;
+    menuContent.innerHTML = '';
+
     // 각 제품을 div 요소로 추가
-    // products.forEach(product => {
-    //   if (product.price <= currentBalance) {
+    products.forEach(product => {
+      if (product.price <= currentBalance) {
 
-    //     const productName: string = product.name;
-    //     const productPrice: number = product.price;
+        const productName: string = product.name;
+        const productPrice: number = product.price;
 
-    //     const productDiv = document.createElement('div');
-    //     productDiv.textContent = `<div class="w-full h-44 flex flex-col items-center bg-gray-300 relative"><div class="text-base w-4/5 overflow-auto absolute top-1/4">${productName}</div><div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">${productPrice}</div>`
-    //     menuContent.appendChild(productDiv)
-    //   } else {
-        
-    //   }
-    // });
+        const productDiv = document.createElement('div');
+        productDiv.textContent = `<div class="w-full h-44 flex flex-col items-center bg-gray-300 relative"><div class="text-base w-4/5 overflow-auto absolute top-1/4">${productName}</div><div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">${productPrice}</div>`
+        menuContent.appendChild(productDiv)
+      } else {
 
-    //dbManager.closeConnection();
+      }
+    });
 
   } else {
     alert('입력된 값이 옳지 않습니다. 1000원 이상 10000원 이하만 입금 가능합니다.');
   }
 };
 
-document.getElementById('money-button')?.addEventListener('click',priceInput);
+document.getElementById('money-button')?.addEventListener('click', priceInput);
