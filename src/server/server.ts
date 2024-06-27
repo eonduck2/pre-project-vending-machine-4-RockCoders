@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import __dirname from "../modules/__dirname";
-import { BaseDataBaseManager } from "../DB/modules/DBMANAGER";
+import __dirname from "../modules/__dirname.js";
+import { BaseDataBaseManager } from "../DB/modules/DBMANAGER.js";
 
 const app = express();
 
@@ -13,7 +13,9 @@ const distPath = path.join(__dirname, "dist");
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
 
-const dbManager = new BaseDataBaseManager('../../../../../productList.db');
+//* db class 호출
+const dbManager = new BaseDataBaseManager('../../productList.db');
+
 
 //* 미들웨어 등록
 app.use(express.static(publicPath));
@@ -25,8 +27,16 @@ app.get("/", (req: Request, res: Response) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
+dbManager.createTable("products", {"id":"INTEGER" ,"name": "TEXT", "price": "INTEGER"});
+
+// dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
+
+
 app.get("/products", (req, res) => {
-  dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
+  //직렬구조 보장
+  dbManager.db.serialize(()=>{
+    dbManager.createTable("products", {"id":"INTEGER" ,"name": "TEXT", "price": "INTEGER"});
+    dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
     .then((products) => {
       res.json(products);  // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
     })
@@ -34,6 +44,8 @@ app.get("/products", (req, res) => {
       console.error('Error fetching products:', err);
       res.status(500).json({ error: 'Failed to fetch products' });
     });
+    dbManager.closeConnection();
+  })
 });
 
 
