@@ -3,10 +3,11 @@ import { validateAmount } from "./validateAmount";
 import { displayBalance } from "./displayBalance";
 import LocalStorageModel from '../../../../localStorage/localStorage'
 
-export const moneyButton = document.getElementById('money-button') as HTMLInputElement;
-
-moneyButton.addEventListener('click', ()=>{
-  
+/**
+ * @moonhr 24.06.26
+ * * 버튼 클릭 시 로컬에 값 저장하고 출력함. money-button클릭시 실행.
+ */
+export function priceInput(){
   const moneyInput = document.getElementById('money-input') as HTMLInputElement;
 
   //문자열로 들어온 값을 숫자로 반환함.
@@ -24,6 +25,6 @@ moneyButton.addEventListener('click', ()=>{
     //값 출력
     displayBalance();
   } else {
-    alert('입력된 값이 옳지 않습니다. 1000원 이상 10000원 이하만 입금 가능합니다.')
+    alert('입력된 값이 옳지 않습니다. 1000원 이상 10000원 이하만 입금 가능합니다.');
   }
-})
+};
