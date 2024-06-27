@@ -2,7 +2,6 @@
 import { validateAmount } from "./validateAmount.js";
 import { displayBalance } from "./displayBalance.js";
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
-import { BaseDataBaseManager } from "../../../../DB/modules/DBMANAGER.js";
 
 //todo db모델 받아오는 패치 작성하기
 
@@ -29,35 +28,22 @@ export async function priceInput() {
     displayBalance();
     
     
-    const dbManager = new BaseDataBaseManager('../../../../../productList.db')
-
-    // !기능검사를 위한 db테이블에 더미데이터 삽입
-    dbManager.createTable("product", {"name":"price"})
-    dbManager.createRecord("name", {name:'감자',price:'5000'})
-
-
-
-    // 데이터베이스에서 제품 정보 가져오기
-    const products = await dbManager.readRecordsAll('ProductList', true);
-    const menuContent = document.getElementById('menu-content') as HTMLDivElement;
-    menuContent.innerHTML = '';
-
     // 각 제품을 div 요소로 추가
-    products.forEach(product => {
-      if (product.price <= currentBalance) {
+    // products.forEach(product => {
+    //   if (product.price <= currentBalance) {
 
-        const productName: string = product.name;
-        const productPrice: number = product.price;
+    //     const productName: string = product.name;
+    //     const productPrice: number = product.price;
 
-        const productDiv = document.createElement('div');
-        productDiv.textContent = `<div class="w-full h-44 flex flex-col items-center bg-gray-300 relative"><div class="text-base w-4/5 overflow-auto absolute top-1/4">${productName}</div><div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">${productPrice}</div>`
-        menuContent.appendChild(productDiv)
-      } else {
+    //     const productDiv = document.createElement('div');
+    //     productDiv.textContent = `<div class="w-full h-44 flex flex-col items-center bg-gray-300 relative"><div class="text-base w-4/5 overflow-auto absolute top-1/4">${productName}</div><div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">${productPrice}</div>`
+    //     menuContent.appendChild(productDiv)
+    //   } else {
         
-      }
-    });
+    //   }
+    // });
 
-    dbManager.closeConnection();
+    //dbManager.closeConnection();
 
   } else {
     alert('입력된 값이 옳지 않습니다. 1000원 이상 10000원 이하만 입금 가능합니다.');
