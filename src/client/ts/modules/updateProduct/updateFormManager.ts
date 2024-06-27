@@ -1,3 +1,5 @@
+import hideReportContainer from "../../reportHandle/hideReportContainer.js";
+
 export default class UpdateFormManager {
   private updateFormContainer: HTMLElement;
 
@@ -5,6 +7,10 @@ export default class UpdateFormManager {
     this.updateFormContainer = document.querySelector("#update-form-container") as HTMLElement;
     const updateBtn = document.getElementById("adminUpdateBtn");
     updateBtn?.addEventListener("click", this.showUpdateForm);
+  }
+
+  public showForm(): void {
+    this.showUpdateForm();
   }
 
   private showUpdateForm = (): void => {
@@ -17,5 +23,6 @@ export default class UpdateFormManager {
 
     // 현재 폼 보이기
     this.updateFormContainer.classList.remove("hidden");
+    hideReportContainer();
   };
 }

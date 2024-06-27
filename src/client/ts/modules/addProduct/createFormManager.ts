@@ -1,3 +1,5 @@
+import hideReportContainer from "../../reportHandle/hideReportContainer.js";
+
 export default class CreateFormManager {
   private createFormContainer: HTMLElement;
 
@@ -5,6 +7,10 @@ export default class CreateFormManager {
     this.createFormContainer = document.querySelector("#create-form-container") as HTMLElement;
     const createBtn = document.getElementById("adminAddBtn");
     createBtn?.addEventListener("click", this.showCreateForm);
+  }
+
+  public showForm(): void {
+    this.showCreateForm();
   }
 
   private showCreateForm = (): void => {
@@ -17,5 +23,6 @@ export default class CreateFormManager {
 
     // 현재 폼 보이기
     this.createFormContainer.classList.remove("hidden");
+    hideReportContainer();
   };
 }

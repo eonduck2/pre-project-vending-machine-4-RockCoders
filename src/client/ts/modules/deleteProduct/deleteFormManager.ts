@@ -1,3 +1,5 @@
+import hideReportContainer from "../../reportHandle/hideReportContainer.js";
+
 export default class DeleteFormManager {
   private deleteFormContainer: HTMLElement;
 
@@ -5,6 +7,10 @@ export default class DeleteFormManager {
     this.deleteFormContainer = document.querySelector("#delete-form-container") as HTMLElement;
     const deleteBtn = document.getElementById("adminDeleteBtn");
     deleteBtn?.addEventListener("click", this.showDeleteForm);
+  }
+
+  public showForm(): void {
+    this.showDeleteForm();
   }
 
   private showDeleteForm = (): void => {
@@ -17,5 +23,6 @@ export default class DeleteFormManager {
 
     // 현재 폼 보이기
     this.deleteFormContainer.classList.remove("hidden");
+    hideReportContainer();
   };
 }
