@@ -5,6 +5,7 @@ import dbManager from "../DB/db.js";
 
 const app = express();
 
+// * req.body 타입 선언
 interface reqData {
   id : string,
   name : string,
