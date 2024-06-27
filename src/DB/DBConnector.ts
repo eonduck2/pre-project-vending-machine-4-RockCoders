@@ -9,8 +9,8 @@ interface IDBConnector {
 }
 
 export default class DBConnector implements IDBConnector {
-  db;
-  fileWithPath;
+  protected db;
+  private fileWithPath;
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)
@@ -33,7 +33,7 @@ export default class DBConnector implements IDBConnector {
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
    */
-  close(): void {
+  protected close(): void {
     this.db.close((err) => {
       if (err) {
         throw new Error("DB 커넥션 close 오류");
