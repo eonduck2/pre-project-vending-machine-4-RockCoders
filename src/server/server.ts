@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
 import __dirname from "../modules/__dirname";
+import { BaseDataBaseManager } from "../DB/modules/DBMANAGER";
 
 const app = express();
 
@@ -11,6 +12,8 @@ const distPath = path.join(__dirname, "dist");
 
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
+
+const DBMANAGER = new BaseDataBaseManager('../../../../../productList.db');
 
 //* 미들웨어 등록
 app.use(express.static(publicPath));
