@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 });
 
 // * admin페이지
-app.get('admin', (req, res) => {
+app.get('/admin', (req, res) => {
   return res.sendFile(path.join(publicPath, 'admin.html'));
 })
 
