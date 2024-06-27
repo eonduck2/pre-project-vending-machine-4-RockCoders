@@ -13,7 +13,7 @@ const distPath = path.join(__dirname, "dist");
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
 
-const DBMANAGER = new BaseDataBaseManager('../../../../../productList.db');
+const dbManager = new BaseDataBaseManager('../../../../../productList.db');
 
 //* 미들웨어 등록
 app.use(express.static(publicPath));
@@ -24,6 +24,18 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req: Request, res: Response) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
+
+app.get("/products", (req, res) => {
+  dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
+    .then((products) => {
+      res.json(products);  // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
+    })
+    .catch((err) => {
+      console.error('Error fetching products:', err);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    });
+});
+
 
 app.post("/create", (req: Request, res: Response) => {
   const body = req.body;
