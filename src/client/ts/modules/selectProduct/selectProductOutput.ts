@@ -6,7 +6,7 @@
  */
 
 export default ((selectedProducts: { name: string, price: number }[]) => {
-  const productListElement = document.getElementById('total-price');
+  const productListElement = document.getElementById('total-price') as HTMLUListElement;
   if (productListElement) {
     productListElement.innerHTML = ''; // 기존 목록 삭제
     selectedProducts.forEach(product => {
