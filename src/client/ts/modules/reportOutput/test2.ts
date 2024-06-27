@@ -6,7 +6,6 @@ import DBCloser from "../../../../DB/modules/table/DBCloser.js";
 async function generateSalesReport() {
   const dbConnector = new DBConnector();
   const readData = new ReadData(dbConnector);
-  //const reader = new ReadData(`test.db`);
   const dbCloser = new DBCloser(dbConnector);
 
   try {
