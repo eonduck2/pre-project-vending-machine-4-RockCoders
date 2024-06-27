@@ -1,28 +1,21 @@
-/**
- * @crystal23733 24.06.27
- * * 제품 수정 버튼 이벤트
- */
-
 export default class UpdateFormManager {
-  private updateForm: HTMLFormElement;
+  private updateFormContainer: HTMLElement;
 
   constructor() {
-    this.updateForm = document.querySelector("#update-form") as HTMLFormElement;
+    this.updateFormContainer = document.querySelector("#update-form-container") as HTMLElement;
     const updateBtn = document.getElementById("adminUpdateBtn");
     updateBtn?.addEventListener("click", this.showUpdateForm);
   }
 
   private showUpdateForm = (): void => {
-    this.hideAllForms();
-    this.updateForm.classList.remove("hidden");
-    this.updateForm.classList.add("bg-gray-300", "flex", "flex-col", "items-center", "relative", "h-full", "w-full");
-  };
-
-  private hideAllForms = (): void => {
-    const forms = document.querySelectorAll("form");
-    forms.forEach(form => {
-      form.classList.add("hidden");
-      form.classList.remove("flex", "bg-gray-300", "flex-col", "items-center", "relative", "h-full", "w-full");
+    // 숨겨진 다른 폼들을 숨기기
+    document.querySelectorAll(".admin-form-container").forEach(container => {
+      if (container !== this.updateFormContainer) {
+        container.classList.add("hidden");
+      }
     });
+
+    // 현재 폼 보이기
+    this.updateFormContainer.classList.remove("hidden");
   };
 }

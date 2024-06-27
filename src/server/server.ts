@@ -38,6 +38,10 @@ app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
+app.get('/admin', (req, res) => {
+  return res.sendFile(path.join(publicPath, "admin.html"));
+})
+
 // *제품 추가
 app.post("/create", (req, res) => {
   const { name, price } = req.body as reqData;
@@ -45,7 +49,7 @@ app.post("/create", (req, res) => {
     name : name,
     price : price
   });
-  return res.redirect("/");
+  return res.redirect("/admin");
 });
 
 // *제품 수정
@@ -55,14 +59,14 @@ app.post('/update', (req, res) => {
     name:name,
     price:price
   })
-  return res.redirect('/');
+  return res.redirect('/admin');
 })
 
 // *제품 삭제
 app.post('/delete', (req, res) => {
   const { id } = req.body;
   dbManager.deleteRecord('products', 'id', id);
-  return res.redirect('/');
+  return res.redirect('/admin');
 })
 
 app.listen(PORT, () => {
