@@ -1,8 +1,14 @@
-import sqlite3 from "sqlite3";
+import sqlite3, { Database } from "sqlite3";
 
 const sqlite3VM = sqlite3.verbose();
 
-export default class DBConnector {
+interface IDBConnector {
+  db: Database;
+  fileWithPath: string;
+  close(): void;
+}
+
+export default class DBConnector implements IDBConnector {
   db;
   fileWithPath;
   /**
@@ -10,7 +16,7 @@ export default class DBConnector {
    * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)
    * @param { String } fileWithPath 문자열 타입의 경로(eg: src/test.db)
    */
-  constructor(fileWithPath) {
+  constructor(fileWithPath: string) {
     if (new.target === DBConnector) {
       throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
     }
@@ -27,7 +33,7 @@ export default class DBConnector {
    * @eonduck2 24.06.22
    * * DB와의 연결 해제
    */
-  close() {
+  close(): void {
     this.db.close((err) => {
       if (err) {
         throw new Error("DB 커넥션 close 오류");
