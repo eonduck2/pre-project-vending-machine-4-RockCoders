@@ -21,7 +21,9 @@
   },
   "type": "module",
   "dependencies": {
+    "@types/morgan": "^1.9.9",
     "@types/sqlite3": "^3.1.11",
+    "morgan": "^1.10.0",
     "node-localstorage": "^3.0.5",
     "sqlite3": "^5.1.7"
   }

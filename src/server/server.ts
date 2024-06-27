@@ -2,10 +2,10 @@ import express, { Request, Response } from "express";
 import path from "path";
 import __dirname from "../modules/__dirname.js";
 import dbManager from "../DB/db.js";
+import morgan from "morgan";
 
 const app = express();
 
-// * req.body 타입 선언
 interface reqData {
   id : string,
   name : string,
@@ -28,6 +28,7 @@ const distPath = path.join(__dirname, "dist");
 const PORT = process.env.PORT ?? 8080;
 
 //* 미들웨어 등록
+app.use(morgan('dev'));
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
@@ -36,11 +37,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
-
-// * admin페이지
-app.get('/admin', (req, res) => {
-  return res.sendFile(path.join(publicPath, 'admin.html'));
-})
 
 // *제품 추가
 app.post("/create", (req, res) => {
