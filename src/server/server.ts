@@ -37,6 +37,11 @@ app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
+// * admin페이지
+app.get('admin', (req, res) => {
+  return res.sendFile(path.join(publicPath, 'admin.html'));
+})
+
 // *제품 추가
 app.post("/create", (req, res) => {
   const { name, price } = req.body as reqData;
