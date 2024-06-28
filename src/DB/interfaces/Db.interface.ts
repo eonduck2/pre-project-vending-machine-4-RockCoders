@@ -1,5 +1,5 @@
-import { sqlite3 } from "sqlite3";
+import { Database, sqlite3 } from "sqlite3";
 
 export default interface IDB {
-  db: sqlite3;
+  db: Database;
 }
