@@ -1,6 +1,6 @@
 import DBConnector from "./src/DB/DBConnector";
 // const DBConnector = require(`./src/DB/DBConnector`);
-console.log(DBConnector);
+console.log(new DBConnector(`123.db`));
 
 // const test = new DBConnector(`123.db`);
 // console.log(test.fileWithPath);

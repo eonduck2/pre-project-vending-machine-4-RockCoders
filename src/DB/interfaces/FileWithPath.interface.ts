@@ -1,3 +1,3 @@
 export default interface IFileWithPath {
-  fileWithPath: String;
+  fileWithPath: string;
 }
