@@ -1,3 +1,8 @@
+/**@jojayeon 24.06.28
+ * *보고서 출력 함수
+ * @param {table} "테이블" 적어주기 
+*/
+
 import calculateTotalRevenue from "./CalculateTotalSales"
 import calculateMostSoldProduct from "./calculateMostSoldProduct"
 
