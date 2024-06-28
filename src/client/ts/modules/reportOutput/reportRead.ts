@@ -29,13 +29,13 @@ async function calculateMostSoldProduct(table: string): Promise<string> {
     const productCount: { [key: string]: number } = {};
 
     salesData.forEach((item) => {
-      const { name } = item;
+      const { name } = item; 
       productCount[name] = (productCount[name] || 0) + 1;
     });
 
     const productCountArray = Object.entries(productCount);
     productCountArray.sort((a, b) => b[1] - a[1]);
-
+  
     const mostSoldProduct = productCountArray[0][0];
     return mostSoldProduct;
   } catch (error) {
@@ -44,17 +44,20 @@ async function calculateMostSoldProduct(table: string): Promise<string> {
 }
 
 // 판매 보고서 생성 및 출력 함수
-async function generateSalesReport(table: string): Promise<void> {
+async function generateSalesReport(table : string) {
   try {
     const totalRevenue = await calculateTotalRevenue(table);
     const mostSoldProduct = await calculateMostSoldProduct(table);
 
-    console.log('총 매출:', totalRevenue);
-    console.log('가장 많이 팔린 제품:', mostSoldProduct);
+    const reportContainer = document.getElementById('reportContainer') as HTMLDivElement;
+    reportContainer.innerHTML = `
+      <div>총 매출: ${totalRevenue}원</div>
+      <div>가장 많이 팔린 제품: ${mostSoldProduct}</div>
+    `;
   } catch (error) {
     console.error('판매 보고서 생성 중 오류 발생:', error);
   }
 }
 
 // 보고서 출력
-generateSalesReport('test_tble');
+generateSalesReport('test_tble');// 동적인 느낌이아니라 이상한데
