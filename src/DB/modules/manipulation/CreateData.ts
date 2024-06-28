@@ -1,4 +1,4 @@
-import DBConnector from "../../DBConnector";
+import DBConnector from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
 import ICreateData from "./CreateData.interface";
 

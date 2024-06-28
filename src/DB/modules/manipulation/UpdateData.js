@@ -1,4 +1,4 @@
-import DBConnector from "../../DBConnector.js";
+import DBConnector from "../../DBMANAGER.js";
 
 class AbstractUpdateData extends DBConnector {
   constructor(fileWithPath) {

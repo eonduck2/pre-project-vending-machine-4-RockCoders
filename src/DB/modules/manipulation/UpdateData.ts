@@ -1,45 +1,60 @@
-import DBConnector from "../../DBConnector";
+import DBConnector from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
-import ICreateData from "./CreateData.interface";
+import IUpdateData from "./UpdateData.interface";
 
-abstract class AbstractCreateData extends DBConnector implements ICreateData {
+abstract class AbstractUpdateData extends DBConnector implements IUpdateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract createRecord(tableName: string, record: object): void;
+  abstract updateRecord(
+    tableName: string,
+    whereColumn: string | number,
+    whereValue: string | number,
+    updateData: object
+  ): void;
 }
 
-class ImplementedCreateData extends AbstractCreateData {
+class ImplementedUpdateData extends AbstractUpdateData {
   constructor(fileWithPath: string) {
-    instanceChecker(new.target, ImplementedCreateData);
+    instanceChecker(new.target, ImplementedUpdateData);
     super(fileWithPath);
   }
   /**
-   * @eonduck2 24.06.21
-   * * 인자로 받은 테이블로, 데이터 삽입
-   * @param { string } tableName 삽입시킬 테이블 이름
-   * @param { object } record
-   * 객체 형태 ( 예시 - {name:'lee', age: 30})
+   * @eonduck2 24.06.22
+   * * 특정 테이블에 접근하여 데이터 업데이트
+   * @param { string } tableName 업데이트 지정 대상이 될 테이블 이름
+   * @param { string | number } whereColumn 조건 지정을 위한 열의 이름
+   * @param { string | number } whereValue 조건 지정을 위한 해당 컬럼 내의 값
+   * @param { object } updateData 업데이트 시킬 데이터(컬럼)
+   *
+   * * 사용 예시 updateRecord(`테이블 이름`, `조건 컬럼`, `조건 값`, { 변경시킬 컬럼: "변경시킬 값" });
    */
-  createRecord(tableName: string, record: object) {
-    const columns = Object.keys(record).join(", ");
-    const placeholders = Object.keys(record)
-      .map(() => "?")
+  updateRecord(
+    tableName: string,
+    whereColumn: string | number,
+    whereValue: string | number,
+    updateData: object
+  ) {
+    const setClause = Object.keys(updateData)
+      .map((key) => `${key} = ?`)
       .join(", ");
-    const values = Object.values(record);
-    const sql = `INSERT INTO ${tableName} (${columns}) VALUES (${placeholders})`;
+    const values = [...Object.values(updateData), whereValue];
+    const sql = `UPDATE ${tableName} SET ${setClause} WHERE ${whereColumn} = ?`;
 
-    this.db.run(sql, values, (err: Error) => {
+    this.db.run(sql, values, function (this: any, err: Error) {
       if (err) {
-        throw new Error(`데이터 삽입(insert) 에러`);
+        throw new Error(`컬럼 업데이트 에러`);
+      }
+      if (this.changes === 0) {
+        throw new Error(`업데이트 조건에 맞는 레코드가 없습니다.`);
       } else {
-        console.log(`"${tableName}" 테이블에 데이터 삽입 성공`);
+        console.log(`데이터 업데이트 완료`);
       }
     });
   }
 }
 
-export default class CreateData extends ImplementedCreateData {
+export default class UpdateData extends ImplementedUpdateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
