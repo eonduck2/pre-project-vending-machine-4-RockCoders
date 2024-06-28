@@ -4,6 +4,7 @@
  */
 
 import hideReportContainer from "../reportHandle/hideReportContainer.js";
+import showReportContainer from "../reportHandle/showReportContainer.js";
 
 export default class DeleteFormManager {
   private deleteFormContainer: HTMLElement;
@@ -16,6 +17,7 @@ export default class DeleteFormManager {
 
   public showForm(): void {
     this.showDeleteForm();
+    showReportContainer();
   }
 
   private showDeleteForm = (): void => {

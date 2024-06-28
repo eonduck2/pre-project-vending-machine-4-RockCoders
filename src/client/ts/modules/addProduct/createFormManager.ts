@@ -4,6 +4,9 @@
  */
 
 import hideReportContainer from "../reportHandle/hideReportContainer.js";
+import showReportContainer from "../reportHandle/showReportContainer.js";
+
+
 
 export default class CreateFormManager {
   private createFormContainer: HTMLElement;
@@ -16,6 +19,7 @@ export default class CreateFormManager {
 
   public showForm(): void {
     this.showCreateForm();
+    showReportContainer();
   }
 
   private showCreateForm = (): void => {

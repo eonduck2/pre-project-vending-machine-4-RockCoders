@@ -4,6 +4,7 @@
  */
 
 import hideReportContainer from "../reportHandle/hideReportContainer.js";
+import showReportContainer from "../reportHandle/showReportContainer.js";
 
 export default class UpdateFormManager {
   private updateFormContainer: HTMLElement;
@@ -16,6 +17,7 @@ export default class UpdateFormManager {
 
   public showForm(): void {
     this.showUpdateForm();
+    showReportContainer();
   }
 
   private showUpdateForm = (): void => {
