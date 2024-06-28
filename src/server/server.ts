@@ -27,6 +27,7 @@ const distPath = path.join(__dirname, "dist");
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
 
+
 //* 미들웨어 등록
 app.use(morgan('dev'));
 app.use(express.static(publicPath));
@@ -45,6 +46,28 @@ app.post("/create", (req, res) => {
     name : name,
     price : price
   });
+});
+// dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
+
+
+app.get("/products", (req, res) => {
+  //직렬구조 보장
+  dbManager.db.serialize(()=>{
+    dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
+    .then((products) => {
+      res.json(products);  // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
+    })
+    .catch((err) => {
+      console.error('Error fetching products:', err);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    });
+  });
+});
+
+
+app.post("/create", (req: Request, res: Response) => {
+  const body = req.body;
+  console.log(body); //* 요청된 폼 데이터가 제대로 출력됩니다.
   return res.redirect("/");
 });
 
