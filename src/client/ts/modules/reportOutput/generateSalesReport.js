@@ -1,17 +1,27 @@
-import ReadData from "../../../../DB/modules/manipulation/ReadData.js";
+import DBConnector from './DBConnector.js';
+import ReadData from './ReadData.js';
 
 // ReadData 클래스를 사용하여 데이터베이스에서 데이터를 읽어오는 함수
 const readSalesData = async (table) => {
-  const reader = new ReadData('test.db'); // db 위치를 적절히 설정
+  const dbConnector = new DBConnector();
+  const reader = new ReadData(dbConnector);
+
   try {
+    await dbConnector.connect(); // 데이터베이스 연결
     const data = await reader.readRecordsAll(table);
-    return data.map((row) => ({ name: row.name, price: row.price }));
+
+    // 데이터 매핑
+    const salesData = data.map((row) => ({ name: row.name, price: row.price }));
+    return salesData;
+  } catch (error) {
+    console.error('데이터 읽기 중 오류 발생:', error);
+    throw error;
   } finally {
-    reader.close();
+    reader.close(); // 데이터베이스 연결 닫기
   }
 };
 
-// *총 매출 계산 함수
+// 총 매출 계산 함수
 async function calculateTotalRevenue(table) {
   try {
     const salesData = await readSalesData(table);
@@ -22,7 +32,7 @@ async function calculateTotalRevenue(table) {
   }
 }
 
-// *가장 많이 팔린 제품 계산 함수
+// 가장 많이 팔린 제품 계산 함수
 async function calculateMostSoldProduct(table) {
   try {
     const salesData = await readSalesData(table);
@@ -43,25 +53,20 @@ async function calculateMostSoldProduct(table) {
   }
 }
 
-// *판매 보고서 생성 및 출력 함수
+// 판매 보고서 생성 및 출력 함수
 async function generateSalesReport(table) {
   try {
     const totalRevenue = await calculateTotalRevenue(table);
     const mostSoldProduct = await calculateMostSoldProduct(table);
 
-    console.log(totalRevenue)
-console.log(mostSoldProduct)
-    // const reportContainer = document.getElementById('reportContainer');
-    // reportContainer.innerHTML = `
-    //   <div>총 매출: ${totalRevenue}원</div>
-    //   <div>가장 많이 팔린 제품: ${mostSoldProduct}</div>
-    // `;
+    // 실제 HTML 요소 조작이 아닌 콘솔 출력으로 대체
+    console.log('총 매출:', totalRevenue);
+    console.log('가장 많이 팔린 제품:', mostSoldProduct);
+
   } catch (error) {
     console.error('판매 보고서 생성 중 오류 발생:', error);
   }
 }
 
-// 보고서 출력 버튼 이벤트 리스너
-document.getElementById('adminReportBtn').addEventListener('click', () => {
-  generateSalesReport('sales');
-});
+// 보고서 출력
+generateSalesReport('test.db');
