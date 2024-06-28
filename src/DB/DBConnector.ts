@@ -3,8 +3,15 @@ import IDBConnector from "./DBConnector.interface";
 const sqlite3VM = require(`sqlite3`).verbose();
 const database = sqlite3VM.Database;
 
-export default class DBConnector implements IDBConnector {
-  db: typeof database;
+abstract class AbstractDBConnector implements IDBConnector {
+  protected abstract db: typeof database;
+
+  abstract fileWithPath: string;
+  abstract close(): void;
+}
+
+export default class DBConnector extends AbstractDBConnector {
+  protected db: typeof database;
   fileWithPath: string;
   /**
    * @eonduck2 24.06.21
@@ -12,6 +19,7 @@ export default class DBConnector implements IDBConnector {
    * @param { String } fileWithPath 문자열 타입의 경로(eg: src/test.db)
    */
   constructor(fileWithPath: string) {
+    super();
     if (new.target === DBConnector) {
       throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
     }
