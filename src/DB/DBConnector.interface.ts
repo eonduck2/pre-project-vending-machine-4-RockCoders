@@ -1,6 +1,6 @@
 import IDB from "./interfaces/Db.interface";
 import IFileWithPath from "./interfaces/FileWithPath.interface";
-import IDBCloser from "./interfaces/Close.inteface";
+import IDBCloser from "./interfaces/Close.interface";
 
 // export default interface IDBConnector {
 //   db: IDB;

@@ -1,5 +1,5 @@
 import sqlite3, { Database } from "sqlite3";
-import IDBConnector from "./DBConnector.inteface";
+import IDBConnector from "./DBConnector.interface";
 
 const sqlite3VM = sqlite3.verbose();
 
