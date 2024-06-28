@@ -15,14 +15,26 @@ export class LocalStoragePlus {
    * @returns {number} 파싱된 값 또는 0
    */
   getItem(key: string): number {
-    const item = localStorage.getItem(key);
-    return item ? parseInt(item, 10) : 0;
+    const item = this.storageManager.getItem(key);
+    return item !== null ? item : 0;
   }
 
+  /**
+   * @moonhr 24.06.28
+   * * 로컬스토리지에 값을 저장
+   * @param key 로컬스토리지에 저장할 항목의 키
+   * @param value 저장할 값
+   */
   setItem(key: string, value: number): void {
-    localStorage.setItem(key, value.toString());
+    this.storageManager.setItem(key, value);
   }
 
+  /**
+   * @moonhr 24.06.28
+   * * 현재 잔액에 금액을 더하고 저장한 후 업데이트된 잔액을 반환
+   * @param amount 추가할 금액
+   * @returns {number} 업데이트된 잔액
+   */
   updateBalance(amount: number): number {
     let currentBalance = this.getItem('balance');
     currentBalance += amount;
