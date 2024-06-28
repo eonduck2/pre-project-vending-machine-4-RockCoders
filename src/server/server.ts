@@ -39,6 +39,10 @@ app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
 });
 
+app.get('/admin', (req, res) => {
+  return res.sendFile(path.join(publicPath, "admin.html"));
+})
+
 // *제품 추가
 app.post("/create", (req, res) => {
   const { name, price } = req.body as reqData;
@@ -47,6 +51,7 @@ app.post("/create", (req, res) => {
     price : price
   });
 });
+
 // dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
 
 
@@ -68,7 +73,7 @@ app.get("/products", (req, res) => {
 app.post("/create", (req: Request, res: Response) => {
   const body = req.body;
   console.log(body); //* 요청된 폼 데이터가 제대로 출력됩니다.
-  return res.redirect("/");
+  return res.redirect("/admin");
 });
 
 // *제품 수정
@@ -78,14 +83,14 @@ app.post('/update', (req, res) => {
     name:name,
     price:price
   })
-  return res.redirect('/');
+  return res.redirect('/admin');
 })
 
 // *제품 삭제
 app.post('/delete', (req, res) => {
   const { id } = req.body;
   dbManager.deleteRecord('products', 'id', id);
-  return res.redirect('/');
+  return res.redirect('/admin');
 })
 
 app.listen(PORT, () => {
