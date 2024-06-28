@@ -4,7 +4,7 @@
  * @param money
  * @returns 
  */
-export function validateAmount(money : number) {
+export default(money : number) => {
   const minMoney = 1000;
   const maxMoney = 10000;
 
