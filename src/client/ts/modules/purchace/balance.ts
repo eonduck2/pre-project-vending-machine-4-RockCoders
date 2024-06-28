@@ -1,4 +1,3 @@
-import LocalStorageModel from "../../../../localStorage/localStorage";
 import { displayBalance } from "../amount/displayBalance";
 
 /**
@@ -20,8 +19,8 @@ export default (amount : number, totalPrice : number|null) => {
     const getBalance = amount - totalPrice;
 
     // * 로컬스토리지에 잔액 저장
-    const localData = new LocalStorageModel;
-    localData.setItem("balance", getBalance);
+    localStorage.setItem("balance", String(getBalance))
+
 
     // * 잔액 출력 함수 호출
     displayBalance();
