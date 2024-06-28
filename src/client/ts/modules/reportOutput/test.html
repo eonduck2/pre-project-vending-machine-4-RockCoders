@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Vending Machine</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="addStyle.css">
+</head>
+<body>
+  <div id="root" class="w-screen h-screen relative flex justify-center overflow-hidden">
+    <div id="container" class="flex flex-col justify-center items-center w-1/2">
+      <div id="title" class="w-full flex flex-col justify-center items-center border-2 border-black">
+        <h1 class="text-4xl font-bold p-5">Dream Vending Machine</h1>
+        <h2 class="text-xl font-normal pb-2">Rock Coders</h2>
+      </div>
+      <div id="menu" class="grid grid-cols-2-1 gap-5 mt-5 w-full overflow-hidden">
+        <div id="menu-container" class="bg-white border-2 border-black w-full h-96 flex justify-center items-center overflow-hidden">
+          <div id="menu-content" class="w-11/12 h-full grid grid-cols-3 gap-2 overflow-y-scroll mt-4">
+            <!-- * 메뉴 동적 추가 -->
+          </div>
+        </div>
+        <div class="bg-white border-2 border-black flex flex-col items-center relative h-full">
+          <div class="mt-4 w-11/12 flex flex-col top-3/4 h-1/10">
+            <button id="adminAddBtn" class="h-full bg-gray-300" type="button">제품 추가</button>
+          </div>
+          <div class="mt-4 w-11/12 flex flex-col top-3/4 h-1/10">
+            <button id="adminUpdateBtn" class="h-full bg-gray-300" type="button">제품 수정</button>
+          </div>
+          <div class="mt-4 w-11/12 flex flex-col top-3/4 h-1/10">
+            <button id="adminDeleteBtn" class="h-full bg-gray-300" type="button">제품 삭제</button>
+          </div>
+          <div class="mt-4 w-11/12 flex flex-col top-3/4 h-1/10">
+            <button id="adminReportBtn" class="h-full bg-gray-300" type="button">보고서 출력</button>
+          </div>
+          <div id="reportContainer" class="mt-4 w-11/12 flex flex-col top-3/4 h-1/10 bg-gray-300 h-full mb-4">
+            <!-- * 보고서 내용 동적 추가 -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="change" class="absolute top-[15%] left-[95%] flex justify-center">
+      <button class="w-40 h-40 bg-gray-300 rounded-[50px] border-0 writing-mode-vertical-lr text-base pl-2.5" type="button">관리자</button>
+    </div>
+  </div>
+
+  <!-- Include your JavaScript file -->
+  <script type="module" src="test.js"></script>
+</body>
+</html>
