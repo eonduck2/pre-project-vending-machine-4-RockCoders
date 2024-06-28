@@ -27,7 +27,6 @@ const distPath = path.join(__dirname, "dist");
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
 
-
 //* 미들웨어 등록
 app.use(morgan('dev'));
 app.use(express.static(publicPath));
@@ -86,6 +85,43 @@ app.post('/delete', (req, res) => {
   dbManager.deleteRecord('products', 'id', id);
   return res.redirect('/admin');
 })
+
+interface Product {
+  name: string;
+  price: number;
+}
+
+app.post('/purchase', (req, res) => {
+  dbManager.db.serialize(()=> {
+    const products : Product[] = req.body.products;
+
+    // * 배열이 아닌 경우 err
+    if (!Array.isArray(products)) {
+      return res.status(400).send('유효한 변수 타입이 아닙니다.');
+    }
+
+    // * history Table 생성
+    dbManager.createTable("history", {
+      "name" : "TEXT",
+      "price" : "INTEGER"
+    });
+
+    // * products 배열을 받아서 각각의 레코드 생성
+    products.forEach(product => {
+      // * 각 레코드의 형식 변환
+      const record: Record<string, string | number> = {
+        name: product.name,
+        price: product.price
+      };
+      // * history 테이블에 레코드 추가
+      dbManager.createRecord("history", record);
+    });
+
+    // * 데이터베이스 연결 종료
+    dbManager.closeConnection()
+    res.send('데이터베이스 연결 종료');
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
