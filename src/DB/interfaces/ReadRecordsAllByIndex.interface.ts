@@ -1,3 +1,7 @@
-export default interface IReadRecordsAll {
-  readRecordsAll(tableName: string, indexName: string, log?: boolean): void;
+export default interface IReadRecordsAllByIndex {
+  readRecordsAllByIndex(
+    tableName: string,
+    indexName: string,
+    log?: boolean
+  ): void;
 }
