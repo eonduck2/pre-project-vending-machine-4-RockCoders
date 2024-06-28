@@ -1,3 +1,3 @@
-export default interface ITableCreator {
-  createTable(tableName: string, columns: object): void;
-}
+import ICreateTable from "../../interfaces/CreateTable.inteface";
+
+export default interface ITableCreator extends ICreateTable {}

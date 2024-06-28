@@ -1,4 +1,4 @@
-import tableCreator from "./src/DB/modules/table/TableCreator2";
+import tableCreator from "./src/DB/modules/table/TableCreator";
 // const DBConnector = require(`./src/DB/DBConnector`);
 // console.log(new DBConnector(`123.db`));
 
