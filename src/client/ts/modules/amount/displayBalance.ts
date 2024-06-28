@@ -4,7 +4,7 @@ import LocalStorageModel from '../../../../localStorage/localStorage'
  * @moonhr 24.06.26
  * * 페이지 로드 시 LocalStorage에 저장된 잔액을 화면에 표시하는 함수
  */
-export function displayBalance() {
+export default() => {
   const balanceElement = document.getElementById('balance') as HTMLParagraphElement;
 
     // LocalStorageModel 인스턴스 생성

@@ -1,6 +1,6 @@
 // * 입금하기 버튼 누르면 실행 될 함수 === 제품정보 출력하는 파일 
 import { validateAmount } from "./validateAmount.js";
-import { displayBalance } from "./displayBalance.js";
+import displayBalance from "./displayBalance.js";
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
 
 /**
