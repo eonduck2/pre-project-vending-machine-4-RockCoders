@@ -4,5 +4,5 @@ export default interface IReadRecord {
     column: string | number,
     value: string | number,
     log?: boolean
-  ): void;
+  ): Promise<Array<object>>;
 }

@@ -3,5 +3,5 @@ export default interface IReadRecordsAllByIndex {
     tableName: string,
     indexName: string,
     log?: boolean
-  ): void;
+  ): Promise<Array<object>>;
 }

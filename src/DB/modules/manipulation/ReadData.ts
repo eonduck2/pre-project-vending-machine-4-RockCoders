@@ -1,21 +1,36 @@
-import DBConnector from "../../DBConnector.js";
+import DBConnector from "../../DBConnector";
+import instanceChecker from "../../throw/instanceChecker";
+import IReadData from "./ReadData.interface";
 
-class AbstractReadData extends DBConnector {
-  constructor(fileWithPath) {
-    if (new.target === AbstractReadData) {
-      throw new Error("AbstractReadData 클래스는 직접 인스턴스화 할 수 없음");
-    }
+abstract class AbstractReadData extends DBConnector implements IReadData {
+  constructor(fileWithPath: string) {
     super(fileWithPath);
   }
 
-  readRecord(tableName, column, value, log = false) {}
+  abstract readRecord(
+    tableName: string,
+    column: string | number,
+    value: string | number,
+    log?: boolean
+  ): Promise<Array<object>>;
 
-  readRecordsAll(tableName, log = false) {}
+  abstract readRecordsAll(
+    tableName: string,
+    log?: boolean
+  ): Promise<Array<object>>;
 
-  readRecordsAllByIndex(tableName, indexName, log = false) {}
+  abstract readRecordsAllByIndex(
+    tableName: string,
+    indexName: string,
+    log?: boolean
+  ): Promise<Array<object>>;
 }
 
-export default class ReadData extends AbstractReadData {
+class ImplementedReadData extends AbstractReadData {
+  constructor(fileWithPath: string) {
+    instanceChecker(new.target, ImplementedReadData);
+    super(fileWithPath);
+  }
   /**
    * @eonduck2 24.06.21
    * * 테이블과 컬럼명, 해당 컬럼 내의 값으로 데이터를 조회
@@ -25,10 +40,15 @@ export default class ReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 컬럼의 데이터가 포함된 Promise
    */
-  readRecord(tableName, column, value, log = false) {
+  readRecord(
+    tableName: string,
+    column: string | number,
+    value: string | number,
+    log = false
+  ): Promise<Array<object>> {
     const sql = `SELECT * FROM ${tableName} WHERE ${column} = ?`;
     return new Promise((resolve, reject) => {
-      this.db.all(sql, [value], (err, rows) => {
+      this.db.all(sql, [value], (err: Error, rows: Array<object>) => {
         if (err) {
           throw new Error(`쿼리문 조회 에러`);
         } else if (log) {
@@ -48,11 +68,11 @@ export default class ReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  readRecordsAll(tableName, log = false) {
+  readRecordsAll(tableName: string, log = false): Promise<Array<object>> {
     const sql = `SELECT * FROM ${tableName}`;
 
     return new Promise((resolve, reject) => {
-      this.db.all(sql, (err, rows) => {
+      this.db.all(sql, (err: Error, rows: Array<object>) => {
         if (err) {
           throw new Error(`"${tableName}" 테이블 조회 실패`);
         } else if (log) {
@@ -73,11 +93,15 @@ export default class ReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  readRecordsAllByIndex(tableName, indexName, log = false) {
+  readRecordsAllByIndex(
+    tableName: string,
+    indexName: string,
+    log = false
+  ): Promise<Array<object>> {
     const sql = `SELECT * FROM ${tableName} INDEXED BY ${indexName}`;
 
     return new Promise((resolve, reject) => {
-      this.db.all(sql, (err, rows) => {
+      this.db.all(sql, (err: Error, rows: Array<object>) => {
         if (err) {
           throw new Error(`인덱스를 이용한 데이터 조회 오류`);
         } else if (log) {
@@ -88,5 +112,11 @@ export default class ReadData extends AbstractReadData {
         }
       });
     });
+  }
+}
+
+export default class ReadData extends ImplementedReadData {
+  constructor(fileWithPath: string) {
+    super(fileWithPath);
   }
 }

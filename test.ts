@@ -15,9 +15,9 @@ const testData = {
 };
 
 creator.serialize(() => {
-  testTable.createTable(`test_tbl2`, testColumn);
-  creator.createRecord(`test_tbl2`, testData);
+  //   testTable.createTable(`test_tbl2`, testColumn);
 });
+
 // const DBConnector = require(`./src/DB/DBConnector`);
 // console.log(new DBConnector(`123.db`));
 
