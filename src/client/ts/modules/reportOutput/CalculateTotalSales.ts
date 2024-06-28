@@ -1,3 +1,8 @@
+/** @jojayeon 24.06.28
+ * * 총 매출 계산기
+ */
+
+
 import readSalesData from './ReadSalesData';
 
 const calculateTotalRevenue = async (table: string): Promise<number> => {
