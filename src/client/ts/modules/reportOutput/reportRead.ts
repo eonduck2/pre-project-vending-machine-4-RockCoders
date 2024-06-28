@@ -65,7 +65,8 @@ async function generateSalesReport(table : string) {
 }
 
 // 보고서 출력
-generateSalesReport('test_tble');//어떤 테이블인지 모르겠어서 매개변수로 넣음
+generateSalesReport('test.db');//어떤 테이블인지 모르겠어서 매개변수로 넣음
 //! 할일 
-//! - 모듈로 쪼개기 
+//! - 모듈로 나누기
 //! - DB name,price만 있는게 맞는지 확인 필요
+//!   - id 있을거 같은 느낌 
