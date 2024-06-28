@@ -1,6 +1,6 @@
 //* 입금하기 버튼 클릭 진행 될 함수
 import validateAmount from "./validateAmount.js";
-import { LocalStorageManager } from "./LocalStorageManager.js";
+import { LocalStoragePlus } from "./LocalStoragePlus.js";
 import { ProductService } from "./ProductService.js";
 import { UIManager } from "./UIManager.js";
 
