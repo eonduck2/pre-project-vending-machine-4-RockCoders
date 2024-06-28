@@ -1,8 +1,8 @@
 import CreateFormManager from "./modules/addProduct/createFormManager.js";
 import DeleteFormManager from "./modules/deleteProduct/deleteFormManager.js";
 import UpdateFormManager from "./modules/updateProduct/updateFormManager.js";
-import hideReportContainer from "./reportHandle/hideReportContainer.js";
-import toggleReportContainer from "./reportHandle/toggleReportContainer.js";
+import hideReportContainer from "./modules/reportHandle/hideReportContainer.js";
+import toggleReportContainer from "./modules/reportHandle/toggleReportContainer.js";
 
 document.addEventListener('DOMContentLoaded', () => {
   const createFormManager = new CreateFormManager();

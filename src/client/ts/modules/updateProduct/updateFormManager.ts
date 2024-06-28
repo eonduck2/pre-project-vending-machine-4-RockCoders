@@ -3,7 +3,7 @@
  * * 제품 수정 버튼 핸들링
  */
 
-import hideReportContainer from "../../reportHandle/hideReportContainer.js";
+import hideReportContainer from "../reportHandle/hideReportContainer.js";
 
 export default class UpdateFormManager {
   private updateFormContainer: HTMLElement;
