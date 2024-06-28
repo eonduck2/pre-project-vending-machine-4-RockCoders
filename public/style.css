@@ -652,6 +652,10 @@ video {
   height: 1.5rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
 .h-96 {
   height: 24rem;
 }
@@ -662,10 +666,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-8 {
-  height: 2rem;
 }
 
 .w-1\/2 {
@@ -795,18 +795,6 @@ video {
 
 .pl-2\.5 {
   padding-left: 0.625rem;
-}
-
-.pt-6 {
-  padding-top: 1.5rem;
-}
-
-.pt-11 {
-  padding-top: 2.75rem;
-}
-
-.pt-12 {
-  padding-top: 3rem;
 }
 
 .pt-14 {
