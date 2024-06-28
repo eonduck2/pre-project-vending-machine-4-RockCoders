@@ -1,7 +1,3 @@
-import { LocalStorage } from 'node-localstorage';
-
-const localStorage = new LocalStorage('./scratch');
-
 class LocalStorageModel {
   validKeys: string[];
 
@@ -67,6 +63,3 @@ class LocalStorageModel {
 }
 
 export default LocalStorageModel;
-
-// const localData = new LocalStorageModel();
-// localData.setItem('totalPrice', 3000);
