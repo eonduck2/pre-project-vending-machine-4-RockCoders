@@ -100,7 +100,7 @@ export default generateSalesReport;
 
 //모듈화 해서 나누고 저장하기
 // ---------------------------------------------------------------------------------------------------------------------------
-
+//* ReadReportDB
 import ReadData from "../../../../DB/modules/manipulation/ReadData.js";
 
 // * ReadData 클래스를 사용하여 데이터베이스에서 데이터를 읽어오는 함수
@@ -117,6 +117,7 @@ const readSalesData = async (table: string): Promise<{ name: string; price: numb
 export default readSalesData;
 
 // ---------------------------------------------------------------------------------------------------------------------------
+// * CalculateTotalSales
 const calculateTotalRevenue = async (table: string): Promise<number> => {
   try {
     const salesData = await readSalesData(table);
@@ -129,6 +130,7 @@ const calculateTotalRevenue = async (table: string): Promise<number> => {
 
 export default calculateTotalRevenue;
 // ---------------------------------------------------------------------------------------------------------------------------
+// * MostSoldItems
 const calculateMostSoldProduct = async (table: string): Promise<string[]> => {
   try {
     const salesData = await readSalesData(table);
@@ -165,7 +167,7 @@ const calculateMostSoldProduct = async (table: string): Promise<string[]> => {
 export default calculateMostSoldProduct;
 
 // ---------------------------------------------------------------------------------------------------------------------------
-
+// * ReportOutput
 const generateSalesReport = async (table : string) => {
   try {
     const totalRevenue = await calculateTotalRevenue(table);
