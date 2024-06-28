@@ -1,5 +1,8 @@
-import { Database, sqlite3 } from "sqlite3";
+// import { Database } from "sqlite3";
+
+const sqlite3VM = require(`sqlite3`).verbose();
+const database = sqlite3VM.Database;
 
 export default interface IDB {
-  db: Database;
+  db: typeof database;
 }

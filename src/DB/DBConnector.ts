@@ -1,10 +1,10 @@
-import sqlite3, { Database } from "sqlite3";
 import IDBConnector from "./DBConnector.interface";
 
-const sqlite3VM = sqlite3.verbose();
+const sqlite3VM = require(`sqlite3`).verbose();
+const database = sqlite3VM.Database;
 
 export default class DBConnector implements IDBConnector {
-  db: Database;
+  db: typeof database;
   fileWithPath: string;
   /**
    * @eonduck2 24.06.21
