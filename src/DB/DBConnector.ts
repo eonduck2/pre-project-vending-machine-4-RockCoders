@@ -1,4 +1,5 @@
 import IDBConnector from "./DBConnector.interface";
+import instanceChecker from "./instanceChecker";
 
 const sqlite3VM = require(`sqlite3`).verbose();
 const database = sqlite3VM.Database;
@@ -20,9 +21,10 @@ export default class DBConnector extends AbstractDBConnector {
    */
   constructor(fileWithPath: string) {
     super();
-    if (new.target === DBConnector) {
-      throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
-    }
+    instanceChecker(new.target, DBConnector);
+    // if (new.target === DBConnector) {
+    //   throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
+    // }
     this.fileWithPath = fileWithPath;
     this.db = new sqlite3VM.Database(fileWithPath, (err: Error | null) => {
       if (err) {
