@@ -1,3 +1,3 @@
-export default interface serialize {
+export default interface ISerialize {
   serialize(callback: Function): void;
 }
