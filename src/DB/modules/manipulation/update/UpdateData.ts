@@ -1,5 +1,5 @@
-import DBConnector from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBConnector from "../../../DBMANAGER";
+import instanceChecker from "../../../throw/instanceChecker";
 import IUpdateData from "./UpdateData.interface";
 
 abstract class AbstractUpdateData extends DBConnector implements IUpdateData {

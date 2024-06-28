@@ -1,7 +1,7 @@
 import tableCreator from "./src/DB/modules/table/TableCreator";
-import recordCreator from "./src/DB/modules/manipulation/CreateData";
-import recordReader from "./src/DB/modules/manipulation/ReadData";
-import recordUpdater from "./src/DB/modules/manipulation/UpdateData";
+import recordCreator from "./src/DB/modules/manipulation/create/CreateData";
+import recordReader from "./src/DB/modules/manipulation/read/ReadData";
+import recordUpdater from "./src/DB/modules/manipulation/update/UpdateData";
 
 // const creator = new recordCreator(`123.db`);
 // const testTable = new tableCreator(`123.db`);

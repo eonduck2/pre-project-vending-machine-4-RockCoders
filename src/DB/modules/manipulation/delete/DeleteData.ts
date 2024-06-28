@@ -1,5 +1,5 @@
-import DBConnector from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBConnector from "../../../DBMANAGER";
+import instanceChecker from "../../../throw/instanceChecker";
 import IDeleteData from "./DeleteData.interface";
 
 abstract class AbstractDeleteData extends DBConnector implements IDeleteData {

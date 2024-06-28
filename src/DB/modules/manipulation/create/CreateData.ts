@@ -1,5 +1,5 @@
-import DBConnector from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBConnector from "../../../DBMANAGER";
+import instanceChecker from "../../../throw/instanceChecker";
 import ICreateData from "./CreateData.interface";
 
 abstract class AbstractCreateData extends DBConnector implements ICreateData {
