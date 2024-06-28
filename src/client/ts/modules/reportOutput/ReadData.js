@@ -15,6 +15,9 @@ export default class ReadData {
       { name: 'Product A', price: 100 },
       { name: 'Product A', price: 100 },
       { name: 'Product C', price: 200 },
+      { name: 'Product C', price: 200 },
+      { name: 'Product D', price: 300 },
+      { name: 'Product E', price: 250 },
       { name: 'Product B', price: 150 }
     ];
   }
