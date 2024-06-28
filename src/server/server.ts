@@ -44,8 +44,7 @@ app.get("/products", (req, res) => {
       console.error('Error fetching products:', err);
       res.status(500).json({ error: 'Failed to fetch products' });
     });
-    dbManager.closeConnection();
-  })
+  });
 });
 
 
