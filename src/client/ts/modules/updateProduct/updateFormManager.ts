@@ -1,3 +1,8 @@
+/**
+ * @crystal23733 24.06.28
+ * * 제품 수정 버튼 핸들링
+ */
+
 import hideReportContainer from "../../reportHandle/hideReportContainer.js";
 
 export default class UpdateFormManager {
