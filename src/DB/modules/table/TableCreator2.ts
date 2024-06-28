@@ -1,6 +1,6 @@
 import DBConnector from "../../DBConnector";
-import instanceChecker from "../../instanceChecker";
-import ITableCreator from "./TableCreator.inteface";
+import instanceChecker from "../../throw/instanceChecker";
+import ITableCreator from "./TableCreator.interface";
 
 abstract class AbstractTableCreator
   extends DBConnector
@@ -12,9 +12,9 @@ abstract class AbstractTableCreator
   abstract createTable(tableName: string, columns: object): void;
 }
 
-export default class TableCreator extends AbstractTableCreator {
+class ImplementedTableCreator extends AbstractTableCreator {
   constructor(fileWithPath: string) {
-    instanceChecker(new.target, TableCreator);
+    instanceChecker(new.target, ImplementedTableCreator);
     super(fileWithPath);
   }
   /**
@@ -36,5 +36,11 @@ export default class TableCreator extends AbstractTableCreator {
         console.log(`테이블 "${tableName}" 생성 완료`);
       }
     });
+  }
+}
+
+export default class TableCreator extends ImplementedTableCreator {
+  constructor(fileWithPath: string) {
+    super(fileWithPath);
   }
 }

@@ -1,6 +1,5 @@
-import DBConnector from "./src/DB/DBConnector";
+import tableCreator from "./src/DB/modules/table/TableCreator2";
 // const DBConnector = require(`./src/DB/DBConnector`);
-new DBConnector(`123.db`);
 // console.log(new DBConnector(`123.db`));
 
 // const test = new DBConnector(`123.db`);
@@ -13,3 +12,4 @@ new DBConnector(`123.db`);
 // console.log(database());
 
 // console.log(test);
+new tableCreator(`123.db`).createTable(`test_tbl`, { name: "TEXT" });
