@@ -1,12 +1,17 @@
 import tableCreator from "./src/DB/modules/table/TableCreator";
-import recordCreator from "./src/DB/modules/manipulation/create/CreateData";
-import recordReader from "./src/DB/modules/manipulation/read/ReadData";
+import recordCreator from "./src/DB/modules/manipulation/insert/CreateData";
+import recordReader from "./src/DB/modules/manipulation/select/ReadData";
 import recordUpdater from "./src/DB/modules/manipulation/update/UpdateData";
+import recordDelete from "./src/DB/modules/manipulation/delete/DeleteData";
 
-// const creator = new recordCreator(`123.db`);
+const creator = new recordCreator(`123.db`);
 // const testTable = new tableCreator(`123.db`);
 // const reader = new recordReader(`123.db`);
-const updater = new recordUpdater(`123.db`);
+// const updater = new recordUpdater(`123.db`);
+const testDelete = new recordDelete(`123.db`);
+
+// testDelete.deleteRecord(`test_tbl2`, `name`, `만수무강`);
+testDelete.deleteRecordsAll(`test_tbl2`);
 
 const testColumn = {
   name: `TEXT`,
@@ -14,8 +19,8 @@ const testColumn = {
 };
 
 const testData = {
-  name: `이종수`,
-  age: 99,
+  name: `김감자`,
+  age: 20,
 };
 
 const updateData = {
@@ -23,7 +28,9 @@ const updateData = {
   age: 90000,
 };
 
-updater.updateRecord(`test_tbl2`, `name`, `이종수`, updateData);
+// creator.createRecord(`test_tbl2`, testData);
+
+// updater.updateRecord(`test_tbl2`, `name`, `이종수`, updateData);
 
 // creator.serialize(() => {
 //   //   testTable.createTable(`test_tbl2`, testColumn);

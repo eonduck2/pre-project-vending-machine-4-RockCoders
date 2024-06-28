@@ -1,4 +1,4 @@
-import IDeleteRecord from "../../../interfaces/manipulation/DeleteRecord.interface";
-import IDeleteRecordsAll from "../../../interfaces/manipulation/DeleteRecordsAll.interface";
+import IDeleteRecord from "../../../interfaces/manipulation/delete/DeleteRecord.interface";
+import IDeleteRecordsAll from "../../../interfaces/manipulation/delete/DeleteRecordsAll.interface";
 
 export default interface IDeleteData extends IDeleteRecord, IDeleteRecordsAll {}

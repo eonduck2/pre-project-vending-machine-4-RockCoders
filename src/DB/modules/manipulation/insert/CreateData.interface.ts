@@ -1,3 +1,3 @@
-import ICreateRecord from "../../../interfaces/manipulation/CreateRecord.interface";
+import ICreateRecord from "../../../interfaces/manipulation/insert/CreateRecord.interface";
 
 export default interface ICreateData extends ICreateRecord {}
