@@ -1,8 +1,10 @@
 import tableCreator from "./src/DB/modules/table/TableCreator";
 import recordCreator from "./src/DB/modules/manipulation/CreateData";
+import recordReader from "./src/DB/modules/manipulation/ReadData";
 
-const creator = new recordCreator(`123.db`);
-const testTable = new tableCreator(`123.db`);
+// const creator = new recordCreator(`123.db`);
+// const testTable = new tableCreator(`123.db`);
+// const reader = new recordReader(`123.db`);
 
 const testColumn = {
   name: `TEXT`,
@@ -14,9 +16,9 @@ const testData = {
   age: 99,
 };
 
-creator.serialize(() => {
-  //   testTable.createTable(`test_tbl2`, testColumn);
-});
+// creator.serialize(() => {
+//   //   testTable.createTable(`test_tbl2`, testColumn);
+// });
 
 // const DBConnector = require(`./src/DB/DBConnector`);
 // console.log(new DBConnector(`123.db`));
