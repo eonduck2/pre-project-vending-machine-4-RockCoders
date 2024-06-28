@@ -3,10 +3,9 @@
  * * 제품 추가 버튼 핸들링
  */
 
+import hideAllForms from "../hideAllForms.js";
 import hideReportContainer from "../reportHandle/hideReportContainer.js";
 import showReportContainer from "../reportHandle/showReportContainer.js";
-
-
 
 export default class CreateFormManager {
   private createFormContainer: HTMLElement;
@@ -14,24 +13,25 @@ export default class CreateFormManager {
   constructor() {
     this.createFormContainer = document.querySelector("#create-form-container") as HTMLElement;
     const createBtn = document.getElementById("adminAddBtn");
-    createBtn?.addEventListener("click", this.showCreateForm);
+    createBtn?.addEventListener("click", this.toggleForm);
   }
 
   public showForm(): void {
-    this.showCreateForm();
+    hideAllForms();
+    this.createFormContainer.classList.remove("hidden");
+    hideReportContainer();
+  }
+
+  public hideForm(): void {
+    this.createFormContainer.classList.add("hidden");
     showReportContainer();
   }
 
-  private showCreateForm = (): void => {
-    // 숨겨진 다른 폼들을 숨기기
-    document.querySelectorAll(".admin-form-container").forEach(container => {
-      if (container !== this.createFormContainer) {
-        container.classList.add("hidden");
-      }
-    });
-
-    // 현재 폼 보이기
-    this.createFormContainer.classList.remove("hidden");
-    hideReportContainer();
+  private toggleForm = (): void => {
+    if (this.createFormContainer.classList.contains("hidden")) {
+      this.showForm();
+    } else {
+      this.hideForm();
+    }
   };
 }

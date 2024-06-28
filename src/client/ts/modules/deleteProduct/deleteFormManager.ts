@@ -3,6 +3,7 @@
  * * 제품 삭제 버튼 핸들링
  */
 
+import hideAllForms from "../hideAllForms.js";
 import hideReportContainer from "../reportHandle/hideReportContainer.js";
 import showReportContainer from "../reportHandle/showReportContainer.js";
 
@@ -12,24 +13,25 @@ export default class DeleteFormManager {
   constructor() {
     this.deleteFormContainer = document.querySelector("#delete-form-container") as HTMLElement;
     const deleteBtn = document.getElementById("adminDeleteBtn");
-    deleteBtn?.addEventListener("click", this.showDeleteForm);
+    deleteBtn?.addEventListener("click", this.toggleForm);
   }
 
   public showForm(): void {
-    this.showDeleteForm();
+    hideAllForms();
+    this.deleteFormContainer.classList.remove("hidden");
+    hideReportContainer();
+  }
+
+  public hideForm(): void {
+    this.deleteFormContainer.classList.add("hidden");
     showReportContainer();
   }
 
-  private showDeleteForm = (): void => {
-    // 숨겨진 다른 폼들을 숨기기
-    document.querySelectorAll(".admin-form-container").forEach(container => {
-      if (container !== this.deleteFormContainer) {
-        container.classList.add("hidden");
-      }
-    });
-
-    // 현재 폼 보이기
-    this.deleteFormContainer.classList.remove("hidden");
-    hideReportContainer();
+  private toggleForm = (): void => {
+    if (this.deleteFormContainer.classList.contains("hidden")) {
+      this.showForm();
+    } else {
+      this.hideForm();
+    }
   };
 }
