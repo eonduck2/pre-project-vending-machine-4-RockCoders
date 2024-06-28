@@ -2,7 +2,7 @@ class LocalStorageModel {
   validKeys: string[];
 
   constructor() {
-    this.validKeys = ["totalPrice", "amount", "balance"];
+    this.validKeys = ["balance"];
   }
 
   // * 유효한 키인지 확인
