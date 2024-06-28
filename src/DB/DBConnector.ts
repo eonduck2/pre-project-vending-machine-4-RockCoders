@@ -9,9 +9,11 @@ abstract class AbstractDBConnector implements IDBConnector {
 
   abstract fileWithPath: string;
   abstract close(): void;
+  abstract serialize(callback: Function): void;
+  abstract parallelize(callback: Function): void;
 }
 
-export default class DBConnector extends AbstractDBConnector {
+class ImplementedDBConnector extends AbstractDBConnector {
   protected db: typeof database;
   public fileWithPath: string;
   /**
@@ -21,7 +23,7 @@ export default class DBConnector extends AbstractDBConnector {
    */
   constructor(fileWithPath: string) {
     super();
-    instanceChecker(new.target, DBConnector);
+    instanceChecker(new.target, ImplementedDBConnector);
     // if (new.target === DBConnector) {
     //   throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
     // }
@@ -39,12 +41,30 @@ export default class DBConnector extends AbstractDBConnector {
    * * DB와의 연결 해제
    */
   public close(): void {
-    this.db.close((err: Error | null) => {
+    this.db.close((err: Error) => {
       if (err) {
         throw new Error("DB 커넥션 close 오류");
       } else {
         console.log("DB 연결 해제");
       }
     });
+  }
+
+  public serialize(callback: Function): void {
+    this.db.serialize(() => {
+      callback();
+    });
+  }
+
+  public parallelize(callback: Function): void {
+    this.db.parallelize(() => {
+      callback();
+    });
+  }
+}
+
+export default class DBConnector extends ImplementedDBConnector {
+  constructor(fileWithPath: string) {
+    super(fileWithPath);
   }
 }

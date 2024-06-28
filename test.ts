@@ -12,4 +12,14 @@ import tableCreator from "./src/DB/modules/table/TableCreator2";
 // console.log(database());
 
 // console.log(test);
-new tableCreator(`123.db`).createTable(`test_tbl`, { name: "TEXT" });
+
+const testTable = new tableCreator(`123.db`);
+// new tableCreator(`123.db`).createTable(`test_tbl`, { name: "TEXT" });
+
+// testTable.serialize(() => {
+//   testTable.close();
+//   testTable.createTable(`test_tbl`, { name: "TEXT" });
+//   testTable.close();
+//   testTable.createTable(`test_tbl`, { name: "TEXT" });
+//   testTable.close();
+// });
