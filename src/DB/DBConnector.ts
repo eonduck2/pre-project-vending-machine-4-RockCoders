@@ -26,7 +26,7 @@ export default class DBConnector extends AbstractDBConnector {
     //   throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
     // }
     this.fileWithPath = fileWithPath;
-    this.db = new sqlite3VM.Database(fileWithPath, (err: Error | null) => {
+    this.db = new sqlite3VM.Database(fileWithPath, (err: Error) => {
       if (err) {
         throw new Error("DB 연결 실패");
       } else {

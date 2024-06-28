@@ -1,17 +1,20 @@
 import DBConnector from "../../DBConnector";
+import instanceChecker from "../../instanceChecker";
 import ITableCreator from "./TableCreator.inteface";
 
-abstract class AbstractTableCreator implements ITableCreator {
-  abstract createTable(): void;
+abstract class AbstractTableCreator
+  extends DBConnector
+  implements ITableCreator
+{
+  constructor(fileWithPath: string) {
+    super(fileWithPath);
+  }
+  abstract createTable(tableName: string, columns: object): void;
 }
 
 export default class TableCreator extends AbstractTableCreator {
   constructor(fileWithPath: string) {
-    if (new.target === TableCreator) {
-      throw new Error(
-        "AbstractTableCreator 클래스는 직접 인스턴스화 할 수 없음"
-      );
-    }
+    instanceChecker(new.target, TableCreator);
     super(fileWithPath);
   }
   /**
@@ -20,13 +23,13 @@ export default class TableCreator extends AbstractTableCreator {
    * @param { string } tableName 생성시킬 테이블 이름
    * @param { object } columns 컬럼 이름과 타입을 정의한 객체
    */
-  createTable(tableName, columns) {
+  createTable(tableName: string, columns: object): void {
     const columnsDefinition = Object.entries(columns)
       .map(([name, type]) => `${name} ${type}`)
       .join(", ");
 
     const sql = `CREATE TABLE IF NOT EXISTS ${tableName} (${columnsDefinition})`;
-    this.db.run(sql, (err) => {
+    this.db.run(sql, (err: Error) => {
       if (err) {
         throw new Error(`테이블 생성 오류 (${tableName})`);
       } else {

@@ -3,5 +3,5 @@ import IDBCloser from "../../interfaces/Close.interface";
 import IDBConnector from "../../DBConnector.interface";
 
 export default interface ITableCreator {
-  createTable(): void;
+  createTable(tableName: string, columns: object): void;
 }
