@@ -3,8 +3,6 @@ import { validateAmount } from "./validateAmount.js";
 import { displayBalance } from "./displayBalance.js";
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
 
-//todo db모델 받아오는 패치 작성하기
-
 /**
  * @moonhr 24.06.26
  * * 버튼 클릭 시 로컬에 값 저장하고 출력함. money-button클릭시 실행.
@@ -42,7 +40,7 @@ export async function priceInput() {
         name : string,
         price : number
       }
-      
+
       // 각 제품을 div 요소로 추가
       products.forEach((product : productType) => {
         if (product.price <= currentBalance) {
