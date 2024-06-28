@@ -1,7 +1,7 @@
-import IFileWithPath from "./interfaces/FileWithPath.interface";
-import IDBCloser from "./interfaces/Close.interface";
-import ISerialize from "./interfaces/Serialize.interface";
-import IParallelize from "./interfaces/Parallelize.interface";
+import IFileWithPath from "./interfaces/managing/FileWithPath.interface";
+import IDBCloser from "./interfaces/managing/Close.interface";
+import ISerialize from "./interfaces/managing/Serialize.interface";
+import IParallelize from "./interfaces/managing/Parallelize.interface";
 
 export default interface IDBConnector
   extends IFileWithPath,
