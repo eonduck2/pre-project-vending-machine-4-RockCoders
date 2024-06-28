@@ -1,7 +1,7 @@
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
 
 export class UIManager {
-  
+
   /**
    * @moonhr 24.06.26
    * * 페이지 로드 시 LocalStorage에 저장된 잔액을 화면에 표시하는 메서드
@@ -42,7 +42,11 @@ export class UIManager {
       }
     });
   }
-
+  /**
+   * @moonhr 24.06.28
+   * * 조건에 맞지 않을 때 출력될 메세지
+   * @param message 
+   */
   showAlert(message: string): void {
     alert(message);
   }
