@@ -1,6 +1,11 @@
 /** @jojayeon 24.06.28
+ * * 보고서 출력하는 함수 제작 
  * * 보고서 출력 - 아직 모듈로 쪼개지 않음
+ * 
  */
+
+//! 주소 맞는지 확인 필요
+//! 제일 아래 테이블도 확인 필요
 
 import ReadData from "../../../../DB/modules/manipulation/ReadData.js";
 
@@ -9,11 +14,13 @@ const readSalesData = async (table: string): Promise<{ name: string; price: numb
   const reader = new ReadData(table);// db위치
   try {
     const data = await reader.readRecordsAll(table);
+    // console.log("5",data) - 혹시 어떻게 들어오는지 확인
     return data.map((row: any) => ({ name: row.name, price: row.price }));
   } finally {
     reader.close();
   }
 };
+
 
 // * 총 매출 계산 함수
 async function calculateTotalRevenue(table: string): Promise<number> {
@@ -62,6 +69,7 @@ async function calculateMostSoldProduct(table: string): Promise<string[]> {
   }
 }
 
+
 // *판매 보고서 생성 및 출력 함수
 async function generateSalesReport(table : string) {
   try {
@@ -79,8 +87,10 @@ async function generateSalesReport(table : string) {
 }
 
 // 보고서 출력
-generateSalesReport('test.db');//어떤 테이블인지 모르겠어서 매개변수로 넣음
+generateSalesReport('test.db');
+
 //! 할일 
 //! - 모듈로 나누기
-//! - DB name,price만 있는게 맞는지 확인 필요
-//!   - id 있을거 같은 느낌 
+//// - 중복 체크 후 출력 추가 
+//? - DB name,price만 있는게 맞는지 확인 필요
+//?   - id 있을거 같은데?
