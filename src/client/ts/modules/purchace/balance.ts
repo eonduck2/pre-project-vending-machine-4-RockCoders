@@ -1,4 +1,4 @@
-import { displayBalance } from "../amount/displayBalance";
+import { displayBalance } from "../amount/displayBalance.js";
 
 /**
  * @yuxincxoi 24.06.27

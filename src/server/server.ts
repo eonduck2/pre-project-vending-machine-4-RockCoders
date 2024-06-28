@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import path from "path";
-import __dirname from "../modules/__dirname";
-import { BaseDataBaseManager } from "../DB/modules/DBMANAGER";
+import __dirname from "../modules/__dirname.js";
+import { BaseDataBaseManager } from "../DB/modules/DBMANAGER.js";
 
 const app = express();
 
