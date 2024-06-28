@@ -1,3 +1,6 @@
+/** @jojayeon 24.06.28
+ * *가장 많이 팔린 물품 찾기
+ */
 import readSalesData from './ReadSalesData';
 
 const calculateMostSoldProduct = async (table: string): Promise<string[]> => {
