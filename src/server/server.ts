@@ -7,9 +7,9 @@ const app = express();
 
 
 //* 미들웨어로 등록하기 위한 경로 설정
-const publicPath = path.join(__dirname, "..", "..", "public");
-const srcPath = path.join(__dirname, "..", "src");
-const distPath = path.join(__dirname, "..", "dist");
+const publicPath = path.join(__dirname, "public");
+const srcPath = path.join(__dirname, "src");
+const distPath = path.join(__dirname, "dist");
 
 //* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
 const PORT = process.env.PORT ?? 8080;
