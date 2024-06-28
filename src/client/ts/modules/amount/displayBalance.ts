@@ -17,4 +17,4 @@ export default() => {
   if(balance !== null){
     balanceElement.innerText = balance.toString();
   }
-}
+} 
