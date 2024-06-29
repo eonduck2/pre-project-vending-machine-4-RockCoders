@@ -1,3 +1,3 @@
-export default interface CheckDBSize {
+export default interface ICheckDBSize {
   getDBSize(): void;
 }

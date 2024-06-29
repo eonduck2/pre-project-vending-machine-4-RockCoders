@@ -1,3 +1,3 @@
-export default interface DefaultConstraints {
+export default interface IDefaultConstraints {
   getDefaultConstraints(): object;
 }
