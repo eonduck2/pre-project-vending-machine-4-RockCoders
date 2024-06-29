@@ -1,5 +1,5 @@
-import IDBManager from "./DBManager.interface";
-import instanceChecker from "./throw/instanceChecker";
+import IDBManager from "./DBManager.interface.js";
+import instanceChecker from "./throw/instanceChecker.js";
 
 const sqlite3VM = require(`sqlite3`).verbose();
 const database = sqlite3VM.Database;
