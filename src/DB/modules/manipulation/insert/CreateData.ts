@@ -6,7 +6,7 @@ abstract class AbstractCreateData extends DBManager implements ICreateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract createRecord(tableName: string, record: object): void;
+  public abstract createRecord(tableName: string, record: object): void;
 }
 
 class ImplementedCreateData extends AbstractCreateData {
@@ -21,7 +21,7 @@ class ImplementedCreateData extends AbstractCreateData {
    * @param { object } record
    * 객체 형태 ( 예시 - {name:'lee', age: 30})
    */
-  createRecord(tableName: string, record: object) {
+  public createRecord(tableName: string, record: object) {
     const columns = Object.keys(record).join(", ");
     const placeholders = Object.keys(record)
       .map(() => "?")
