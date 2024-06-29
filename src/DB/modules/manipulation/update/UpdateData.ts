@@ -1,5 +1,5 @@
-import DBManager from "../../../DBMANAGER";
-import instanceChecker from "../../../throw/instanceChecker";
+import DBManager from "../../../DBMANAGER.js";
+import instanceChecker from "../../../throw/instanceChecker.js";
 import IUpdateData from "./UpdateData.interface";
 
 abstract class AbstractUpdateData extends DBManager implements IUpdateData {
