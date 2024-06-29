@@ -1,5 +1,5 @@
-import DBManager from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBManager from "../../DBMANAGER.js";
+import instanceChecker from "../../throw/instanceChecker.js";
 import IDropIndex from "./DropIndex.interface";
 
 abstract class AbstractDropIndex extends DBManager implements IDropIndex {
