@@ -7,7 +7,7 @@ abstract class AbstractAddColumn extends DBManager implements IAddColumn {
     super(fileWithPath);
   }
 
-  abstract addColumn(
+  public abstract addColumn(
     tableName: string,
     columnName: string | number,
     columnType: string
@@ -26,7 +26,7 @@ class ImplementedAddColumn extends AbstractAddColumn {
    * @param { string | number } columnName 추가될 컬럼 이름
    * @param { string } columnType 추가될 컬럼 타입 예 - (TEXT, INTEGER)
    */
-  addColumn(
+  public addColumn(
     tableName: string,
     columnName: string | number,
     columnType: string
