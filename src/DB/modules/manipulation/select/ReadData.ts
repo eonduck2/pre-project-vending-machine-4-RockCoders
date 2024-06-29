@@ -7,19 +7,19 @@ abstract class AbstractReadData extends DBManager implements IReadData {
     super(fileWithPath);
   }
 
-  abstract readRecord(
+  public abstract readRecord(
     tableName: string,
     column: string | number,
     value: string | number,
     log?: boolean
   ): Promise<Array<object>>;
 
-  abstract readRecordsAll(
+  public abstract readRecordsAll(
     tableName: string,
     log?: boolean
   ): Promise<Array<object>>;
 
-  abstract readRecordsAllByIndex(
+  public abstract readRecordsAllByIndex(
     tableName: string,
     indexName: string,
     log?: boolean
@@ -40,7 +40,7 @@ class ImplementedReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 컬럼의 데이터가 포함된 Promise
    */
-  readRecord(
+  public readRecord(
     tableName: string,
     column: string | number,
     value: string | number,
@@ -68,7 +68,10 @@ class ImplementedReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  readRecordsAll(tableName: string, log = false): Promise<Array<object>> {
+  public readRecordsAll(
+    tableName: string,
+    log = false
+  ): Promise<Array<object>> {
     const sql = `SELECT * FROM ${tableName}`;
 
     return new Promise((resolve, reject) => {
@@ -93,7 +96,7 @@ class ImplementedReadData extends AbstractReadData {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블의 전체 데이터가 포함된 Promise
    */
-  readRecordsAllByIndex(
+  public readRecordsAllByIndex(
     tableName: string,
     indexName: string,
     log = false
