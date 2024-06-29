@@ -2,50 +2,76 @@ import DBConnector from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
 import ITransactionController from "./TransactionControler.interface";
 
-abstract class AbstractGetTableInfo
+abstract class AbstractTransactionController
   extends DBConnector
-  implements IGetTableInfo
+  implements ITransactionController
 {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract getTableInfo(
-    tableName: string,
-    log: boolean
-  ): Promise<Array<object>>;
+  abstract beginTransaction(callback: Function): void;
+
+  abstract commit(): void;
+
+  abstract rollback(): void;
 }
 
-class ImplementedGetTableInfo extends AbstractGetTableInfo {
+class ImplementedTransactionController extends AbstractTransactionController {
   constructor(fileWithPath: string) {
-    instanceChecker(new.target, ImplementedGetTableInfo);
+    instanceChecker(new.target, ImplementedTransactionController);
     super(fileWithPath);
   }
   /**
    * @eonduck2 24.06.22
-   * * 테이블에 관련된 정보를 조회
-   * @param { string } tableName 대상이 될 테이블
-   * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
-   * @returns { promise } 특정 테이블 정보가 포함된 Promise
+   * @param { function } callback 트랜잭션 작업이 진행될 콜백 함수
+   * * 트랜잭션 시작 기능
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
-  getTableInfo(tableName: string, log = false): Promise<Array<object>> {
-    const sql = `PRAGMA table_info(${tableName})`;
+  beginTransaction(callback: Function) {
+    this.db.run("BEGIN TRANSACTION", (err: Error) => {
+      if (err) {
+        throw new Error(`트랜잭션 스타팅 에러`);
+      } else {
+        console.log("트랜잭션 시작");
+        callback();
+      }
+    });
+  }
 
-    return new Promise((resolve, reject) => {
-      this.db.all(sql, (err: Error, rows: Array<object>) => {
-        if (err) {
-          throw new Error(`"${tableName}" 테이블 정보 조회 에러`);
-        } else if (log) {
-          console.log(rows);
-          resolve(rows);
-        } else {
-          resolve(rows);
-        }
-      });
+  /**
+   * @eonduck2 24.06.22
+   * * 트랜잭션 커밋
+   * * beginTransction 메서드 내, 쿼리 작업을 commit 할 때 사용
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   */
+  commit() {
+    this.db.run("COMMIT", (err: Error) => {
+      if (err) {
+        throw new Error(`트랜잭션 커밋 에러`);
+      } else {
+        console.log("트랜잭션 커밋 완료");
+      }
+    });
+  }
+
+  /**
+   * @eonduck2 24.06.22
+   * * 트랜잭션 롤백
+   * * beginTransction 메서드 내, 쿼리 작업을 rollback 할 때 사용
+   * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
+   */
+  rollback() {
+    this.db.run("ROLLBACK", (err: Error) => {
+      if (err) {
+        throw new Error(`트랜잭션 롤백 에러`);
+      } else {
+        console.log("트랜잭션 롤백 완료");
+      }
     });
   }
 }
 
-export default class TableCreator extends ImplementedGetTableInfo {
+export default class TransactionController extends ImplementedTransactionController {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
