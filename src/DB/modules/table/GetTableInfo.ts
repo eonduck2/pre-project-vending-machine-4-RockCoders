@@ -42,7 +42,7 @@ class ImplementedGetTableInfo extends AbstractGetTableInfo {
   }
 }
 
-export default class TableCreator extends ImplementedGetTableInfo {
+export default class GetTableInfo extends ImplementedGetTableInfo {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

@@ -1,18 +1,34 @@
 import creator from "./src/DB/modules/manipulation/insert/CreateData";
+import TableCreator from "./src/DB/modules/table/TableCreator";
 import getTable from "./src/DB/modules/table/GetTableInfo";
 import adder from "./src/DB/modules/table/column/Addcolumn";
 import dropper from "./src/DB/modules/table/column/DropColumn";
 import reorderer from "./src/DB/modules/table/column/ReorderColumns";
 
+const tableCreator = new TableCreator(`123.db`);
 // const testAdder = new adder(`123.db`);
 // const testDropper = new dropper(`123.db`);
 const testReorderer = new reorderer(`123.db`);
-// const testCreator = new creator(`123.db`);
+const testCreator = new creator(`123.db`);
 testReorderer.beginTransaction(() => {
-  testReorderer.reorderColumns(`test_tbl2`, { name: "TEXT", age: "INTEGER" });
+  testReorderer.serialize(() => {
+    // testReorderer.reorderColumns(`test_tbl2`, { name: "TEXT", age: "INTEGER" });
+    // testReorderer.reorderColumns(`test_tbl2`, { age: "INTEGER", name: "TEXT" });
+    // testReorderer.commitTransaction();
+    // testReorderer.rollbackTransaction();
+    testReorderer.reorderColumns(`test_tbl3`, { name: "TEXT", age: "INTEGER" });
+    testReorderer.rollbackTransaction();
+    // testReorderer.commitTransaction();
+    // testReorderer.reorderColumns(`test_tbl3`, { age: "INTEGER", name: "TEXT" });
+    // testReorderer.rollbackTransaction();
+    testReorderer.reorderColumns(`test_tbl2`, { name: "TEXT", age: "INTEGER" });
+    testReorderer.commitTransaction();
+  });
+  // testReorderer.rollbackTransaction();
 });
 
-// testCreator.createRecord(`test_tbl2`, { name: `만수`, age: 9999 });
+// tableCreator.createTable(`test_tbl3`, { name: "TEXT", age: "INTEGER" });
+// testCreator.createRecord(`test_tbl3`, { name: `만수`, age: 9999 });
 
 // testReorderer.reorderColumns(`test_tbl2`, { age: "INTEGER", name: "TEXT" });
 
