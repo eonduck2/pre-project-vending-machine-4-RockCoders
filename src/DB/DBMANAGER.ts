@@ -7,19 +7,19 @@ const database = sqlite3VM.Database;
 abstract class AbstractDBManager implements IDBManager {
   protected abstract db: typeof database;
 
-  abstract fileWithPath: string;
+  public abstract fileWithPath: string;
 
-  abstract close(): void;
+  public abstract close(): void;
 
-  abstract serialize(callback: Function): void;
+  public abstract serialize(callback: Function): void;
 
-  abstract parallelize(callback: Function): void;
+  public abstract parallelize(callback: Function): void;
 
-  abstract beginTransaction(callback: Function): void;
+  public abstract beginTransaction(callback: Function): void;
 
-  abstract commit(): void;
+  public abstract commit(): void;
 
-  abstract rollback(): void;
+  public abstract rollback(): void;
 }
 
 class ImplementedDBManager extends AbstractDBManager {

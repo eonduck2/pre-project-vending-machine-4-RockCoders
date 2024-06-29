@@ -6,7 +6,7 @@ abstract class AbstractTableCreator extends DBManager implements ITableCreator {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract createTable(tableName: string, columns: object): void;
+  public abstract createTable(tableName: string, columns: object): void;
 }
 
 class ImplementedTableCreator extends AbstractTableCreator {
