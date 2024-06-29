@@ -21,6 +21,8 @@ class ImplementedReorderColumns extends AbstractReorderColumns {
   /**
    * @eonduck2 24.06.23
    * * 특정 테이블의 컬럼 순서 변경 및 데이터 복사
+   * * 주의 사항: 재배치 시도 중, 오류 발생 시 temp 테이블이 생성될 수 있습니다.
+   * * 위 temp 테이블이 이미 생성된 상태에서 본 기능을 사용할 시, 해당 temp 테이블이 삭제되기 전까지 에러가 뜹니다.
    * @param { string } tableName 변경할 테이블 이름
    * @param { object } columns 컬럼 이름과 타입을 원하는 순서로 정의한 객체
    * * 예시 - 기존 컬럼: { name: "TEXT", age: "INTEGER" }

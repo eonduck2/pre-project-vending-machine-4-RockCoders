@@ -8,12 +8,12 @@ import CreateIndex from "./src/DB/modules/index/CreateIndex";
 import DropIndex from "./src/DB/modules/index/DropIndex";
 import GetIndexes from "./src/DB/modules/index/GetIndexes";
 
-const indexCreator = new CreateIndex(`123.db`);
-const indexDeleter = new DropIndex(`123.db`);
-const indexGetter = new GetIndexes(`123.db`);
+// const indexCreator = new CreateIndex(`123.db`);
+// const indexDeleter = new DropIndex(`123.db`);
+// const indexGetter = new GetIndexes(`123.db`);
 
 // indexCreator.createIndex(`test_name_index3`, `test_tbl2`, `name`);
-indexGetter.getAllIndexes(`test_tbl2`);
+// indexGetter.getAllIndexes(`test_tbl2`);
 // indexDeleter.dropIndex(`test_index`);
 // const tableCreator = new TableCreator(`123.db`);
 // // const testAdder = new adder(`123.db`);
