@@ -6,7 +6,7 @@ abstract class AbstractUpdateData extends DBManager implements IUpdateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract updateRecord(
+  public abstract updateRecord(
     tableName: string,
     whereColumn: string | number,
     whereValue: string | number,
@@ -29,7 +29,7 @@ class ImplementedUpdateData extends AbstractUpdateData {
    *
    * * 사용 예시 updateRecord(`테이블 이름`, `조건 컬럼`, `조건 값`, { 변경시킬 컬럼: "변경시킬 값" });
    */
-  updateRecord(
+  public updateRecord(
     tableName: string,
     whereColumn: string | number,
     whereValue: string | number,
