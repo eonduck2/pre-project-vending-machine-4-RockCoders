@@ -1,5 +1,5 @@
-import DBManager from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBManager from "../../DBMANAGER.js";
+import instanceChecker from "../../throw/instanceChecker.js";
 import ITableCreator from "./TableCreator.interface";
 
 abstract class AbstractTableCreator extends DBManager implements ITableCreator {
