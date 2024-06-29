@@ -22,7 +22,9 @@ class ImplementedReorderColumns extends AbstractReorderColumns {
    * @eonduck2 24.06.23
    * * 특정 테이블의 컬럼 순서 변경 및 데이터 복사
    * @param { string } tableName 변경할 테이블 이름
-   * @param { object } columns 컬럼 이름과 타입을 정의한 객체
+   * @param { object } columns 컬럼 이름과 타입을 원하는 순서로 정의한 객체
+   * * 예시 - 기존 컬럼: { name: "TEXT", age: "INTEGER" }
+   * * 인자로 전달할 재배치 컬럼: { age: "INTEGER", name: "TEXT" }
    */
   reorderColumns(tableName: string, columns: object) {
     // * 1. 새로운 테이블 이름을 생성
