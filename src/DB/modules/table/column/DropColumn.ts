@@ -7,7 +7,10 @@ abstract class AbstractDropColumn extends DBManager implements IDropColumn {
     super(fileWithPath);
   }
 
-  abstract dropColumn(tableName: string, columnName: string | number): void;
+  public abstract dropColumn(
+    tableName: string,
+    columnName: string | number
+  ): void;
 }
 
 class ImplementedDropColumn extends AbstractDropColumn {
@@ -21,7 +24,7 @@ class ImplementedDropColumn extends AbstractDropColumn {
    * @param { string } tableName 대상으로 지정되는 테이블
    * @param { string | number } columnName 삭제될 컬럼 이름
    */
-  dropColumn(tableName: string, columnName: string | number) {
+  public dropColumn(tableName: string, columnName: string | number) {
     const sql = `ALTER TABLE ${tableName} DROP COLUMN ${columnName}`;
 
     this.db.run(sql, (err: Error) => {
