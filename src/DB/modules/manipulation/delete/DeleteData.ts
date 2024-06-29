@@ -1,5 +1,5 @@
-import DBManager from "../../../DBMANAGER";
-import instanceChecker from "../../../throw/instanceChecker";
+import DBManager from "../../../DBMANAGER.js";
+import instanceChecker from "../../../throw/instanceChecker.js";
 import IDeleteData from "./DeleteData.interface";
 
 abstract class AbstractDeleteData extends DBManager implements IDeleteData {
