@@ -1,4 +1,4 @@
-import IDBManager from "./DBManager.interface.js";
+import IDBManager from "./DBManager.interface";
 import instanceChecker from "./throw/instanceChecker.js";
 import sqlite3 from "sqlite3";
 

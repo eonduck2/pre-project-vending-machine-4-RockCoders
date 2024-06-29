@@ -1,5 +1,5 @@
-import DBManager from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBManager from "../../DBMANAGER.js";
+import instanceChecker from "../../throw/instanceChecker.js";
 import IGetDBSize from "./GetDBSize.interface";
 
 abstract class AbstractGetDBSize extends DBManager implements IGetDBSize {
