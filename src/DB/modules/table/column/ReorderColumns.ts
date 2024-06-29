@@ -10,7 +10,7 @@ abstract class AbstractReorderColumns
     super(fileWithPath);
   }
 
-  abstract reorderColumns(tableName: string, columns: object): void;
+  public abstract reorderColumns(tableName: string, columns: object): void;
 }
 
 class ImplementedReorderColumns extends AbstractReorderColumns {
@@ -26,7 +26,7 @@ class ImplementedReorderColumns extends AbstractReorderColumns {
    * * 예시 - 기존 컬럼: { name: "TEXT", age: "INTEGER" }
    * * 인자로 전달할 재배치 컬럼: { age: "INTEGER", name: "TEXT" }
    */
-  reorderColumns(tableName: string, columns: object) {
+  public reorderColumns(tableName: string, columns: object) {
     // * 1. 새로운 테이블 이름을 생성
     const newTableName = `${tableName}_temp`;
 
