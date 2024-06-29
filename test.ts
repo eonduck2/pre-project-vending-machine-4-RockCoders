@@ -10,6 +10,20 @@ import GetIndexes from "./src/DB/modules/index/GetIndexes";
 import BackUpDB from "./src/DB/modules/backup/BackUpNowDB";
 import RestoreDBFromBackUp from "./src/DB/modules/backup/RestoreDBFromBackUp";
 
+import DBManager from "./src/DB/DBMANAGER";
+import GetDBSize from "./src/DB/modules/utilities/GetDBSize";
+import ConstraintHelper from "./src/DB/modules/utilities/ConstraintHelper";
+
+// const sizer = new GetDBSize(`123.db`);
+// const test = new DBManager(`123.db`);
+const testCon = ConstraintHelper.getDefaultConstraints();
+testCon.primaryKey = true;
+testCon.notNull = true;
+testCon.type.TEXT = true;
+// console.log(testCon);
+const testGen = ConstraintHelper.generateConstraintString(testCon);
+console.log(testGen);
+
 // const BUDB = new BackUpDB(`123.db`);
 // const RDBFBU = new RestoreDBFromBackUp(`123.db`);
 

@@ -150,6 +150,7 @@ class ImplementedDBManager extends AbstractDBManager {
 
 export default class DBManager extends ImplementedDBManager {
   constructor(fileWithPath: string) {
+    instanceChecker(new.target, DBManager);
     super(fileWithPath);
   }
 }
