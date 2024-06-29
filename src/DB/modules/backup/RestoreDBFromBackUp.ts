@@ -1,8 +1,13 @@
-import DBManager from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBManager from "../../DBMANAGER.js";
+import instanceChecker from "../../throw/instanceChecker.js";
 import IRestoreDBFromBackUp from "./RestoreDBFromBackUp.interface";
+import sqlite3 from "sqlite3";
 
-const sqlite3VM = require(`sqlite3`).verbose();
+const sqlite3VM = sqlite3.verbose();
+
+// ! CJS
+// const sqlite3VM = require(`sqlite3`).verbose();
+// ! CJS
 
 abstract class AbstractRestoreDBFromBackUp
   extends DBManager
@@ -33,7 +38,7 @@ class ImplementedRestoreDBFromBackUp extends AbstractRestoreDBFromBackUp {
     const backupDb = new sqlite3VM.Database(
       backupDbFilePath,
       sqlite3VM.OPEN_READONLY,
-      (err: Error) => {
+      (err: Error | null) => {
         if (err) {
           throw new Error(`백업 DB 오픈 실패`);
         } else {
@@ -65,7 +70,7 @@ class ImplementedRestoreDBFromBackUp extends AbstractRestoreDBFromBackUp {
               }
             },
             () => {
-              backupDb.close((closeErr: Error) => {
+              backupDb.close((closeErr: Error | null) => {
                 if (closeErr) {
                   throw new Error(`백업 DB 연결 해제 실패`);
                 } else {
