@@ -1,5 +1,5 @@
-import DBManager from "../../../DBMANAGER";
-import instanceChecker from "../../../throw/instanceChecker";
+import DBManager from "../../../DBMANAGER.js";
+import instanceChecker from "../../../throw/instanceChecker.js";
 import ICreateData from "./CreateData.interface";
 
 abstract class AbstractCreateData extends DBManager implements ICreateData {
