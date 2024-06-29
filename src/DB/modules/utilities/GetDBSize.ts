@@ -18,7 +18,7 @@ class ImplementedGetDBSize extends AbstractGetDBSize {
    * @eonduck2 24.06.22
    * * 특정 DB 파일의 크기를 KB 단위로 나타내는 기능
    */
-  getDBSize() {
+  public getDBSize() {
     const sql = `PRAGMA page_count`;
     this.db.get(sql, (err: Error, result: { page_count: number }) => {
       if (err) {
