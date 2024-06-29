@@ -2,7 +2,7 @@ import IBeginTransaction from "../../interfaces/transaction/BeginTransaction.int
 import ICommitTransaction from "../../interfaces/transaction/CommitTransaction.interface";
 import IRollbackTransaction from "../../interfaces/transaction/RollbackTransaction.interface";
 
-export default interface TransactionController
+export default interface ITransactionController
   extends IBeginTransaction,
     ICommitTransaction,
     IRollbackTransaction {}
