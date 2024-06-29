@@ -1,3 +1,3 @@
-export default interface ICreateTable {
-  createTable(tableName: string, columns: object): void;
+export default interface IReordering {
+  reorderColumns(tableName: string, columns: object): void;
 }
