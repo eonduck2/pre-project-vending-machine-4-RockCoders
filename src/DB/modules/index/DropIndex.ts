@@ -19,7 +19,7 @@ class ImplementedDropIndex extends AbstractDropIndex {
    * * 특정 인덱스를 삭제
    * @param { string } indexName 삭제할 인덱스의 이름
    */
-  dropIndex(indexName: string) {
+  public dropIndex(indexName: string) {
     const sql = `DROP INDEX IF EXISTS ${indexName}`;
     this.db.run(sql, (err: Error) => {
       if (err) {

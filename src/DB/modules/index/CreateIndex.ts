@@ -3,9 +3,7 @@ import instanceChecker from "../../throw/instanceChecker";
 import ICreateIndex from "./CreateIndex.interface";
 
 type IndexInfo = {
-  seq: number;
   name: string;
-  unique: number;
 };
 
 abstract class AbstractCreateIndex extends DBManager implements ICreateIndex {
@@ -31,7 +29,11 @@ class ImplementedCreateIndex extends AbstractCreateIndex {
    * @param { string } tableName 인덱스 생성을 위해 접근하는 테이블 이름
    * @param { string | number } column 인덱스를 생성시킬 컬럼 이름
    */
-  createIndex(indexName: string, tableName: string, column: string | number) {
+  public createIndex(
+    indexName: string,
+    tableName: string,
+    column: string | number
+  ) {
     const checkIndexSql = `PRAGMA index_list(${tableName})`;
     this.db.all(checkIndexSql, (err: Error, indexes: IndexInfo[]) => {
       if (err) {
