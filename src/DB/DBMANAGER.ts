@@ -20,6 +20,8 @@ abstract class AbstractDBManager implements IDBManager {
   public abstract commitTransaction(): void;
 
   public abstract rollbackTransaction(): void;
+
+  public abstract optimizeDB(): void;
 }
 
 class ImplementedDBManager extends AbstractDBManager {
@@ -125,6 +127,22 @@ class ImplementedDBManager extends AbstractDBManager {
         throw new Error(`트랜잭션 롤백 에러`);
       } else {
         console.log("트랜잭션 롤백 완료");
+      }
+    });
+  }
+
+  /**
+   * @eonduck2 24.06.22
+   * * DB를 최적화 하는 기능
+   * * DB 파일이 계속 사용 되면서 파일 크기가 지속적으로 늘어나는 상황 방지 가능
+   * * 특정 테이블에서 데이터 조작(삽입, 삭제, 갱신 ...) 후, 사용 권장
+   */
+  public optimizeDB() {
+    this.db.run("VACUUM", (err: Error) => {
+      if (err) {
+        throw new Error("DB 최적화 실패");
+      } else {
+        console.log("DB 최적화 성공");
       }
     });
   }
