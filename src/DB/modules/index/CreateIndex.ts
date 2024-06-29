@@ -1,5 +1,5 @@
-import DBManager from "../../DBMANAGER";
-import instanceChecker from "../../throw/instanceChecker";
+import DBManager from "../../DBMANAGER.js";
+import instanceChecker from "../../throw/instanceChecker.js";
 import ICreateIndex from "./CreateIndex.interface";
 
 type IndexInfo = {
