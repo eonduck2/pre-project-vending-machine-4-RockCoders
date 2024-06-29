@@ -1,5 +1,5 @@
-import DBManager from "../../../DBMANAGER";
-import instanceChecker from "../../../throw/instanceChecker";
+import DBManager from "../../../DBMANAGER.js";
+import instanceChecker from "../../../throw/instanceChecker.js";
 import IAddColumn from "./AddColumn.interface";
 
 abstract class AbstractAddColumn extends DBManager implements IAddColumn {
