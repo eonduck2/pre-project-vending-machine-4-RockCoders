@@ -5,6 +5,7 @@ import IParallelize from "./interfaces/managing/Parallelize.interface";
 import IBeginTransaction from "./interfaces/transaction/BeginTransaction.interface";
 import ICommitTransaction from "./interfaces/transaction/CommitTransaction.interface";
 import IRollbackTransaction from "./interfaces/transaction/RollbackTransaction.interface";
+import IOptimize from "./interfaces/managing/Optimize.interface";
 
 export default interface IDBManager
   extends IFileWithPath,
@@ -13,4 +14,5 @@ export default interface IDBManager
     IParallelize,
     IBeginTransaction,
     ICommitTransaction,
-    IRollbackTransaction {}
+    IRollbackTransaction,
+    IOptimize {}
