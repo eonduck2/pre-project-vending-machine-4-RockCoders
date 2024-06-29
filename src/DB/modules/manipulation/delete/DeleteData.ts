@@ -6,13 +6,13 @@ abstract class AbstractDeleteData extends DBManager implements IDeleteData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract deleteRecord(
+  public abstract deleteRecord(
     tableName: string,
     whereColumn: string | number,
     whereValue: string | number
   ): void;
 
-  abstract deleteRecordsAll(tableName: string): void;
+  public abstract deleteRecordsAll(tableName: string): void;
 }
 
 class ImplementedDeleteData extends AbstractDeleteData {
@@ -28,7 +28,7 @@ class ImplementedDeleteData extends AbstractDeleteData {
    * @param { string | number } whereColumn 조건 지정을 위한 열의 이름
    * @param { string | number } whereValue 조건 지정을 위한 해당 컬럼 내의 값
    */
-  deleteRecord(
+  public deleteRecord(
     tableName: string,
     whereColumn: string | number,
     whereValue: string | number
@@ -49,7 +49,7 @@ class ImplementedDeleteData extends AbstractDeleteData {
    * * 특정 테이블의 모든 데이터 삭제
    * @param { string } tableName 모든 데이터를 삭제하기 위해 지정할 테이블
    */
-  deleteRecordsAll(tableName: string) {
+  public deleteRecordsAll(tableName: string) {
     const sql = `DELETE FROM ${tableName}`;
 
     this.db.run(sql, (err: Error) => {
