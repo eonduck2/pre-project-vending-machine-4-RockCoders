@@ -1,3 +1,3 @@
 export default interface IRollbackTransaction {
-  rollback(): void;
+  rollbackTransaction(): void;
 }

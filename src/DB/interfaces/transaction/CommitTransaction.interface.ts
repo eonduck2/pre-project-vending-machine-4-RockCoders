@@ -1,3 +1,3 @@
 export default interface ICommitTransaction {
-  commit(): void;
+  commitTransaction(): void;
 }

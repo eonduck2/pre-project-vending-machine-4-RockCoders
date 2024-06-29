@@ -17,9 +17,9 @@ abstract class AbstractDBManager implements IDBManager {
 
   public abstract beginTransaction(callback: Function): void;
 
-  public abstract commit(): void;
+  public abstract commitTransaction(): void;
 
-  public abstract rollback(): void;
+  public abstract rollbackTransaction(): void;
 }
 
 class ImplementedDBManager extends AbstractDBManager {
@@ -57,12 +57,22 @@ class ImplementedDBManager extends AbstractDBManager {
     });
   }
 
+  /**
+   * @eonduck2 24.06.27
+   * * DB 작업의 순서를 보장(직렬적 실행)
+   * @param callback 작업이 진행될 콜백 함수
+   */
   public serialize(callback: Function): void {
     this.db.serialize(() => {
       callback();
     });
   }
 
+  /**
+   * @eonduck2 24.06.27
+   * * DB 작업 병렬적 수행
+   * @param callback 작업이 진행될 콜백 함수
+   */
   public parallelize(callback: Function): void {
     this.db.parallelize(() => {
       callback();
@@ -92,7 +102,7 @@ class ImplementedDBManager extends AbstractDBManager {
    * * beginTransction 메서드 내, 쿼리 작업을 commit 할 때 사용
    * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
-  public commit() {
+  public commitTransaction() {
     this.db.run("COMMIT", (err: Error) => {
       if (err) {
         throw new Error(`트랜잭션 커밋 에러`);
@@ -108,7 +118,7 @@ class ImplementedDBManager extends AbstractDBManager {
    * * beginTransction 메서드 내, 쿼리 작업을 rollback 할 때 사용
    * * 단위 별로 묶는 작업 필요성 못 느낄 시, 사용할 필요 X
    */
-  public rollback() {
+  public rollbackTransaction() {
     this.db.run("ROLLBACK", (err: Error) => {
       if (err) {
         throw new Error(`트랜잭션 롤백 에러`);
