@@ -25,6 +25,7 @@ abstract class AbstractDBManager implements IDBManager {
 class ImplementedDBManager extends AbstractDBManager {
   protected db: typeof database;
   public fileWithPath: string;
+
   /**
    * @eonduck2 24.06.21
    * * 인자로 받은 경로에 존재하는 DB 파일을 연결(존재하지 않을 시 생성)

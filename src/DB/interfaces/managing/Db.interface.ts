@@ -1,5 +1,3 @@
-// import { Database } from "sqlite3";
-
 const sqlite3VM = require(`sqlite3`).verbose();
 const database = sqlite3VM.Database;
 
