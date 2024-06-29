@@ -20,7 +20,7 @@ class ImplementedTableCreator extends AbstractTableCreator {
    * @param { string } tableName 생성시킬 테이블 이름
    * @param { object } columns 컬럼 이름과 타입을 정의한 객체
    */
-  createTable(tableName: string, columns: object): void {
+  public createTable(tableName: string, columns: object): void {
     const columnsDefinition = Object.entries(columns)
       .map(([name, type]) => `${name} ${type}`)
       .join(", ");
