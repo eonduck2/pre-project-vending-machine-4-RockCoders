@@ -1,11 +1,8 @@
-import DBConnector from "../../DBMANAGER";
+import DBManager from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
 import IGetTableInfo from "./GetTableInfo.interface";
 
-abstract class AbstractGetTableInfo
-  extends DBConnector
-  implements IGetTableInfo
-{
+abstract class AbstractGetTableInfo extends DBManager implements IGetTableInfo {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

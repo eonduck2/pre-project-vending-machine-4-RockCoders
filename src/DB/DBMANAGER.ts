@@ -1,10 +1,10 @@
-import IDBConnector from "./DBConnector.interface";
+import IDBManager from "./DBConnector.interface";
 import instanceChecker from "./throw/instanceChecker";
 
 const sqlite3VM = require(`sqlite3`).verbose();
 const database = sqlite3VM.Database;
 
-abstract class AbstractDBConnector implements IDBConnector {
+abstract class AbstractDBManager implements IDBManager {
   protected abstract db: typeof database;
 
   abstract fileWithPath: string;
@@ -13,7 +13,7 @@ abstract class AbstractDBConnector implements IDBConnector {
   abstract parallelize(callback: Function): void;
 }
 
-class ImplementedDBConnector extends AbstractDBConnector {
+class ImplementedDBManager extends AbstractDBManager {
   protected db: typeof database;
   public fileWithPath: string;
   /**
@@ -23,10 +23,8 @@ class ImplementedDBConnector extends AbstractDBConnector {
    */
   constructor(fileWithPath: string) {
     super();
-    instanceChecker(new.target, ImplementedDBConnector);
-    // if (new.target === DBConnector) {
-    //   throw new Error("DBManager 클래스는 직접 인스턴스화 할 수 없음");
-    // }
+    instanceChecker(new.target, ImplementedDBManager);
+
     this.fileWithPath = fileWithPath;
     this.db = new sqlite3VM.Database(fileWithPath, (err: Error) => {
       if (err) {
@@ -63,7 +61,7 @@ class ImplementedDBConnector extends AbstractDBConnector {
   }
 }
 
-export default class DBConnector extends ImplementedDBConnector {
+export default class DBManager extends ImplementedDBManager {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

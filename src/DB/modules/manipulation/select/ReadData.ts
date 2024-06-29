@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IReadData from "./ReadData.interface";
 
-abstract class AbstractReadData extends DBConnector implements IReadData {
+abstract class AbstractReadData extends DBManager implements IReadData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

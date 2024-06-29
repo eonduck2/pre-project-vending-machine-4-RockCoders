@@ -1,9 +1,9 @@
-import DBConnector from "../../DBMANAGER";
+import DBManager from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
 import ITransactionController from "./TransactionControler.interface";
 
 abstract class AbstractTransactionController
-  extends DBConnector
+  extends DBManager
   implements ITransactionController
 {
   constructor(fileWithPath: string) {

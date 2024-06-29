@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IUpdateData from "./UpdateData.interface";
 
-abstract class AbstractUpdateData extends DBConnector implements IUpdateData {
+abstract class AbstractUpdateData extends DBManager implements IUpdateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

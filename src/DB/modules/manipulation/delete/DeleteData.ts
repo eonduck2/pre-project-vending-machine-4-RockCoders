@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IDeleteData from "./DeleteData.interface";
 
-abstract class AbstractDeleteData extends DBConnector implements IDeleteData {
+abstract class AbstractDeleteData extends DBManager implements IDeleteData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

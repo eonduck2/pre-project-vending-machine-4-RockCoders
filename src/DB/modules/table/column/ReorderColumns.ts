@@ -1,9 +1,9 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IReorderColumns from "./ReorderColumns.interface";
 
 abstract class AbstractReorderColumns
-  extends DBConnector
+  extends DBManager
   implements IReorderColumns
 {
   constructor(fileWithPath: string) {

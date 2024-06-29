@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IAddColumn from "./AddColumn.interface";
 
-abstract class AbstractAddColumn extends DBConnector implements IAddColumn {
+abstract class AbstractAddColumn extends DBManager implements IAddColumn {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

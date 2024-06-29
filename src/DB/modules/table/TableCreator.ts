@@ -1,11 +1,8 @@
-import DBConnector from "../../DBMANAGER";
+import DBManager from "../../DBMANAGER";
 import instanceChecker from "../../throw/instanceChecker";
 import ITableCreator from "./TableCreator.interface";
 
-abstract class AbstractTableCreator
-  extends DBConnector
-  implements ITableCreator
-{
+abstract class AbstractTableCreator extends DBManager implements ITableCreator {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

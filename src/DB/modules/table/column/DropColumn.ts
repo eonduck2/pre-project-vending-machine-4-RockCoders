@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import IDropColumn from "./DropColumn.interface";
 
-abstract class AbstractDropColumn extends DBConnector implements IDropColumn {
+abstract class AbstractDropColumn extends DBManager implements IDropColumn {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

@@ -3,7 +3,7 @@ import IDBCloser from "./interfaces/managing/Close.interface";
 import ISerialize from "./interfaces/managing/Serialize.interface";
 import IParallelize from "./interfaces/managing/Parallelize.interface";
 
-export default interface IDBConnector
+export default interface IDBManager
   extends IFileWithPath,
     IDBCloser,
     ISerialize,

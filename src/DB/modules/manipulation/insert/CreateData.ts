@@ -1,8 +1,8 @@
-import DBConnector from "../../../DBMANAGER";
+import DBManager from "../../../DBMANAGER";
 import instanceChecker from "../../../throw/instanceChecker";
 import ICreateData from "./CreateData.interface";
 
-abstract class AbstractCreateData extends DBConnector implements ICreateData {
+abstract class AbstractCreateData extends DBManager implements ICreateData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
