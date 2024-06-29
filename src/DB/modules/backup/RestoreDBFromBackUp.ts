@@ -29,7 +29,7 @@ class ImplementedRestoreDBFromBackUp extends AbstractRestoreDBFromBackUp {
    * @param { string } backupDbFilePath 복사 대상이 될 DB파일의 경로와 파일명
    * @param { string } tableName 백업 DB의 복사 대상 테이블
    */
-  restoreDBFromBackup(backupDbFilePath: string, tableName: string) {
+  public restoreDBFromBackup(backupDbFilePath: string, tableName: string) {
     const backupDb = new sqlite3VM.Database(
       backupDbFilePath,
       sqlite3VM.OPEN_READONLY,
