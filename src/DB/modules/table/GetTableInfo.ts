@@ -6,7 +6,7 @@ abstract class AbstractGetTableInfo extends DBManager implements IGetTableInfo {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }
-  abstract getTableInfo(
+  public abstract getTableInfo(
     tableName: string,
     log: boolean
   ): Promise<Array<object>>;
@@ -24,7 +24,7 @@ class ImplementedGetTableInfo extends AbstractGetTableInfo {
    * @param { boolean } log true 값으로 보낼 시, 데이터 리턴과 동시에 console에 logging
    * @returns { promise } 특정 테이블 정보가 포함된 Promise
    */
-  getTableInfo(tableName: string, log = false): Promise<Array<object>> {
+  public getTableInfo(tableName: string, log = false): Promise<Array<object>> {
     const sql = `PRAGMA table_info(${tableName})`;
 
     return new Promise((resolve, reject) => {
