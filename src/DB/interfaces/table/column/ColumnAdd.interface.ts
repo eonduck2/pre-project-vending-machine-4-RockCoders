@@ -1,4 +1,4 @@
-export default interface IReordering {
+export default interface IColumnAdd {
   addColumn(
     tableName: string,
     columnName: string | number,
