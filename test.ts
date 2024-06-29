@@ -10,14 +10,14 @@ import GetIndexes from "./src/DB/modules/index/GetIndexes";
 import BackUpDB from "./src/DB/modules/backup/BackUpNowDB";
 import RestoreDBFromBackUp from "./src/DB/modules/backup/RestoreDBFromBackUp";
 
-const BUDB = new BackUpDB(`123.db`);
-const RDBFBU = new RestoreDBFromBackUp(`123.db`);
+// const BUDB = new BackUpDB(`123.db`);
+// const RDBFBU = new RestoreDBFromBackUp(`123.db`);
 
 // BUDB.backupDB(`1234.db`);
-RDBFBU.restoreDBFromBackup(`1234.db`, `test_tbl2`);
+// RDBFBU.restoreDBFromBackup(`1234.db`, `test_tbl2`);
 
 // const indexCreator = new CreateIndex(`123.db`);
-const indexDeleter = new DropIndex(`123.db`);
+// const indexDeleter = new DropIndex(`123.db`);
 // indexDeleter.dropIndex(`test_age_index`);
 // const indexGetter = new GetIndexes(`123.db`);
 
