@@ -1,11 +1,20 @@
 import IDBManager from "./DBManager.interface.js";
 import instanceChecker from "./throw/instanceChecker.js";
+import sqlite3 from "sqlite3";
 
-const sqlite3VM = require(`sqlite3`).verbose();
-const database = sqlite3VM.Database;
+const sqlite3VM = sqlite3.verbose();
+
+// ! cjs
+// const sqlite3VM = require(`sqlite3`).verbose();
+// const database = sqlite3VM.Database;
+// ! cjs
 
 abstract class AbstractDBManager implements IDBManager {
-  protected abstract db: typeof database;
+  // !cjs
+  // protected abstract db: typeof database;
+  // !cjs
+
+  protected abstract db: sqlite3.Database;
 
   public abstract fileWithPath: string;
 
@@ -25,7 +34,7 @@ abstract class AbstractDBManager implements IDBManager {
 }
 
 class ImplementedDBManager extends AbstractDBManager {
-  protected db: typeof database;
+  protected db: sqlite3.Database;
   public fileWithPath: string;
 
   /**
@@ -38,7 +47,7 @@ class ImplementedDBManager extends AbstractDBManager {
     instanceChecker(new.target, ImplementedDBManager);
 
     this.fileWithPath = fileWithPath;
-    this.db = new sqlite3VM.Database(fileWithPath, (err: Error) => {
+    this.db = new sqlite3VM.Database(fileWithPath, (err: Error | null) => {
       if (err) {
         throw new Error("DB 연결 실패");
       } else {
@@ -51,7 +60,7 @@ class ImplementedDBManager extends AbstractDBManager {
    * * DB와의 연결 해제
    */
   public close(): void {
-    this.db.close((err: Error) => {
+    this.db.close((err: Error | null) => {
       if (err) {
         throw new Error("DB 커넥션 close 오류");
       } else {
