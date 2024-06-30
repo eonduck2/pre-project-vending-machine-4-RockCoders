@@ -1,5 +1,8 @@
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
 
+/**
+ * * ui관련의 기능을 모두 수행하는 class
+ */
 export class UIManager {
     //클래스 내부에서만 접근 가능한 속성이나 메서드
   private storageManager: LocalStorageModel;

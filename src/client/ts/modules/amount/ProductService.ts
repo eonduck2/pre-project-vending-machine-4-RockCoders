@@ -1,3 +1,6 @@
+/**
+ * * fetch의 기능을 수행하는 class
+ */
 export class ProductService {
   async fetchProducts(): Promise<Array<{ id: number, name: string, price: number }>> {
     const response = await fetch('/products');
