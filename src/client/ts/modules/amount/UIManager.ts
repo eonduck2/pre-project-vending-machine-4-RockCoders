@@ -1,7 +1,23 @@
-export class UIManager {
+import LocalStorageModel from '../../../../localStorage/localStorage.js'
 
+export class UIManager {
+    //클래스 내부에서만 접근 가능한 속성이나 메서드
+  private storageManager: LocalStorageModel;
+  //객체가 생성될 때 자동으로 호출되어 초기화를 수행하는 메서드
+  constructor() {
+    this.storageManager = new LocalStorageModel();
+  }
+
+  /**
+   * @moonhr 24.07.01
+   * * 페이지 로드 시 LocalStorage에 저장된 잔액을 화면에 표시하는 메서드
+   */
   displayBalance(): void {
-    // 잔액 출력 로직
+    const balanceElement = document.getElementById('balance') as HTMLParagraphElement;
+    const balance: number | null = this.storageManager.getItem("balance");
+    if (balance !== null) {
+      balanceElement.innerText = balance.toString();
+    }
   }
 
   /**

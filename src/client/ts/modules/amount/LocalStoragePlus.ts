@@ -2,7 +2,9 @@ import LocalStorageModel from "../../../../localStorage/localStorage.js";
 
 
 export class LocalStoragePlus {
+  //클래스 내부에서만 접근 가능한 속성이나 메서드
   private storageManager: LocalStorageModel;
+  //객체가 생성될 때 자동으로 호출되어 초기화를 수행하는 메서드
   constructor() {
     this.storageManager = new LocalStorageModel();
   }
