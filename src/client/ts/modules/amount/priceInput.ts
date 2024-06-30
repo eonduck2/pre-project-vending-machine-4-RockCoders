@@ -16,7 +16,7 @@ export async function priceInput() {
     return;
   }
 
-  const storageManager = new LocalStorageManager();
+  const storageManager = new LocalStoragePlus();
   const currentBalance = storageManager.updateBalance(money);
 
   const uiManager = new UIManager();
