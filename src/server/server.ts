@@ -17,12 +17,14 @@ interface reqData {
 }
 
 // *테이블 생성
+// *상품 테이블
 const createTable = new TableCreator(dbPath);
 createTable.createTable('products', {
   id: 'INTEGER PRIMARY KEY AUTOINCREMENT',
   name: 'TEXT',
   price: 'INTEGER'
 });
+// *history 테이블
 createTable.createTable('history', {
   name: 'TEXT',
   price: 'INTEGER'
@@ -111,6 +113,7 @@ interface Product {
 
 app.post('/purchase', (req, res) => {
   const products : Product[] = req.body.products;
+  // * 배열이 아닌 경우 err
   if (!Array.isArray(products)) {
     return res.status(400).send('유효한 변수 타입이 아닙니다.');
   }
@@ -126,35 +129,6 @@ app.post('/purchase', (req, res) => {
     createProduct.close();
     return res.redirect('/');
   });
-  // dbManager.db.serialize(()=> {
-  //   const products : Product[] = req.body.products;
-
-  //   // * 배열이 아닌 경우 err
-  //   if (!Array.isArray(products)) {
-  //     return res.status(400).send('유효한 변수 타입이 아닙니다.');
-  //   }
-
-  //   // * history Table 생성
-  //   dbManager.createTable("history", {
-  //     "name" : "TEXT",
-  //     "price" : "INTEGER"
-  //   });
-
-  //   // * products 배열을 받아서 각각의 레코드 생성
-  //   products.forEach(product => {
-  //     // * 각 레코드의 형식 변환
-  //     const record: Record<string, string | number> = {
-  //       name: product.name,
-  //       price: product.price
-  //     };
-  //     // * history 테이블에 레코드 추가
-  //     dbManager.createRecord("history", record);
-  //   });
-
-  //   // * 데이터베이스 연결 종료
-  //   dbManager.closeConnection()
-  //   res.send('데이터베이스 연결 종료');
-  // });
 });
 
 app.listen(PORT, () => {
