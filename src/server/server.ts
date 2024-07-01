@@ -63,9 +63,6 @@ app.post("/create", (req, res) => {
   return res.redirect('/admin');
 });
 
-// dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
-
-
 app.get("/products", (req, res) => {
   const readData = new ReadData(dbPath);
   readData.readRecordsAll('products', false)
