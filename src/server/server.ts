@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import __dirname from "../modules/__dirname.js";
-import dbManager from "../DB/db.js";
 import morgan from "morgan";
 import TableCreator from "../DB/modules/table/TableCreator.js";
 import dbPath from "../DB/db.js";
@@ -16,9 +15,6 @@ interface reqData {
   name : string,
   price : number
 }
-
-// * DB연결
-
 
 // *테이블 생성
 const createTable = new TableCreator(dbPath);
