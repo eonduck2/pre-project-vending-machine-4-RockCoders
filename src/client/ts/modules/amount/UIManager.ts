@@ -37,8 +37,8 @@ export class UIManager {
         const productDiv = document.createElement('div');
         productDiv.innerHTML = `
           <div class="w-full h-44 flex flex-col items-center bg-gray-300 relative">
-            <div class="text-base w-4/5 overflow-auto absolute top-1/4">${product.id}</div>
-            <div class="text-base w-4/5 overflow-auto absolute top-2/4">${product.name}</div>
+            <div class="text-base w-4/5 overflow-auto absolute top-1/10">${product.id}</div>
+            <div class="text-base w-4/5 overflow-auto absolute top-1/4">${product.name}</div>
             <div class="w-4/5 h-7 rounded-full bg-white absolute top-2/3 flex justify-center items-center">${product.price}</div>
           </div>
         `;
