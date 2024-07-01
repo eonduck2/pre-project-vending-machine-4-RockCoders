@@ -3,6 +3,7 @@
  * * 총액 출력하는 함수
  * 저장해 놓은 총액 넘버를 가져와서 출력만 함
  * @param totalPrice - 총액 totalprice의 리턴값을 넣어준다. 또는 객체 변수 넣어주면됨  
+ * @param paymentAmount - 로컬스토리지 balance 총액
  */
 export default ((totalPrice: number, paymentAmount: number) => {
   const totalPriceElement = document.getElementById('total-price') as HTMLUListElement;
