@@ -7,11 +7,11 @@ import dbPath from '../DB/db.js';
 import CreateData from '../DB/modules/manipulation/insert/CreateData.js';
 import { Product } from '../modules/interface/Product.js';
 
-export const home = ((req: Request, res:Response) => {
+export const home = (req: Request, res:Response) => {
   return res.sendFile(path.join(__dirname, "public/index.html"));
-});
+};
 
-export const products = ((req:Request, res:Response) => {
+export const products = (req:Request, res:Response) => {
   const readData = new ReadData(dbPath);
   readData.readRecordsAll('products', false)
     .then((products) => {
@@ -22,9 +22,9 @@ export const products = ((req:Request, res:Response) => {
       res.status(500).json({ error: 'Failed to fetch products' });
     });
   readData.close();
-});
+};
 
-export const purchase = ((req:Request, res:Response) => {
+export const purchase = (req:Request, res:Response) => {
   const products : Product[] = req.body.products;
   // * 배열이 아닌 경우 err
   if (!Array.isArray(products)) {
@@ -42,4 +42,4 @@ export const purchase = ((req:Request, res:Response) => {
     createProduct.close();
     return res.redirect('/');
   });
-})
+};

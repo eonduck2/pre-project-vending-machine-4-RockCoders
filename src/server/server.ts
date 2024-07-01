@@ -7,8 +7,8 @@ import dbPath from "../DB/db.js";
 import CreateData from "../DB/modules/manipulation/insert/CreateData.js";
 import UpdateData from "../DB/modules/manipulation/update/UpdateData.js";
 import DeleteData from "../DB/modules/manipulation/delete/DeleteData.js";
-import ReadData from "../DB/modules/manipulation/select/ReadData.js"
 import rootRouter from "../routers/rootRouter.js";
+import adminRouter from "../routers/adminRouter.js";
 
 const app = express();
 
@@ -45,10 +45,7 @@ app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱�
 
 // * 라우터
 app.use('/', rootRouter);
-
-app.get('/admin', (req, res) => {
-  return res.sendFile(path.join(publicPath, "admin.html"));
-})
+app.use('/admin', adminRouter);
 
 // *제품 추가
 app.post("/create", (req, res) => {
