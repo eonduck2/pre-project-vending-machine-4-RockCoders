@@ -43,6 +43,7 @@ app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱해주기 때문에 지우면 안됨
 // app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
 
+// * 라우터
 app.use('/', rootRouter);
 
 app.get('/admin', (req, res) => {
@@ -59,19 +60,6 @@ app.post("/create", (req, res) => {
   });
   createProduct.close();
   return res.redirect('/admin');
-});
-
-app.get("/products", (req, res) => {
-  const readData = new ReadData(dbPath);
-  readData.readRecordsAll('products', false)
-    .then((products) => {
-      res.json(products);
-    })
-    .catch((err) => {
-      console.error('Error fetching products:', err);
-      res.status(500).json({ error: 'Failed to fetch products' });
-    });
-  readData.close();
 });
 
 // *제품 수정
