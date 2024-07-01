@@ -4,7 +4,7 @@
 */
 
 import calculateTotalRevenue from "./CalculateTotalSales"
-import calculateMostSoldProduct from "./calculateMostSoldProduct"
+import calculateMostSoldProduct from "./CalculateMostSoldProduct"
 
 const generateSalesReport = async (table : string) => {
   try {
