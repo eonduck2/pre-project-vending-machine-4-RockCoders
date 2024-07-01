@@ -12,7 +12,7 @@ import rootRouter from "../routers/rootRouter.js";
 
 const app = express();
 
-interface reqData {
+interface formData {
   id : string,
   name : string,
   price : number
@@ -57,7 +57,7 @@ app.get('/admin', (req, res) => {
 
 // *제품 추가
 app.post("/create", (req, res) => {
-  const { name, price } = req.body as reqData;
+  const { name, price } = req.body as formData;
   const createProduct = new CreateData(dbPath);
   createProduct.createRecord('products', {
     name:name,
@@ -82,7 +82,7 @@ app.get("/products", (req, res) => {
 
 // *제품 수정
 app.post('/update', (req, res) => {
-  const { id, name, price } = req.body as reqData;
+  const { id, name, price } = req.body as formData;
   const updateProduct = new UpdateData(dbPath);
   updateProduct.updateRecord('products', 'id', id, {
     name:name,
