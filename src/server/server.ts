@@ -23,6 +23,10 @@ createTable.createTable('products', {
   name: 'TEXT',
   price: 'INTEGER'
 });
+createTable.createTable('history', {
+  name: 'TEXT',
+  price: 'INTEGER'
+});
 createTable.close();
 
 //* 미들웨어로 등록하기 위한 경로 설정
@@ -106,6 +110,22 @@ interface Product {
 }
 
 app.post('/purchase', (req, res) => {
+  const products : Product[] = req.body.products;
+  if (!Array.isArray(products)) {
+    return res.status(400).send('유효한 변수 타입이 아닙니다.');
+  }
+  products.forEach(product => {
+    // * 각 레코드의 형식 변환
+    const record: Record<string, string | number> = {
+      name: product.name,
+      price: product.price
+    };
+    // * history 테이블에 레코드 추가
+    const createProduct = new CreateData(dbPath);
+    createProduct.createRecord('history', record);
+    createProduct.close();
+    return res.redirect('/');
+  });
   // dbManager.db.serialize(()=> {
   //   const products : Product[] = req.body.products;
 
