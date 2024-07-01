@@ -1,3 +1,3 @@
-import IReadTableInfo from "../../interfaces/table/TabelInfo.interface";
+import IReadTableInfo from "../../interfaces/table/TableInfo.interface";
 
 export default interface IGetTableInfo extends IReadTableInfo {}
