@@ -51,6 +51,7 @@ class ImplementedDBManager extends AbstractDBManager {
       if (err) {
         throw new Error("DB 연결 실패");
       } else {
+        console.log('DB연결 성공');
       }
     });
   }

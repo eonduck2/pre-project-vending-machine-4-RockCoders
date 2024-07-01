@@ -62,7 +62,7 @@ class ImplementedDeleteData extends AbstractDeleteData {
   }
 }
 
-export default class CreateData extends ImplementedDeleteData {
+export default class DeleteData extends ImplementedDeleteData {
   constructor(fileWithPath: string) {
     super(fileWithPath);
   }

@@ -5,6 +5,9 @@ import dbManager from "../DB/db.js";
 import morgan from "morgan";
 import TableCreator from "../DB/modules/table/TableCreator.js";
 import dbPath from "../DB/db.js";
+import CreateData from "../DB/modules/manipulation/insert/CreateData.js";
+import UpdateData from "../DB/modules/manipulation/update/UpdateData.js";
+import DeleteData from "../DB/modules/manipulation/delete/DeleteData.js";
 
 const app = express();
 
@@ -14,6 +17,9 @@ interface reqData {
   price : number
 }
 
+// * DB연결
+
+
 // *테이블 생성
 const createTable = new TableCreator(dbPath);
 createTable.createTable('products', {
@@ -21,6 +27,7 @@ createTable.createTable('products', {
   name: 'TEXT',
   price: 'INTEGER'
 });
+createTable.close();
 
 //* 미들웨어로 등록하기 위한 경로 설정
 const publicPath = path.join(__dirname, "public");
@@ -48,10 +55,12 @@ app.get('/admin', (req, res) => {
 // *제품 추가
 app.post("/create", (req, res) => {
   const { name, price } = req.body as reqData;
-  // dbManager.createRecord('products', {
-  //   name : name,
-  //   price : price
-  // });
+  const createProduct = new CreateData(dbPath);
+  createProduct.createRecord('products', {
+    name:name,
+    price:price
+  });
+  createProduct.close();
   return res.redirect('/admin');
 });
 
@@ -75,17 +84,21 @@ app.get("/products", (req, res) => {
 // *제품 수정
 app.post('/update', (req, res) => {
   const { id, name, price } = req.body as reqData;
-  // dbManager.updateRecord('products', 'id', id, {
-  //   name:name,
-  //   price:price
-  // })
+  const updateProduct = new UpdateData(dbPath);
+  updateProduct.updateRecord('products', 'id', id, {
+    name:name,
+    price:price
+  })
+  updateProduct.close();
   return res.redirect('/admin');
 })
 
 // *제품 삭제
 app.post('/delete', (req, res) => {
   const { id } = req.body;
-  // dbManager.deleteRecord('products', 'id', id);
+  const deleteProduct = new DeleteData(dbPath);
+  deleteProduct.deleteRecord('products', 'id', id);
+  deleteProduct.close();
   return res.redirect('/admin');
 })
 
