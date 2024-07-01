@@ -37,8 +37,10 @@ const PORT = process.env.PORT ?? 8080;
 app.use(morgan('dev'));
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
+app.use('/src', express.static(srcPath));
 app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
+// app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
 
 app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));

@@ -1,12 +1,8 @@
-import { LocalStorage } from 'node-localstorage';
-
-const localStorage = new LocalStorage('./scratch');
-
 class LocalStorageModel {
   validKeys: string[];
 
   constructor() {
-    this.validKeys = ["totalPrice", "amount", "balance"];
+    this.validKeys = ["balance"];
   }
 
   // * 유효한 키인지 확인
@@ -67,6 +63,3 @@ class LocalStorageModel {
 }
 
 export default LocalStorageModel;
-
-// const localData = new LocalStorageModel();
-// localData.setItem('totalPrice', 3000);
