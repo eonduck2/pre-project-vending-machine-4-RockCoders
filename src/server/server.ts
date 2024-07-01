@@ -29,14 +29,12 @@ const publicPath = path.join(__dirname, "public");
 const srcPath = path.join(__dirname, "src");
 const distPath = path.join(__dirname, "dist");
 
-//* 환경 변수로 지정된 포트가 없으면 8080을 사용합니다.
-const PORT = process.env.PORT ?? 8080;
-
 //* 미들웨어 등록
 app.use(morgan('dev'));
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
+app.use('/src', express.static(srcPath));
 app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱해주기 때문에 지우면 안됨
 // app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
 
@@ -44,6 +42,4 @@ app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱�
 app.use('/', rootRouter);
 app.use('/admin', adminRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+export default app;
