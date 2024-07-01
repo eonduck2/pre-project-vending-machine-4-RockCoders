@@ -1,4 +1,4 @@
-import { displayBalance } from "../amount/displayBalance.js";
+import { UIManager } from "../amount/UIManager.js";
 
 /**
  * @yuxincxoi 24.06.27
@@ -23,6 +23,7 @@ export default (amount : number, totalPrice : number|null) => {
 
 
     // * 잔액 출력 함수 호출
-    displayBalance();
+    const balance = new UIManager();
+    balance.displayBalance();
   }
 }
