@@ -34,6 +34,7 @@ app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
@@ -45,8 +46,9 @@ app.get('/admin', (req, res) => {
 
 // *제품 추가
 app.post("/create", (req, res) => {
-  const { name, price } = req.body as reqData;
+  const { id, name, price } = req.body as reqData;
   dbManager.createRecord('products', {
+    id : id,
     name : name,
     price : price
   });
