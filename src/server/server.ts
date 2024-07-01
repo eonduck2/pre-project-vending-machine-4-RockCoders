@@ -4,9 +4,6 @@ import __dirname from "../modules/__dirname.js";
 import morgan from "morgan";
 import TableCreator from "../DB/modules/table/TableCreator.js";
 import dbPath from "../DB/db.js";
-import CreateData from "../DB/modules/manipulation/insert/CreateData.js";
-import UpdateData from "../DB/modules/manipulation/update/UpdateData.js";
-import DeleteData from "../DB/modules/manipulation/delete/DeleteData.js";
 import rootRouter from "../routers/rootRouter.js";
 import adminRouter from "../routers/adminRouter.js";
 
@@ -46,39 +43,6 @@ app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱�
 // * 라우터
 app.use('/', rootRouter);
 app.use('/admin', adminRouter);
-
-// *제품 추가
-app.post("/create", (req, res) => {
-  const { name, price } = req.body as formData;
-  const createProduct = new CreateData(dbPath);
-  createProduct.createRecord('products', {
-    name:name,
-    price:price
-  });
-  createProduct.close();
-  return res.redirect('/admin');
-});
-
-// *제품 수정
-app.post('/update', (req, res) => {
-  const { id, name, price } = req.body as formData;
-  const updateProduct = new UpdateData(dbPath);
-  updateProduct.updateRecord('products', 'id', id, {
-    name:name,
-    price:price
-  })
-  updateProduct.close();
-  return res.redirect('/admin');
-})
-
-// *제품 삭제
-app.post('/delete', (req, res) => {
-  const { id } = req.body;
-  const deleteProduct = new DeleteData(dbPath);
-  deleteProduct.deleteRecord('products', 'id', id);
-  deleteProduct.close();
-  return res.redirect('/admin');
-})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
