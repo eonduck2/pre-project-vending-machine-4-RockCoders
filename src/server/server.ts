@@ -35,7 +35,7 @@ app.use('/dist', express.static(distPath));
 app.use('/src', express.static(srcPath));
 app.use(express.static(srcPath));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
 
 app.get("/", (req, res) => {
   return res.sendFile(path.join(publicPath, "index.html"));
@@ -64,9 +64,7 @@ app.get("/products", (req, res) => {
   dbManager.db.serialize(()=>{
     dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
     .then((products) => {
-      // res.json(products); 
-      console.log("클라에 응답 완료") // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
-      res.json(products)
+      res.json(products) // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
     })
     .catch((err) => {
       console.error('Error fetching products:', err);
