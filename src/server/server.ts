@@ -12,12 +12,6 @@ import rootRouter from "../routers/rootRouter.js";
 
 const app = express();
 
-interface formData {
-  id : string,
-  name : string,
-  price : number
-}
-
 // *테이블 생성
 // *상품 테이블
 const createTable = new TableCreator(dbPath);
