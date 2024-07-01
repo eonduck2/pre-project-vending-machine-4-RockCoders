@@ -83,31 +83,6 @@ app.post('/delete', (req, res) => {
   return res.redirect('/admin');
 })
 
-interface Product {
-  name: string;
-  price: number;
-}
-
-app.post('/purchase', (req, res) => {
-  const products : Product[] = req.body.products;
-  // * 배열이 아닌 경우 err
-  if (!Array.isArray(products)) {
-    return res.status(400).send('유효한 변수 타입이 아닙니다.');
-  }
-  products.forEach(product => {
-    // * 각 레코드의 형식 변환
-    const record: Record<string, string | number> = {
-      name: product.name,
-      price: product.price
-    };
-    // * history 테이블에 레코드 추가
-    const createProduct = new CreateData(dbPath);
-    createProduct.createRecord('history', record);
-    createProduct.close();
-    return res.redirect('/');
-  });
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
