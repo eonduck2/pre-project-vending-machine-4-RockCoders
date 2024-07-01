@@ -7,6 +7,7 @@ import dbPath from "../DB/db.js";
 import CreateData from "../DB/modules/manipulation/insert/CreateData.js";
 import UpdateData from "../DB/modules/manipulation/update/UpdateData.js";
 import DeleteData from "../DB/modules/manipulation/delete/DeleteData.js";
+import ReadData from "../DB/modules/manipulation/select/ReadData.js"
 
 const app = express();
 
@@ -67,21 +68,17 @@ app.post("/create", (req, res) => {
   return res.redirect('/admin');
 });
 
-// dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
-
-
 app.get("/products", (req, res) => {
-  //직렬구조 보장
-  // dbManager.db.serialize(()=>{
-  //   dbManager.readRecordsAll('products', false)  // 모든 상품 데이터를 조회합니다. (log를 false로 설정하여 console에 로깅하지 않습니다)
-  //   .then((products) => {
-  //     res.json(products);  // 조회된 상품 데이터를 JSON 형식으로 클라이언트에 응답합니다.
-  //   })
-  //   .catch((err) => {
-  //     console.error('Error fetching products:', err);
-  //     res.status(500).json({ error: 'Failed to fetch products' });
-  //   });
-  // });
+  const readData = new ReadData(dbPath);
+  readData.readRecordsAll('products', false)
+    .then((products) => {
+      res.json(products);
+    })
+    .catch((err) => {
+      console.error('Error fetching products:', err);
+      res.status(500).json({ error: 'Failed to fetch products' });
+    });
+  readData.close();
 });
 
 // *제품 수정
