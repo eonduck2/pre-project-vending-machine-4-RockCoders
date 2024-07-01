@@ -8,6 +8,7 @@ import CreateData from "../DB/modules/manipulation/insert/CreateData.js";
 import UpdateData from "../DB/modules/manipulation/update/UpdateData.js";
 import DeleteData from "../DB/modules/manipulation/delete/DeleteData.js";
 import ReadData from "../DB/modules/manipulation/select/ReadData.js"
+import rootRouter from "../routers/rootRouter.js";
 
 const app = express();
 
@@ -45,12 +46,10 @@ app.use(morgan('dev'));
 app.use(express.static(publicPath));
 app.use('/dist', express.static(distPath));
 app.use(express.static(srcPath));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱해주기 때문에 지우면 안됨
 // app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
 
-app.get("/", (req, res) => {
-  return res.sendFile(path.join(publicPath, "index.html"));
-});
+app.use('/', rootRouter);
 
 app.get('/admin', (req, res) => {
   return res.sendFile(path.join(publicPath, "admin.html"));
