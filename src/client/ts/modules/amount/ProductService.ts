@@ -1,10 +1,10 @@
-import productsDTO from '../../../productsDTO'
+import { formData } from '../../../../modules/interface/formData.js'
 
 /**
  * * fetch의 기능을 수행하는 class
  */
 export class ProductService {
-  async fetchProducts(): Promise<productsDTO[]> {
+  async fetchProducts(): Promise<formData[]> {
     try{
       const response = await fetch('http://localhost:8080/products');
       
