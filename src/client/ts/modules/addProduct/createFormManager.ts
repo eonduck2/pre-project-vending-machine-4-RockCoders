@@ -1,11 +1,11 @@
+import hideAllForms from "../hideAllForms.js";
+import hideReportContainer from "../reportHandle/hideReportContainer.js";
+import showReportContainer from "../reportHandle/showReportContainer.js";
+
 /**
  * @crystal23733 24.06.28
  * * 제품 추가 버튼 핸들링
  */
-
-import hideAllForms from "../hideAllForms.js";
-import hideReportContainer from "../reportHandle/hideReportContainer.js";
-import showReportContainer from "../reportHandle/showReportContainer.js";
 
 export default class CreateFormManager {
   private createFormContainer: HTMLElement;
