@@ -1,8 +1,10 @@
+import { formData } from '../../../../modules/interface/formData.js'
+
 /**
  * * fetch의 기능을 수행하는 class
  */
 export class ProductService {
-  async fetchProducts(): Promise<Array<{ id: number, name: string, price: number }>> {
+  async fetchProducts(): Promise<formData[]> {
     try{
       const response = await fetch('http://localhost:8080/products');
       
