@@ -1,4 +1,4 @@
-import { productsDTO } from '../../../productsDTO'
+import productsDTO from '../../../productsDTO'
 
 /**
  * * fetch의 기능을 수행하는 class
