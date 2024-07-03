@@ -4,6 +4,7 @@ import { LocalStoragePlus } from "./LocalStoragePlus.js";
 import { ProductService } from "./ProductService.js";
 import { UIManager } from "./UIManager.js";
 
+
 export async function priceInput() {
   console.log('또롱');
 

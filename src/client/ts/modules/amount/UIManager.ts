@@ -1,4 +1,5 @@
 import LocalStorageModel from '../../../../localStorage/localStorage.js'
+import { formData } from '../../../../modules/interface/formData.js'
 
 /**
  * * ui관련의 기능을 모두 수행하는 class
@@ -29,7 +30,7 @@ export class UIManager {
    * @param products 제품 목록을 나타내는 객체 배열
    * @param currentBalance 현재 잔액을 나타내는 숫자
    */
-  displayProducts(products: Array<{ id: number, name: string, price: number }>, currentBalance: number): void {
+  displayProducts(products: formData[], currentBalance: number): void {
     const menuContent = document.getElementById('menu-content') as HTMLDivElement;
     menuContent.innerHTML = '';
     products.forEach(product => {
