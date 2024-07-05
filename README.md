@@ -30,3 +30,5 @@ RockCoders
 | 🙈    | see_no_evil        | .gitignore 추가/수정                              | Add or update a .gitignore file.           |
 | 📝    | memo               | 문서 추가/수정                                    | Add or update documentation.               |
 | ✏️   | pencil2            | 코드에 영향을 주지 않는 변경사항                       | Changes that do not affect code.           |
+# RockCoders를 소개합니다!
+<https://www.notion.so/kongukjae/Rock-Coders-de66453690144c53a0dc9d065a43e5f0?pvs=4>
