@@ -4,6 +4,7 @@ RockCoders
 - 2024.06.21 ~ 진행중
 # 🛒프로젝트 소개
 꿈을 구매, 판매하고 재고를 추가, 수정, 삭제할 수 있는 페이지입니다.
+<https://www.notion.so/kongukjae/Rock-Coders-8c86e1ce7ccd4f839e9ce0513e2a6b54?pvs=4>
 # 커밋 컨벤션
 
 | 아이콘  | 코드                  | 설명                                           | 원문                                         |
@@ -30,5 +31,3 @@ RockCoders
 | 🙈    | see_no_evil        | .gitignore 추가/수정                              | Add or update a .gitignore file.           |
 | 📝    | memo               | 문서 추가/수정                                    | Add or update documentation.               |
 | ✏️   | pencil2            | 코드에 영향을 주지 않는 변경사항                       | Changes that do not affect code.           |
-# RockCoders를 소개합니다!
-<https://www.notion.so/kongukjae/Rock-Coders-de66453690144c53a0dc9d065a43e5f0?pvs=4>
