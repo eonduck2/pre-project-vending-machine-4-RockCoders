@@ -1,4 +1,5 @@
 import hideAllForms from "../hideAllForms";
+import showReport from "./showReport";
 
 /**
  * @crystal23733 24.07.08
@@ -9,6 +10,7 @@ export default class ReportBtnManager {
     const reportBtn = document.getElementById('adminReportBtn') as HTMLElement;
     reportBtn?.addEventListener('click', () => {
       hideAllForms();
+      showReport();
     })
   }
 }
