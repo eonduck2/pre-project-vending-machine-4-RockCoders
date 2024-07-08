@@ -1,4 +1,4 @@
-import { BaseDataBaseManager } from '../../DB/modules/DBMANAGER.js';
+import CreateData from "../../DB/modules/manipulation/insert/CreateData";
 
 /**
  * @yuxincxoi 24.06.25
@@ -6,6 +6,7 @@ import { BaseDataBaseManager } from '../../DB/modules/DBMANAGER.js';
  * * 판매된 내역을 저장하는 DB인 'History' 테이블을 생성하는 메서드와, User가 구매한 제품 각각의 제품 정보(제품명, 가격)를 테이블에 추가하는 메서드
  * @param {object} selectedProduct 선택한 제품 정보
  */
+
 
 // todo : 선택한 제품 정보 인자로 받아오기
 // * 임시 데이터 - 선택한 제품 정보
@@ -15,24 +16,15 @@ const selectedProduct = {
 };
 
 export default class HistoryTable {
-  // * dbManager 인스턴스를 private 멤버 변수로 선언
-  private dbManager: BaseDataBaseManager;
+  // * createHistory 인스턴스를 private 멤버 변수로 선언
+  private createHistory: CreateData;
 
   constructor(dbFilePath: string) {
-    // * BaseDataBaseManager 인스턴스를 생성
-    this.dbManager = new BaseDataBaseManager(dbFilePath);
-  }
-
-  // * history 테이블을 생성하는 메서드
-  createHistoryTable(): void {
-    this.dbManager.createTable("history", {
-      name: 'TEXT',
-      price: 'INTEGER'
-    });
+    this.createHistory = new CreateData(dbFilePath);
   }
 
   // * User가 구매한 제품 정보를 테이블에 추가하는 메서드
   createRecord(): void {
-    this.dbManager.createRecord("history", selectedProduct);
+    this.createHistory.createRecord("history", selectedProduct);
   }
 }
