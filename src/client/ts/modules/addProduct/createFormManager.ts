@@ -24,7 +24,6 @@ export default class CreateFormManager {
 
   public hideForm(): void {
     this.createFormContainer.classList.add("hidden");
-    showReportContainer();
   }
 
   private toggleForm = (): void => {

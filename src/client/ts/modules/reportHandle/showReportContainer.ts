@@ -4,8 +4,8 @@
  */
 
 export default (): void => {
-  const reportContainer = document.getElementById('reportContainer');
+  const reportContainer = document.getElementById("report-container");
   if (reportContainer) {
-    reportContainer.classList.remove('hidden');
+    reportContainer.classList.remove("hidden");
   }
 }

@@ -23,7 +23,6 @@ export default class UpdateFormManager {
 
   public hideForm(): void {
     this.updateFormContainer.classList.add("hidden");
-    showReportContainer();
   }
 
   private toggleForm = (): void => {
