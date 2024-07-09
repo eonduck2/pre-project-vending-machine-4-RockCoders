@@ -1,6 +1,7 @@
 import CreateFormManager from "./ts/modules/addProduct/createFormManager.js";
 import DeleteFormManager from "./ts/modules/deleteProduct/deleteFormManager.js";
-import ReportButtonManager from "./ts/modules/reportHandle/reportAreaManager.js";
+import ReportButtonManager from "./ts/modules/reportHandle/reportButtonManager.js";
+
 import UpdateFormManager from "./ts/modules/updateProduct/updateFormManager.js";
 
 document.addEventListener('DOMContentLoaded', () => {
