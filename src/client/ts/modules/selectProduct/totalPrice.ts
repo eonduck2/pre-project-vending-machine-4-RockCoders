@@ -1,16 +1,32 @@
 /** 
- * @jojayeon 24.06.25
- * *제품을 총액 계산 
- * @param selectedProducts -객체 변수 넣어주면됨  
- * @returns - totalPrice, 총액 출력
+ * @yuxincxoi 24.07.10
+ * * 제품의 총액을 계산하여 표시한다.
+ * @param target 선택한 제품
  */
 
-// 객체 들어오면 product로 받아서 그 객체의 price의 가격만 덧셈하는 방식
-export default((selectedProducts: { name: string, price: number }[]) => {
-  // 선택한 제품들을 기반으로 총액 계산 로직 구현
-  let totalPrice = 0;
-  selectedProducts.forEach(product => {
-    totalPrice += product.price;
-  });
-  return totalPrice;
-})
+let total = 0;
+
+export default (target: HTMLElement) => {
+  try {
+    const productPrice = target.querySelector(".rounded-full")!.textContent;
+    if(productPrice){
+      const price = parseFloat(productPrice);
+      
+      if (!isNaN(price)) {
+        total += price;
+        if(total){
+          const totalPrice = document.getElementById("total-price");
+          if (totalPrice) {
+            totalPrice.innerHTML = total.toString();
+          }
+        }
+      } else {
+        console.log('가격 변환에 실패했습니다.');
+      }
+    } else {
+      console.log('가격 정보를 찾을 수 없습니다.');
+    }
+  } catch(error) {
+    console.log('제품 정보를 가져오는 데에 실패했습니다.');
+  }
+}
