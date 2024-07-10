@@ -23,7 +23,6 @@ window.addEventListener("DOMContentLoaded", () => {
       if (target && target.classList.contains("menu-item")) {
         await selectProductOutput(target);
       }
-      totalPrice(target);
       totalPriceOutput(target);
     });
   }
