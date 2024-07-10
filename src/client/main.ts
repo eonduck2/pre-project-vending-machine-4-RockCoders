@@ -6,6 +6,7 @@ import { selectProductOutput } from "./ts/modules/selectProduct/selectProductOut
 
 const localStorageModel = new LocalStorageModel();
 
+// * 입금하기 버튼 이벤트
 const moneyButton = document.getElementById("money-button");
 if (moneyButton) {
   moneyButton.addEventListener("click", priceInput);
@@ -13,9 +14,7 @@ if (moneyButton) {
   console.error("money-button 요소를 찾을 수 없습니다.");
 }
 
-/**
- * * 메뉴선택시 장바구니 추가
- */
+// * 장바구니 추가 이벤트
 window.addEventListener("DOMContentLoaded", () => {
   const menuContent = document.getElementById("menu-content");
   if (menuContent) {
