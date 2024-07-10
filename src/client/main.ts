@@ -24,6 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
         await selectProductOutput(target);
       }
       totalPrice(target);
+      totalPriceOutput(target);
     });
   }
 });

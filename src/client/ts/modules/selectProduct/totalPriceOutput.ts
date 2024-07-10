@@ -1,28 +1,20 @@
-/**
- * * @jojayeon 24.06.25
- * * 총액 출력하는 함수
- * 저장해 놓은 총액 넘버를 가져와서 출력만 함
- * @param totalPrice - 총액 totalprice의 리턴값을 넣어준다. 또는 객체 변수 넣어주면됨  
- * @param paymentAmount - 로컬스토리지 balance 총액
- */
-export default ((totalPrice: number, paymentAmount: number) => {
-  const totalPriceElement = document.getElementById('total-price') as HTMLUListElement;
-  const messageElement = document.getElementById('message') as HTMLParagraphElement;
+import totalPrice from "./totalPrice.js";
 
-  if (totalPriceElement) {
-    if (paymentAmount < totalPrice) {
-      if (messageElement) {
-        messageElement.innerText = '금액을 더 넣어 주세요';
-      } else {
-        console.error('total-Price 없슈');
-      }
-    } else {
-      totalPriceElement.innerText = `총액: ${totalPrice}원`;
-      if (messageElement) {
-        messageElement.innerText = '';
-      }
+/**
+ * @yuxincxoi 24.07.10
+ * * 총액을 출력하는 함수
+ * @param target 선택한 제품
+ *
+ */
+
+export default (target: HTMLElement) => {
+  let total = totalPrice(target)
+  // * 계산된 총액이 존재한다면
+  if(total){
+    // * 총액 출력
+    const totalPrice = document.getElementById("total-price");
+    if (totalPrice) {
+      totalPrice.innerHTML = total.toString();
     }
-  } else {
-    console.error('message 없슈');
   }
-});
+}

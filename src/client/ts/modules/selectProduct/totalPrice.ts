@@ -1,7 +1,8 @@
 /** 
  * @yuxincxoi 24.07.10
- * * 제품의 총액을 계산하여 표시한다.
+ * * 제품의 총액을 계산하는 함수
  * @param target 선택한 제품
+ * @return {number} 총액
  */
 
 let total = 0;
@@ -13,18 +14,11 @@ export default (target: HTMLElement) => {
     if(productPrice){
       const price = parseFloat(productPrice);
       
-      // price가 숫자 형식이면
+      // * price가 숫자 형식이면
       if (!isNaN(price)) {
         // * total에 선택한 제품의 가격 누적 계산
         total += price;
-        // * 계산된 총액이 존재한다면
-        if(total){
-          // * 총액 출력
-          const totalPrice = document.getElementById("total-price");
-          if (totalPrice) {
-            totalPrice.innerHTML = total.toString();
-          }
-        }
+        return total;
       } else {
         console.log('가격 변환에 실패했습니다.');
       }
