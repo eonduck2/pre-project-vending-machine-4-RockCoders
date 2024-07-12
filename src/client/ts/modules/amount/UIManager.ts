@@ -52,25 +52,48 @@ export class UIManager {
     });
   }
   /**
-   * @moonhr 24.06.28
+   * @eonduck2 24.07.11
    * * 조건에 맞지 않을 때 출력될 메세지
-   * @param message
+   * @param message 알림창을 통해 출력시킬 메시지
    */
-  errorModal(message: string): void {
+  errModal(message: string): void {
     const root = document.getElementById("root");
 
     if (root instanceof HTMLElement) {
       const errModal = document.createElement("div");
+      errModal.id = "errModal";
+
+      // const errModalStyles = [];
 
       errModal.style.width = "100%";
       errModal.style.height = "100%";
       errModal.style.position = "absolute";
+      errModal.style.backgroundColor = `rgb(181,181,181, 0.8)`;
+      errModal.style.zIndex = "1";
+      errModal.style.display = "flex";
+      errModal.style.justifyContent = "center";
+      errModal.style.alignItems = "center";
 
       root.insertBefore(errModal, root.firstChild);
 
       errModal.innerHTML = `
-    <div class="flex w-full h-full">
-      <div class="flex flex-col w-1/2 h-1/2 bg-slate-500"></div>
+    <div style="background-color: white; height: 30%; width: 28%; border: 2px solid black; border-radius: 7px" class="flex rounded-xl flex-col">
+      <div style="background-color: black; width: 100%; height: 5%;"></div>
+      <div style="width: 100%; height: 10%; display: flex; justify-content: flex-end">
+        <div style="width:92%; height: 100%; display: flex; align-items: center; padding-left: 10px;">
+          <i class="fa-regular fa-circle"></i>
+          <i class="fa-regular fa-circle"></i>
+          <i class="fa-regular fa-circle"></i>
+        </div>
+        <div style="width: 8%; height: 100%; display:flex; justify-content: center; align-items: center;">
+          <i class="fa-solid fa-x"></i>
+        </div>
+      </div>
+      <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center; ">
+        <div style="width: 80%; height: 100%; display: flex; justify-content: center; align-items: center; ">
+          <span>${message}</span>
+        </div>
+      </div>
     </div>`;
     }
   }

@@ -12,7 +12,7 @@ export async function priceInput() {
 
   if (!validateAmount(money)) {
     const uiManager = new UIManager();
-    uiManager.errorModal(
+    uiManager.errModal(
       "입력된 값이 옳지 않습니다. 1000원 이상 10000원 이하만 입금 가능합니다."
     );
     return;
