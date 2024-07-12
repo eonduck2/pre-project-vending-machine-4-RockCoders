@@ -56,7 +56,22 @@ export class UIManager {
    * * 조건에 맞지 않을 때 출력될 메세지
    * @param message
    */
-  showAlert(message: string): void {
-    alert(message);
+  errorModal(message: string): void {
+    const root = document.getElementById("root");
+
+    if (root instanceof HTMLElement) {
+      const errModal = document.createElement("div");
+
+      errModal.style.width = "100%";
+      errModal.style.height = "100%";
+      errModal.style.position = "absolute";
+
+      root.insertBefore(errModal, root.firstChild);
+
+      errModal.innerHTML = `
+    <div class="flex w-full h-full">
+      <div class="flex flex-col w-1/2 h-1/2 bg-slate-500"></div>
+    </div>`;
+    }
   }
 }

@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build:css": "npx tailwindcss -i ./src/input.css -o ./public/style.css -w",
-    "server" : "node dist/server/init.js"
+    "start": "nodemon ./dist/server/init.js",
+    "server": "node dist/server/init.js"
   },
   "author": "",
   "license": "MIT",
