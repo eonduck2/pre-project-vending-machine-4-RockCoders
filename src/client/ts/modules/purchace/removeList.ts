@@ -5,5 +5,7 @@
  */
 
 export default () => {
-  console.log("장바구니 초기화 !");
+  // * 장바구니 목록 삭제
+  const cart = document.getElementById("productList");
+  cart?.remove();
 };
