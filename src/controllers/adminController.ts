@@ -25,26 +25,53 @@ export const createDB = (req:Request, res:Response) => {
   return res.redirect('/admin');
 }
 
-// * 제품 수정
-export const updateDB = (req:Request, res:Response) => {
+// * 제품 업데이트
+export const updateDB = async (req: Request, res: Response) => {
   const { id, name, price } = req.body as formData;
-  const updateProduct = new UpdateData(dbPath);
-  updateProduct.updateRecord('products', 'id', id, {
-    name:name,
-    price:price
-  })
-  updateProduct.close();
-  return res.redirect('/admin');
-}
+  try {
+    const readProduct = new ReadData(dbPath);
+    const product = await readProduct.readRecord('products', 'id', id);
+    readProduct.close();
+
+    if (!product.length) {
+      return res.status(404).json({ error: '해당 제품번호는 존재하지 않습니다.' });
+    }
+
+    const updateProduct = new UpdateData(dbPath);
+    updateProduct.updateRecord('products', 'id', id, {
+      name: name,
+      price: price,
+    });
+    updateProduct.close();
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('오류 발생:', error);
+    return res.status(500).json({ error: '서버와의 통신 중 오류가 발생했습니다.' });
+  }
+};
 
 // * 제품 삭제
-export const deleteDB = (req:Request, res:Response) => {
+export const deleteDB = async (req: Request, res: Response) => {
   const { id } = req.body;
-  const deleteProduct = new DeleteData(dbPath);
-  deleteProduct.deleteRecord('products', 'id', id);
-  deleteProduct.close();
-  return res.redirect('/admin');
-}
+
+  try {
+    const readProduct = new ReadData(dbPath);
+    const product = await readProduct.readRecord('products', 'id', id);
+    readProduct.close();
+
+    if (!product.length) {
+      return res.status(404).json({ error: '해당 제품번호는 존재하지 않습니다.' });
+    }
+
+    const deleteProduct = new DeleteData(dbPath);
+    deleteProduct.deleteRecord('products', 'id', id);
+    deleteProduct.close();
+    return res.json({ success: true });
+  } catch (error) {
+    console.error('오류 발생:', error);
+    return res.status(500).json({ error: '서버와의 통신 중 오류가 발생했습니다.' });
+  }
+};
 
 // * 보고서 출력
 export const report = async(req:Request, res:Response) => {
