@@ -3,7 +3,7 @@ import totalPriceOutput from "./ts/modules/selectProduct/totalPriceOutput.js";
 import totalPrice from "./ts/modules/selectProduct/totalPrice.js";
 import LocalStorageModel from "../localStorage/localStorage.js";
 import { selectProductOutput } from "./ts/modules/selectProduct/selectProductOutput.js";
-import balance from "./ts/modules/purchace/balance.js";
+import clickPurchase from "./ts/modules/purchace/clickPurchase.js";
 
 const localStorageModel = new LocalStorageModel();
 
@@ -30,5 +30,5 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // * 구매하기 버튼 이벤트
-const purchaseBtn = document.getElementById('purchaseBtn');
-purchaseBtn?.addEventListener("click", balance);
+const purchaseBtn = document.getElementById("purchaseBtn");
+purchaseBtn?.addEventListener("click", clickPurchase);
