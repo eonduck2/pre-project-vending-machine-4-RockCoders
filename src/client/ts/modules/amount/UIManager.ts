@@ -77,20 +77,20 @@ export class UIManager {
       root.insertBefore(errModal, root.firstChild);
 
       errModal.innerHTML = `
-    <div style="background-color: white; height: 30%; width: 28%; border: 2px solid black; border-radius: 7px" class="flex rounded-xl flex-col">
-      <div style="background-color: black; width: 100%; height: 5%;"></div>
-      <div style="width: 100%; height: 10%; display: flex; justify-content: flex-end">
-        <div style="width:92%; height: 100%; display: flex; align-items: center; padding-left: 10px;">
-          <i class="fa-regular fa-circle"></i>
-          <i class="fa-regular fa-circle"></i>
-          <i class="fa-regular fa-circle"></i>
+    <div class="flex rounded-xl flex-col bg-white w-1/4 h-1/4 border-2 border-solid border-black">
+      <div class="w-full h-5 bg-black rounded-t-lg"></div>
+      <div class="w-full h-5 flex mt-1">
+        <div class="w-11/12 h-full flex items-center pl-3 gap-1">
+          <i class="fa-solid fa-circle text-red-400 border-none"></i>
+          <i class="fa-solid fa-circle text-orange-300 border-none"></i>
+          <i class="fa-solid fa-circle text-green-400 border-none"></i>
         </div>
-        <div style="width: 8%; height: 100%; display:flex; justify-content: center; align-items: center;">
+        <div class="w-5 h-full flex items-center justify-center">
           <i class="fa-solid fa-x"></i>
         </div>
       </div>
-      <div style="width: 100%; height: 85%; display: flex; justify-content: center; align-items: center; ">
-        <div style="width: 80%; height: 100%; display: flex; justify-content: center; align-items: center; ">
+      <div class="w-full h-5/6 flex justify-center items-center">
+        <div class="break-all overflow-y-auto w-10/12 h-full flex justify-center items-center">
           <span>${message}</span>
         </div>
       </div>
