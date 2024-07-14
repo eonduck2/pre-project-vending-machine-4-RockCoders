@@ -1,5 +1,6 @@
 import LocalStorageModel from "../../../../localStorage/localStorage.js";
 import { formData } from "../../../../modules/interface/formData.js";
+import dropElement from "../utilities/dropElement.js";
 
 /**
  * * ui관련의 기능을 모두 수행하는 class
@@ -91,7 +92,7 @@ export class UIManager {
           <i class="fa-solid fa-circle text-green-400 border-none"></i>
         </div>
         <div class="w-5 h-full flex items-center justify-center">
-          <i class="fa-solid fa-x cursor-pointer"></i>
+          <i class="fa-solid fa-x cursor-pointer" id="closeButton"></i>
         </div>
       </div>
       <div class="w-full h-5/6 flex justify-center items-center">
@@ -100,6 +101,13 @@ export class UIManager {
         </div>
       </div>
     </div>`;
+    }
+
+    const closeButton = document.getElementById("closeButton");
+    if (closeButton instanceof HTMLElement) {
+      closeButton.onclick = () => {
+        dropElement(document.getElementById("errModal")!);
+      };
     }
   }
 }
