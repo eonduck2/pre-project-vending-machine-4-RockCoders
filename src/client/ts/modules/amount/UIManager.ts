@@ -63,16 +63,21 @@ export class UIManager {
       const errModal = document.createElement("div");
       errModal.id = "errModal";
 
-      // const errModalStyles = [];
+      const errModalStyles = [
+        "w-full",
+        "h-full",
+        "absolute",
+        "z-10",
+        "flex",
+        "justify-center",
+        "items-center",
+      ];
 
-      errModal.style.width = "100%";
-      errModal.style.height = "100%";
-      errModal.style.position = "absolute";
       errModal.style.backgroundColor = `rgb(181,181,181, 0.8)`;
-      errModal.style.zIndex = "1";
-      errModal.style.display = "flex";
-      errModal.style.justifyContent = "center";
-      errModal.style.alignItems = "center";
+
+      errModalStyles.forEach((styleClass) =>
+        errModal.classList.add(styleClass)
+      );
 
       root.insertBefore(errModal, root.firstChild);
 
@@ -86,7 +91,7 @@ export class UIManager {
           <i class="fa-solid fa-circle text-green-400 border-none"></i>
         </div>
         <div class="w-5 h-full flex items-center justify-center">
-          <i class="fa-solid fa-x"></i>
+          <i class="fa-solid fa-x cursor-pointer"></i>
         </div>
       </div>
       <div class="w-full h-5/6 flex justify-center items-center">

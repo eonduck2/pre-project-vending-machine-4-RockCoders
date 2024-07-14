@@ -620,6 +620,10 @@ video {
   top: 15%;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -746,6 +750,10 @@ video {
 
 .w-10\/12 {
   width: 83.333333%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .list-none {
