@@ -36,7 +36,7 @@ app.use("/dist", express.static(distPath));
 app.use(express.static(srcPath));
 app.use("/src", express.static(srcPath));
 app.use(express.urlencoded({ extended: true })); // ! form데이터 값 파싱해주기 때문에 지우면 안됨
-// app.use(express.json()); //해당 미들웨어 사용시 json으로 자동 파싱
+app.use(express.json()); // ! 해당 미들웨어 사용시 json으로 자동 파싱
 
 // * 라우터
 app.use("/", rootRouter);
