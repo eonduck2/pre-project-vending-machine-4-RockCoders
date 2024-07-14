@@ -53,7 +53,7 @@ export class UIManager {
   }
   /**
    * @eonduck2 24.07.11
-   * * 조건에 맞지 않을 때 출력될 메세지
+   * * 조건에 맞지 않을 때 메시지와 함께 알림창 팝업
    * @param message 알림창을 통해 출력시킬 메시지
    */
   errModal(message: string): void {
