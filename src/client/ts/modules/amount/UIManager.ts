@@ -1,5 +1,6 @@
 import LocalStorageModel from "../../../../localStorage/localStorage.js";
 import { formData } from "../../../../modules/interface/formData.js";
+import dropElement from "../utilities/dropElement.js";
 
 /**
  * * ui관련의 기능을 모두 수행하는 class
@@ -52,11 +53,61 @@ export class UIManager {
     });
   }
   /**
-   * @moonhr 24.06.28
-   * * 조건에 맞지 않을 때 출력될 메세지
-   * @param message
+   * @eonduck2 24.07.11
+   * * 조건에 맞지 않을 때 메시지와 함께 알림창 팝업
+   * @param message 알림창을 통해 출력시킬 메시지
    */
-  showAlert(message: string): void {
-    alert(message);
+  errModal(message: string): void {
+    const root = document.getElementById("root");
+
+    if (root instanceof HTMLElement) {
+      const errModal = document.createElement("div");
+      errModal.id = "errModal";
+
+      const errModalStyles = [
+        "w-full",
+        "h-full",
+        "absolute",
+        "z-10",
+        "flex",
+        "justify-center",
+        "items-center",
+      ];
+
+      errModal.style.backgroundColor = `rgb(181,181,181, 0.8)`;
+
+      errModalStyles.forEach((styleClass) =>
+        errModal.classList.add(styleClass)
+      );
+
+      root.insertBefore(errModal, root.firstChild);
+
+      errModal.innerHTML = `
+    <div class="flex rounded-xl flex-col bg-white w-1/4 h-1/4 border-2 border-solid border-black">
+      <div class="w-full h-5 bg-black rounded-t-lg"></div>
+      <div class="w-full h-5 flex mt-1">
+        <div class="w-11/12 h-full flex items-center pl-3 gap-1">
+          <i class="fa-solid fa-circle text-red-400 border-none"></i>
+          <i class="fa-solid fa-circle text-orange-300 border-none"></i>
+          <i class="fa-solid fa-circle text-green-400 border-none"></i>
+        </div>
+        <div class="w-5 h-full flex items-center justify-center">
+          <i class="fa-solid fa-x cursor-pointer" id="closeButton"></i>
+        </div>
+      </div>
+      <div class="w-full h-5/6 flex justify-center items-center">
+        <div class="break-all overflow-y-auto w-10/12 h-full flex justify-center items-center">
+          <span>${message}</span>
+        </div>
+      </div>
+    </div>`;
+    }
+
+    const closeButton = document.getElementById("closeButton");
+    if (closeButton instanceof HTMLElement) {
+      closeButton.onclick = () => {
+        dropElement(document.getElementById("errModal")!);
+      };
+    }
   }
 }
