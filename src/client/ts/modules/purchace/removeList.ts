@@ -6,8 +6,8 @@
 
 export default () => {
   // * 장바구니 목록 삭제
-  const cart = document.getElementById("productList");
-  cart?.remove();
+  const cartLi = document.getElementsByClassName('cartLi')!;
+  Array.from(cartLi).forEach((child) => {child.remove()});
   // * 장바구니 총액 삭제
   const totalPrice = document.getElementById("total-price");
   totalPrice?.remove();

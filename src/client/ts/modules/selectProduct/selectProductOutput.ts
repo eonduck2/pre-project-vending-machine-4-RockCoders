@@ -16,6 +16,7 @@ export function selectProductOutput(target: HTMLElement) {
 
     // 새로운 li 요소를 생성하여 productList에 추가
     const cartItem = document.createElement("li");
+    cartItem.className = 'cartLi';
     cartItem.textContent = `${productName} - ${productPrice}원`;
     productList.appendChild(cartItem);
   } catch (error) {
