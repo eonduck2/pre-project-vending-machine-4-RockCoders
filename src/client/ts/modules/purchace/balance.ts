@@ -15,16 +15,16 @@ export default () => {
     const amount = parseInt(amountElement);
     const totalPrice = parseInt(totalPriceElement);
     
+    // * 잔액 계산 : 입금액 - 구매금액
+    const getBalance = amount - totalPrice;
+    
     // * 선택한 제품이 없으면(구매금액이 존재하지 않으면)
-    if(totalPrice === null) {
+    if(isNaN(getBalance)) {
       alert("선택한 제품이 없습니다. 제품을 선택해주세요.");
-    } else { // * 선택한 제품(구매금액)이 존재한다면
-      // * 잔액 계산 : 입금액 - 구매금액
-      const getBalance = amount - totalPrice;
-  
+    } else {
       // * 로컬스토리지에 잔액 저장
       localStorage.setItem("balance", String(getBalance))
-
+      
       // * 잔액 출력 함수 호출
       const balance = new UIManager();
       balance.displayBalance();
