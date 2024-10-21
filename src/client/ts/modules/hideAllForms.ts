@@ -7,4 +7,8 @@ export default () => {
   document.querySelectorAll(".admin-form-container").forEach(container => {
     container.classList.add("hidden");
   });
+  const reportContainer = document.getElementById("report-container");
+  if (reportContainer) {
+    reportContainer.classList.add("hidden");
+  }
 }

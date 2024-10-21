@@ -23,7 +23,6 @@ export default class DeleteFormManager {
 
   public hideForm(): void {
     this.deleteFormContainer.classList.add("hidden");
-    showReportContainer();
   }
 
   private toggleForm = (): void => {
